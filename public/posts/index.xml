@@ -6,8 +6,18 @@
     <description>Recent content in Posts on Daisy的个人主页</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 24 Jan 2026 17:43:19 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 24 Jan 2026 19:52:56 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello, World</title>
+      <link>http://localhost:1313/posts/hello/</link>
+      <pubDate>Sat, 24 Jan 2026 19:52:56 +0800</pubDate>
+      <guid>http://localhost:1313/posts/hello/</guid>
+      <description>&lt;p&gt;I’ve wanted to build my own website since I was young.
+I’ve always been full of imagination and eager to explore new ideas.
+I needed a space — a little paradise — where I could record my thoughts, whether through writing, images, or videos.
+Thanks to technology, this dream is finally possible. It feels like a gift to my inner child.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>First</title>
       <link>http://localhost:1313/posts/first/</link>
