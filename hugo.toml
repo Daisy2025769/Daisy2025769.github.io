@@ -17,9 +17,9 @@ theme = 'PaperMod'
     imageHeight = 120
 
     # 社交按钮 (可以加微信、B站、邮箱等)
-   [[params.profileMode.buttons]]
-     name = "Email"
-     url = "mailto:web1091026187@gmail.com"
+ [[params.profileMode.buttons]]
+      name = "📧 Email"  # 按钮上显示的文字，可以加个emoji
+      url = "mailto:web1091026187@gmail.com"  # ⚠️注意：把这里换成你的真实邮箱
 
   # 顶栏导航
   [menu]
