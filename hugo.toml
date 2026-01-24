@@ -1,4 +1,38 @@
 baseURL = 'https://Daisy2025769.github.io/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+languageCode = 'zh-cn'
+title = 'Daisy的个人主页' # 这里改成你的名字
 theme = 'PaperMod'
+
+[params]
+  defaultTheme = "auto" # 自动跟随系统切换黑白模式
+  
+  # 开启首页简介模式
+  [params.profileMode]
+    enabled = true
+    title = "Hi, I am Daisy 👋" # 首页大标题
+    subtitle = "这里是我的个人介绍，热爱技术，热爱生活。" # 副标题/简介
+    imageUrl = "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" # 头像链接(暂时用GitHub图标，后面教你换)
+    imageTitle = "Avatar"
+    imageWidth = 120
+    imageHeight = 120
+
+    # 社交按钮 (可以加微信、B站、邮箱等)
+    [[params.profileMode.buttons]]
+      name = "Blog"
+      url = "/posts"
+    [[params.profileMode.buttons]]
+      name = "GitHub"
+      url = "https://github.com/Daisy2025769"
+
+  # 顶栏导航
+  [menu]
+    [[menu.main]]
+      identifier = "posts"
+      name = "文章"
+      url = "/posts/"
+      weight = 10
+    [[menu.main]]
+      identifier = "search"
+      name = "搜索"
+      url = "/search/"
+      weight = 20
