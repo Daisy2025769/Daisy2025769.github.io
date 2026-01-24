@@ -18,8 +18,8 @@ theme = 'PaperMod'
 
     # 社交按钮 (可以加微信、B站、邮箱等)
    [[params.profileMode.buttons]]
-  name = "Email"
-  url = "mailto:web1091026187@gmail.com"
+     name = "Email"
+     url = "mailto:web1091026187@gmail.com"
 
   # 顶栏导航
   [menu]
