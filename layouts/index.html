@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daisy 的主页</title>
     
-    <!-- 1. 引入 Google 字体: Montserrat (用于导航栏和 Logo) -->
+    <!-- 引入 Google 字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
@@ -15,7 +15,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            /* 默认字体：中文使用微软雅黑，英文使用 Montserrat */
             font-family: 'Montserrat', 'Microsoft YaHei', sans-serif;
             color: white;
             background-color: #000;
@@ -27,7 +26,7 @@
             height: 100vh;
             width: 100%;
             position: relative;
-            background-image: url('background.jpg'); /* 确保 static 文件夹里有这张图 */
+            background-image: url('background.jpg'); 
             background-size: cover;
             background-position: center;
             display: flex;
@@ -35,7 +34,6 @@
             justify-content: center;
         }
 
-        /* 黑色遮罩，让文字更清晰 */
         .hero::before {
             content: '';
             position: absolute;
@@ -54,9 +52,8 @@
             z-index: 10;
         }
 
-        /* Logo (保持现代感) */
         .text-logo {
-            font-family: 'Montserrat', sans-serif; /* Logo 保持现代风格 */
+            font-family: 'Montserrat', sans-serif;
             font-size: 24px;
             font-weight: 900; 
             letter-spacing: 2px;
@@ -66,13 +63,12 @@
             text-decoration: none;
         }
 
-        /* 菜单 (使用 Montserrat，清晰易读) */
         .menu a {
-            font-family: 'Montserrat', sans-serif; /* 这里是你要求的“最合适的字体” */
+            font-family: 'Montserrat', sans-serif;
             text-decoration: none;
             color: rgba(255, 255, 255, 0.85);
             font-size: 14px;
-            font-weight: 700; /* 加粗一点，更有质感 */
+            font-weight: 700;
             text-transform: uppercase;
             margin-right: 30px;
             letter-spacing: 1px;
@@ -89,39 +85,58 @@
             z-index: 2;
             text-align: center;
             margin-top: 40px;
-            padding: 0 20px; /* 防止手机上文字贴边 */
+            padding: 0 20px;
         }
 
-        /* 标题：Welcome to My Wonderland */
         .main-title {
-            /* 这里改为你要的 Georgia 字体 */
             font-family: 'Georgia', serif; 
-            font-style: italic; /* 斜体让 Wonderland 更有梦幻感 */
+            font-style: italic;
             font-size: 56px; 
-            font-weight: normal; /* Georgia 不需要太粗，普通粗细最优雅 */
+            font-weight: normal;
             letter-spacing: 2px;
             margin-bottom: 25px;
             text-shadow: 0 5px 15px rgba(0,0,0,0.5);
             line-height: 1.2;
         }
 
-        /* 副标题：有一天人类会回到海洋... */
         .subtitle {
-            /* 保持原来的字体 (Sans-serif/微软雅黑) */
             font-family: 'Montserrat', 'Microsoft YaHei', sans-serif;
             font-size: 16px;
             color: #eee;
             font-weight: 400;
-            letter-spacing: 1.5px; /* 中文间距稍微宽一点点好看 */
+            letter-spacing: 1.5px;
             line-height: 1.6;
             opacity: 0.9;
         }
         
-        /* 手机端适配：屏幕变小的时候调整字体大小 */
         @media (max-width: 768px) {
             nav { flex-direction: column; padding: 20px; }
             .text-logo { margin-right: 0; margin-bottom: 20px; }
             .menu { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
             .menu a { margin-right: 0; font-size: 12px; }
             .main-title { font-size: 36px; }
-            .subtitle
+            .subtitle { font-size: 14px; }
+        }
+    </style> 
+</head>
+<body>
+
+    <div class="hero">
+        <nav>
+            <a href="#" class="text-logo">DAISY SPACE</a>
+            <div class="menu">
+                <a href="life.html">Lifestyle☕️</a>
+                <a href="growth.html">Exploration📑</a>
+                <a href="about.html">My Story📷</a>
+                <a href="mailbox.html">Contact📮</a>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <div class="main-title">Welcome to My Wonderland</div>
+            <div class="subtitle">有一天人类会回到海洋，影像和文字会长存</div>
+        </div>
+    </div>
+
+</body>
+</html>
