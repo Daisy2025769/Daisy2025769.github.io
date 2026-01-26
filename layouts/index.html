@@ -4,141 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daisy 的主页</title>
+    
+    <!-- 1. 引入 Google 字体: Montserrat (用于导航栏和 Logo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
     <style>
-        /* --- 1. 基础设置 --- */
+        /* --- 全局设置 --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif; /* 简洁的无衬线字体 */
+            /* 默认字体：中文使用微软雅黑，英文使用 Montserrat */
+            font-family: 'Montserrat', 'Microsoft YaHei', sans-serif;
             color: white;
             background-color: #000;
             overflow-x: hidden;
         }
 
-        /* --- 2. 背景大图区域 --- */
+        /* --- 背景大图区域 --- */
         .hero {
-            height: 100vh; /* 占满整个屏幕高度 */
+            height: 100vh;
             width: 100%;
             position: relative;
-            
-            /* 设置背景图 */
-            background-image: url('background.jpg'); 
-            background-size: cover;   /* 关键：让图片填满屏幕，不留白 */
-            background-position: center; /* 关键：让图片中心对准屏幕中心 */
-            background-repeat: no-repeat;
-            
-            /* 布局：让中间的内容垂直居中 */
+            background-image: url('background.jpg'); /* 确保 static 文件夹里有这张图 */
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center; 
             justify-content: center;
         }
 
-        /* 给背景加一层半透明黑纱，防止车灯太亮看不清字 */
+        /* 黑色遮罩，让文字更清晰 */
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* 黑色遮罩：0.5 代表 50% 透明度，觉得太暗可以改成 0.3 */
-            background: rgba(0, 0, 0, 0.5); 
+            background: rgba(0, 0, 0, 0.4); 
             z-index: 1;
         }
 
-        /* --- 3. 顶部导航栏 --- */
+        /* --- 顶部导航栏 --- */
         nav {
             position: absolute;
             top: 0; left: 0; width: 100%;
-            padding: 30px 50px; /* 调整间距 */
+            padding: 30px 50px;
             display: flex;
-            align-items: center; /* 垂直居中对齐 */
-            z-index: 10; /* 保证在最上层 */
+            align-items: center;
+            z-index: 10;
         }
 
-        /* 左侧的文字 Logo (代替图片) */
+        /* Logo (保持现代感) */
         .text-logo {
+            font-family: 'Montserrat', sans-serif; /* Logo 保持现代风格 */
             font-size: 24px;
-            font-weight: 900; /* 特粗字体 */
-            letter-spacing: 2px; /* 字间距 */
-            text-transform: uppercase; /* 强制大写 */
-            margin-right: 60px; /* Logo 和右边菜单的距离 */
+            font-weight: 900; 
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-right: 60px;
             color: white;
             text-decoration: none;
-            user-select: none; /* 防止被选中 */
         }
 
-        /* 菜单链接 */
+        /* 菜单 (使用 Montserrat，清晰易读) */
         .menu a {
+            font-family: 'Montserrat', sans-serif; /* 这里是你要求的“最合适的字体” */
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.8); /* 稍微有点透明的白 */
+            color: rgba(255, 255, 255, 0.85);
             font-size: 14px;
-            font-weight: bold;
+            font-weight: 700; /* 加粗一点，更有质感 */
             text-transform: uppercase;
-            margin-right: 30px; /* 按钮之间的间距 */
-            transition: color 0.3s;
+            margin-right: 30px;
+            letter-spacing: 1px;
+            transition: all 0.3s;
         }
 
         .menu a:hover {
-            color: #fff; /* 鼠标放上去变亮白 */
-            text-shadow: 0 0 10px rgba(255,255,255,0.5); /* 发光效果 */
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255,255,255,0.4);
         }
 
-        /* --- 4. 屏幕中心的标题 --- */
+        /* --- 中心内容 --- */
         .hero-content {
-            z-index: 2; /* 在遮罩之上 */
+            z-index: 2;
             text-align: center;
-            margin-top: 50px; /* 视觉微调 */
+            margin-top: 40px;
+            padding: 0 20px; /* 防止手机上文字贴边 */
         }
 
+        /* 标题：Welcome to My Wonderland */
         .main-title {
-            font-size: 60px;
-            font-weight: 800;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            /* 简单的入场动画 */
-            animation: fadeIn 2s ease-in-out; 
+            /* 这里改为你要的 Georgia 字体 */
+            font-family: 'Georgia', serif; 
+            font-style: italic; /* 斜体让 Wonderland 更有梦幻感 */
+            font-size: 56px; 
+            font-weight: normal; /* Georgia 不需要太粗，普通粗细最优雅 */
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            line-height: 1.2;
         }
 
+        /* 副标题：有一天人类会回到海洋... */
         .subtitle {
-            font-size: 18px;
-            color: #ddd;
-            margin-bottom: 40px;
-            font-weight: 300;
-            letter-spacing: 1px;
+            /* 保持原来的字体 (Sans-serif/微软雅黑) */
+            font-family: 'Montserrat', 'Microsoft YaHei', sans-serif;
+            font-size: 16px;
+            color: #eee;
+            font-weight: 400;
+            letter-spacing: 1.5px; /* 中文间距稍微宽一点点好看 */
+            line-height: 1.6;
+            opacity: 0.9;
         }
-
-        /* 简单的淡入动画定义 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-    </style>
-</head>
-<body>
-
-    <div class="hero">
         
-        <!-- 顶部导航 -->
-        <nav>
-            <!-- 没有图片Logo，我们用文字代替，你可以改成你的名字 -->
-            <a href="#" class="text-logo">DAISY SPACE</a>
-
-            <!-- 栏目菜单 -->
-            <div class="menu">
-                <a href="life.html">生活碎片</a>
-                <a href="growth.html">个人成长</a>
-                <a href="mailbox.html">我的信箱</a>
-                <a href="#">关于我</a>
-            </div>
-        </nav>
-
-        <!-- 屏幕中心文字 -->
-        <div class="hero-content">
-            <div class="main-title">Welcome Home</div>
-            <div class="subtitle">在这里记录 2026 的每一场雨和每一个晴天</div>
-        </div>
-
-    </div>
-
-</body>
-</html>
+        /* 手机端适配：屏幕变小的时候调整字体大小 */
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 20px; }
+            .text-logo { margin-right: 0; margin-bottom: 20px; }
+            .menu { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .menu a { margin-right: 0; font-size: 12px; }
+            .main-title { font-size: 36px; }
+            .subtitle
