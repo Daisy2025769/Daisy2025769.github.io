@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lifestyle - Daisy Space</title>
     
-    <!-- 引入字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;900&family=Georgia&display=swap" rel="stylesheet">
@@ -21,7 +20,7 @@
             overflow-x: hidden;
         }
 
-        /* --- 1. 顶部 Header (三段式布局) --- */
+        /* --- 1. Header (保持不变) --- */
         .chanel-header {
             position: sticky;
             top: 0;
@@ -34,205 +33,230 @@
             padding: 0 40px;
             border-bottom: 1px solid transparent;
         }
-
-        /* 左侧：DAISY SPACE Logo */
-        /* 设置 flex: 1 确保左右两侧占据相同空间，从而让中间的内容绝对居中 */
-        .header-left {
-            flex: 1; 
-            display: flex;
-            align-items: center;
-        }
-
-        .brand-logo {
-            font-family: 'Montserrat', sans-serif; /* 现代无衬线体 */
-            font-size: 20px; /* 稍微缩小一点，显得精致 */
-            font-weight: 900; /* 特粗 */
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: black;
-            white-space: nowrap; /* 防止换行 */
-        }
-
-        /* 中间：Page Title (Culture) */
-        .header-center {
-            flex: 1;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .page-title {
-            font-family: 'Georgia', serif; /* 优雅衬线体 */
-            font-style: italic; /* 斜体 */
-            font-size: 36px; /* 比Logo大，突出重点 */
-            color: #333;
-            font-weight: normal;
-            letter-spacing: 1px;
-            /* 区别重点：Logo是黑粗硬，标题是灰柔美 */
-        }
-
-        /* 右侧：Icons */
-        .header-right {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end; /* 靠右对齐 */
-            gap: 25px;
-        }
-
-        /* 图标按钮样式 */
-        .icon-btn {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: black;
-            cursor: pointer;
-        }
-
-        .icon-svg {
-            width: 24px;
-            height: 24px;
-            stroke-width: 1.5;
-            transition: all 0.2s;
-        }
-
-        .icon-btn:hover .icon-svg {
-            stroke: #555;
-            transform: scale(1.1);
-        }
-
-        /* Tooltip */
-        .icon-btn::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: -35px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: black;
-            color: white;
-            padding: 5px 10px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            border-radius: 2px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s;
-            white-space: nowrap;
-        }
-
+        .header-left { flex: 1; display: flex; align-items: center; }
+        .brand-logo { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; color: black; white-space: nowrap; }
+        .header-center { flex: 1; text-align: center; display: flex; justify-content: center; }
+        .page-title { font-family: 'Georgia', serif; font-style: italic; font-size: 36px; color: #333; font-weight: normal; letter-spacing: 1px; }
+        .header-right { flex: 1; display: flex; justify-content: flex-end; gap: 25px; }
+        .icon-btn { position: relative; display: flex; align-items: center; justify-content: center; text-decoration: none; color: black; cursor: pointer; }
+        .icon-svg { width: 24px; height: 24px; stroke-width: 1.5; transition: all 0.2s; }
+        .icon-btn:hover .icon-svg { stroke: #555; transform: scale(1.1); }
+        .icon-btn::after { content: attr(data-tooltip); position: absolute; bottom: -35px; left: 50%; transform: translateX(-50%); background: black; color: white; padding: 5px 10px; font-size: 11px; font-weight: 600; text-transform: uppercase; border-radius: 2px; opacity: 0; pointer-events: none; transition: opacity 0.2s; white-space: nowrap; }
         .icon-btn:hover::after { opacity: 1; }
 
-
-        /* --- 2. 子导航栏 (分类) --- */
+        /* --- 2. 子导航栏 (字体已修改) --- */
         .sub-nav {
             display: flex;
             justify-content: center;
             gap: 40px;
-            padding: 10px 0 40px 0; /* 上边距调小，紧贴Header */
+            padding: 10px 0 40px 0;
             border-bottom: 1px solid #f0f0f0;
         }
 
         .sub-nav a {
             text-decoration: none;
-            color: #000;
-            font-weight: 600;
-            font-size: 12px; /* 稍微调小显得精致 */
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #333;
+            /* 修改点：改为 Georgia Italic，和 Culture 标题一致 */
+            font-family: 'Georgia', serif; 
+            font-style: italic; 
+            font-size: 16px; /* 稍微大一点，因为斜体视觉上偏小 */
+            text-transform: capitalize; /* 首字母大写即可，全大写斜体不太好读 */
+            letter-spacing: 0.5px;
             position: relative;
         }
 
-        .sub-nav a:hover { color: #555; }
+        .sub-nav a:hover { color: #000; text-decoration: underline; }
 
-
-        /* --- 3. 页面主体内容 --- */
+        /* --- 3. 页面主体容器 --- */
         .container {
             max-width: 1200px;
-            margin: 60px auto;
+            margin: 40px auto; /* 顶部间距稍微缩小 */
             padding: 0 20px;
         }
 
-        /* 注意：因为标题移到了顶部，这里就不需要重复的大标题了 */
-        
+        /* ============================
+           新增：Hero Article (头条文章)
+           仿 Ferrari 风格
+           ============================ */
+        .hero-article {
+            display: block; /* 让a标签变成块级，包裹整个区域 */
+            position: relative;
+            width: 100%;
+            height: 600px; /* 固定高度，霸气 */
+            margin-bottom: 80px; /* 和下面网格的距离 */
+            overflow: hidden;
+            text-decoration: none; /* 去掉下划线 */
+            color: white; /* 文字默认白色 */
+        }
+
+        .hero-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease; /* 图片缓慢放大效果 */
+        }
+
+        .hero-article:hover .hero-bg {
+            transform: scale(1.03); /* 鼠标悬停时图片微微放大 */
+        }
+
+        /* 渐变遮罩：让底部文字清晰 */
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%; /* 遮住下半部分即可 */
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%);
+            z-index: 1;
+        }
+
+        /* 文字内容容器 */
+        .hero-content {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        /* 元数据行：日期 —— 分类 */
+        .hero-meta {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: #ddd;
+        }
+
+        /* 那条白线 */
+        .hero-line {
+            display: inline-block;
+            width: 50px;
+            height: 1px;
+            background-color: #ddd;
+            margin: 0 15px;
+        }
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif; /* 法拉利的大标题通常是粗体无衬线 */
+            font-size: 42px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .hero-desc {
+            font-family: 'Microsoft YaHei', sans-serif;
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 10px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* ============================
+           原来的：双栏网格 (Two Column Grid)
+           已优化图片比例
+           ============================ */
         .article-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 50px; /* 间距 */
             margin-bottom: 100px;
         }
 
-        .article-card { cursor: pointer; transition: opacity 0.3s; }
+        .article-card { cursor: pointer; transition: opacity 0.3s; text-decoration: none; color: black; }
         .article-card:hover { opacity: 0.8; }
-        .img-box { width: 100%; height: 350px; overflow: hidden; margin-bottom: 20px; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; }
-        .category-tag { font-size: 12px; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; display: block; letter-spacing: 1px; }
-        .article-title { font-family: 'Georgia', serif; font-size: 28px; line-height: 1.3; margin-bottom: 10px; }
+
+        .img-box { 
+            width: 100%; 
+            /* 关键修改：使用 16:9 宽画幅比例，更具电影感 */
+            aspect-ratio: 16 / 9; 
+            overflow: hidden; 
+            margin-bottom: 20px; 
+            background: #f0f0f0;
+        }
+        
+        .img-box img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.5s;
+        }
+        
+        /* 列表里的图片悬停也动一下 */
+        .article-card:hover .img-box img {
+            transform: scale(1.05);
+        }
+
+        /* 列表里的元数据 */
+        .grid-meta {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #d35400; /* 法拉利红或者普通的深灰 */
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* 列表里的细线 */
+        .grid-line {
+            width: 30px; height: 1px; background: #d35400; margin-right: 10px;
+        }
+
+        .article-title { 
+            font-family: 'Georgia', serif; /* 标题保持优雅 */
+            font-size: 24px; 
+            font-weight: bold;
+            line-height: 1.3; 
+            margin-bottom: 10px; 
+            text-transform: uppercase; /* 也可以大写，看你喜好 */
+        }
+        
         .article-excerpt { font-size: 14px; color: #666; line-height: 1.6; }
 
 
-        /* --- 4. 底部滑动区域 --- */
-        .slider-section {
-            background-color: #000;
-            color: #fff;
-            padding: 60px 0;
-        }
-        .slider-title { text-align: center; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 18px; letter-spacing: 2px; margin-bottom: 40px; text-transform: uppercase; }
-        .slider-container { display: flex; gap: 20px; overflow-x: auto; padding: 0 50px 50px 50px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
-        .slider-container::-webkit-scrollbar { display: none; }
-        .slider-item { min-width: 300px; position: relative; }
-        .slider-img { width: 100%; height: 450px; object-fit: cover; }
-        .slider-text { position: absolute; bottom: 20px; left: 20px; right: 20px; text-align: center; }
-        .slider-category { font-size: 12px; font-weight: 900; text-transform: uppercase; margin-bottom: 5px; }
-
         /* 手机适配 */
         @media (max-width: 768px) {
-            .chanel-header { padding: 0 15px; height: 70px; }
-            .brand-logo { font-size: 16px; }
-            .page-title { font-size: 24px; }
-            .header-right { gap: 15px; }
-            .sub-nav { flex-wrap: wrap; gap: 15px; }
-            .article-grid { grid-template-columns: 1fr; }
+            .chanel-header { padding: 0 15px; }
+            .hero-article { height: 400px; } /* 手机上高度减小 */
+            .hero-title { font-size: 28px; }
+            .hero-content { left: 20px; bottom: 20px; right: 20px; }
+            .article-grid { grid-template-columns: 1fr; gap: 40px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. 顶部 Header -->
+    <!-- Header -->
     <header class="chanel-header">
-        
-        <!-- 左侧：Logo (现代感) -->
         <div class="header-left">
             <a href="/" class="brand-logo">DAISY SPACE</a>
         </div>
-
-        <!-- 中间：页面标题 (艺术感) -->
         <div class="header-center">
             <span class="page-title">Culture</span>
         </div>
-
-        <!-- 右侧：图标 (功能性) -->
         <div class="header-right">
-            <!-- Contact -->
             <a href="/mailbox.html" class="icon-btn" data-tooltip="Contact">
-                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
+                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             </a>
-            <!-- Home -->
             <a href="/" class="icon-btn" data-tooltip="Home">
-                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
+                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
             </a>
         </div>
     </header>
 
-    <!-- 2. 分类子导航 -->
+    <!-- 子导航 (已改成 Georgia 斜体) -->
     <nav class="sub-nav">
         <a href="#">Coffee</a>
         <a href="#">Wine</a>
@@ -241,61 +265,87 @@
         <a href="#">Film & TV</a>
     </nav>
 
-
-    <!-- 3. 内容区域 -->
     <div class="container">
         
-        <!-- 大标题 h1 已经移到顶部中间了，这里就不需要了 -->
-        
+        <!-- ==============================
+             这里是：头条文章 (Hero Article)
+             ============================== -->
+        <a href="#" class="hero-article">
+            <!-- 背景大图 -->
+            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071&auto=format&fit=crop" class="hero-bg" alt="Hero Image">
+            
+            <!-- 黑色渐变遮罩 -->
+            <div class="hero-overlay"></div>
+            
+            <!-- 文字内容 -->
+            <div class="hero-content">
+                <!-- 仿法拉利的元数据行 -->
+                <div class="hero-meta">
+                    4 DAYS <span class="hero-line"></span> SCUDERIA
+                </div>
+                <!-- 标题 -->
+                <div class="hero-title">Ferrari Unveils The SF-26</div>
+                <!-- 描述 -->
+                <div class="hero-desc">
+                    The new single-seater will compete in the 2026 Formula 1 World Championship, blending heritage with futuristic aerodynamics.
+                </div>
+            </div>
+        </a>
+
+
+        <!-- ==============================
+             这里是：双栏网格 (Grid List)
+             ============================== -->
         <div class="article-grid">
-            <!-- 文章列表 -->
-            <div class="article-card">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=800&q=80"></div>
-                <span class="category-tag">CULTURE</span>
+            
+            <!-- 文章 1 -->
+            <a href="#" class="article-card">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=800&q=80" alt="Dining">
+                </div>
+                <div class="grid-meta">
+                    <span class="grid-line"></span> CULTURE
+                </div>
                 <h2 class="article-title">Gatherings Across The Globe</h2>
-                <p class="article-excerpt">从法式的优雅长桌到中式的圆桌团圆...</p>
-            </div>
-            <div class="article-card">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1513106580091-1d82408b8cd8?w=800&q=80"></div>
-                <span class="category-tag">FILM & TV</span>
+                <p class="article-excerpt">从法式的优雅长桌到中式的圆桌团圆，探索世界各地的餐桌文化...</p>
+            </a>
+
+            <!-- 文章 2 -->
+            <a href="#" class="article-card">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1513106580091-1d82408b8cd8?w=800&q=80" alt="Art">
+                </div>
+                <div class="grid-meta">
+                    <span class="grid-line"></span> FILM & TV
+                </div>
                 <h2 class="article-title">The Irish Storytelling Night</h2>
-                <p class="article-excerpt">在这场爱尔兰的叙事之夜中...</p>
-            </div>
-            <div class="article-card">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80"></div>
-                <span class="category-tag">FASHION</span>
+                <p class="article-excerpt">在这场爱尔兰的叙事之夜中，每一个声音都值得被聆听。</p>
+            </a>
+
+            <!-- 文章 3 -->
+            <a href="#" class="article-card">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80" alt="Fashion">
+                </div>
+                <div class="grid-meta">
+                    <span class="grid-line"></span> FASHION
+                </div>
                 <h2 class="article-title">The New Names in Fashion</h2>
                 <p class="article-excerpt">2026年春夏时装周最亮眼的新星设计师盘点。</p>
-            </div>
-            <div class="article-card">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80"></div>
-                <span class="category-tag">COFFEE</span>
-                <h2 class="article-title">Obsessed With Pour Over Coffee</h2>
-                <p class="article-excerpt">手冲咖啡不仅仅是一种饮品，更是一种仪式。</p>
-            </div>
-        </div>
-    </div>
+            </a>
 
-    <!-- 4. 底部滑动区域 -->
-    <div class="slider-section">
-        <div class="slider-title">More to Explore</div>
-        <div class="slider-container">
-            <div class="slider-item">
-                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" class="slider-img">
-                <div class="slider-text"><div class="slider-category">FASHION</div></div>
-            </div>
-            <div class="slider-item">
-                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&q=80" class="slider-img">
-                <div class="slider-text"><div class="slider-category">MUSIC</div></div>
-            </div>
-            <div class="slider-item">
-                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80" class="slider-img">
-                <div class="slider-text"><div class="slider-category">TRAVEL</div></div>
-            </div>
-             <div class="slider-item">
-                <img src="https://images.unsplash.com/photo-1490750967868-58cb75065ed2?w=600&q=80" class="slider-img">
-                <div class="slider-text"><div class="slider-category">SELF</div></div>
-            </div>
+            <!-- 文章 4 -->
+            <a href="#" class="article-card">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80" alt="Coffee">
+                </div>
+                <div class="grid-meta">
+                    <span class="grid-line"></span> COFFEE
+                </div>
+                <h2 class="article-title">Obsessed With Pour Over</h2>
+                <p class="article-excerpt">手冲咖啡不仅仅是一种饮品，更是一种清晨的冥想仪式。</p>
+            </a>
+
         </div>
     </div>
 
