@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business - Daisy Space</title>
+    <title>{{ .Title }} - Business</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
             min-height: 100vh;
         }
 
-        /* --- 2. Lifestyle 同款 Header --- */
+        /* --- 2. Header 样式 (保持一致) --- */
         .chanel-header {
             position: sticky;
             top: 0;
@@ -55,7 +55,7 @@
         .icon-svg { width: 24px; height: 24px; stroke-width: 1.5; transition: all 0.2s; }
         .icon-btn:hover .icon-svg { stroke: #555; transform: scale(1.1); }
 
-        /* --- 3. Lifestyle 同款导航栏 --- */
+        /* --- 3. 导航栏样式 (保持一致) --- */
         .sub-nav {
             background-color: white;
             display: flex;
@@ -78,43 +78,67 @@
         .sub-nav a:hover { color: #000; }
         .sub-nav a.active { color: #000; font-weight: bold; border-bottom: 1px solid #000; }
 
-        /* --- 4. 页面主体 (你丢失的样式在这里！) --- */
+        /* --- 4. 双栏列表样式 (这里修复了乱码) --- */
         .container {
             max-width: 1200px;
-            margin: 40px auto; 
+            margin: 60px auto; /* 上边距加大一点 */
             padding: 0 20px;
-            flex: 1; /* 让内容撑开高度 */
+            flex: 1;
         }
 
-        /* Hero Article (大图文章) */
-        .hero-article {
-            display: block; 
-            position: relative;
-            width: 100%;
-            height: 500px; 
-            margin-bottom: 60px; 
-            overflow: hidden;
-            text-decoration: none; 
-            color: white; 
-            border-radius: 4px;
+        /* 简单的板块标题（替代原来的大图） */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
         }
-        .hero-bg { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .hero-article:hover .hero-bg { transform: scale(1.03); }
-        .hero-overlay { position: absolute; bottom: 0; left: 0; width: 100%; height: 60%; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%); z-index: 1; }
-        .hero-content { position: absolute; bottom: 40px; left: 40px; z-index: 2; max-width: 800px; }
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .section-desc {
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* 真正的双栏 Grid 代码 */
+        .article-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; /* 这里定义了两列 */
+            gap: 50px; /* 列之间的间距 */
+            margin-bottom: 100px; 
+        }
         
-        .hero-meta { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; display: flex; align-items: center; color: #ddd; }
-        .hero-line { display: inline-block; width: 50px; height: 1px; background-color: #ddd; margin: 0 15px; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 900; text-transform: uppercase; line-height: 1.1; margin-bottom: 10px; letter-spacing: 1px; }
-        .hero-desc { font-family: 'Microsoft YaHei', sans-serif; font-size: 16px; color: rgba(255,255,255,0.8); margin-top: 10px; max-width: 600px; line-height: 1.6; }
-
-        /* Grid (双栏列表) */
-        .article-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 100px; }
-        .article-card { cursor: pointer; transition: opacity 0.3s; text-decoration: none; color: black; display: flex; flex-direction: column; }
-        .article-card:hover { opacity: 0.8; }
-        .img-box { width: 100%; aspect-ratio: 16 / 9; overflow: hidden; margin-bottom: 20px; background: #ddd; border-radius: 4px; }
+        .article-card { 
+            cursor: pointer; 
+            transition: opacity 0.3s; 
+            text-decoration: none; 
+            color: black; 
+            display: flex; 
+            flex-direction: column; 
+            background: white; /* 给卡片加个白底 */
+            padding-bottom: 20px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* 轻微阴影 */
+        }
+        .article-card:hover { opacity: 0.9; transform: translateY(-5px); transition: transform 0.3s; }
+        
+        .img-box { 
+            width: 100%; 
+            aspect-ratio: 16 / 9; 
+            overflow: hidden; 
+            margin-bottom: 20px; 
+            background: #ddd; 
+        }
         .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
         .article-card:hover .img-box img { transform: scale(1.05); }
+
+        .card-content { padding: 0 25px 15px 25px; }
 
         .grid-meta { 
             font-family: 'Montserrat', sans-serif; 
@@ -129,11 +153,11 @@
         }
         .grid-line { width: 30px; height: 1px; background: #8B4513; margin-right: 10px; }
 
-        .article-title { font-family: 'Georgia', serif; font-size: 24px; font-weight: bold; line-height: 1.3; margin-bottom: 10px; text-transform: uppercase; }
+        .article-title { font-family: 'Georgia', serif; font-size: 22px; font-weight: bold; line-height: 1.3; margin-bottom: 10px; text-transform: uppercase; }
         .article-excerpt { font-size: 14px; color: #666; line-height: 1.6; }
 
-        /* --- 5. Footer (适合列表页的样式) --- */
-        .site-footer { background-color: #000; color: #fff; padding: 60px 40px; display: flex; flex-direction: column; justify-content: space-between; }
+        /* --- 5. Footer --- */
+        .site-footer { background-color: #000; color: #fff; padding: 60px 40px; display: flex; flex-direction: column; justify-content: space-between; margin-top: auto; }
         .footer-logo { text-align: center; font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 50px; }
         .footer-columns { display: flex; justify-content: space-between; max-width: 1200px; margin: 0 auto; width: 100%; }
         .footer-col h4 { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
@@ -145,7 +169,6 @@
 
         @media (max-width: 768px) {
             .article-grid { grid-template-columns: 1fr; }
-            .hero-article { height: 350px; }
             .footer-columns { flex-wrap: wrap; gap: 30px; }
             .footer-col { width: 45%; }
         }
@@ -153,6 +176,7 @@
 </head>
 <body>
 
+    <!-- Header -->
     <header class="chanel-header">
         <div class="header-left">
             <a href="/" class="brand-logo">
@@ -174,8 +198,8 @@
         </div>
     </header>
 
+    <!-- Nav -->
     <nav class="sub-nav">
-        <!-- 导航路径与你的 Content 文件夹对应 -->
         <a href="/business/weekly-market-review/" class="{{ if eq .Title "Weekly Market Review" }}active{{ end }}">Weekly Market Review</a>
         <a href="/business/podcast-takeaways/" class="{{ if eq .Title "Podcast Takeaways" }}active{{ end }}">Podcast Takeaways</a>
         <a href="/business/web3-research/" class="{{ if eq .Title "Web3 Research" }}active{{ end }}">Web3 Research</a>
@@ -183,44 +207,57 @@
 
     <div class="container">
         
-        <!-- Hero Article -->
-        <a href="#" class="hero-article">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" class="hero-bg" alt="Business Hero">
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <div class="hero-meta">
-                    FEATURED <span class="hero-line"></span> {{ .Title | upper }}
-                </div>
-                <!-- 自动读取你的 _index.md 里的 Title -->
-                <div class="hero-title">Latest from {{ .Title }}</div>
-                <div class="hero-desc">
-                    Deep dives and insights curated just for you.
-                </div>
-            </div>
-        </a>
+        <!-- 这里删掉了大图，只保留一个简单的标题，告诉你现在在哪个版块 -->
+        <div class="section-header">
+            <h1 class="section-title">{{ .Title }}</h1>
+            <p class="section-desc">{{ .Description }}</p>
+        </div>
 
-        <!-- Grid List -->
+        <!-- 文章双栏列表 -->
         <div class="article-grid">
             
-            <!-- 占位文章 1 -->
-            <a href="#" class="article-card">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80"></div>
-                <div class="grid-meta"><span class="grid-line"></span> INSIGHTS</div>
-                <h2 class="article-title">The Future of Work</h2>
-                <p class="article-excerpt">How remote teams are changing the global economy.</p>
+            <!-- 你在对应文件夹(如 /weekly-market-review/) 下写的 .md 文章会自动显示在这里 -->
+            <!-- 如果没有文章，可以暂时保留下面这两个作为示例 -->
+
+            {{ range .Pages }}
+            <a href="{{ .RelPermalink }}" class="article-card">
+                <div class="img-box">
+                    {{ if .Params.image }}
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                    {{ else }}
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80">
+                    {{ end }}
+                </div>
+                <div class="card-content">
+                    <div class="grid-meta"><span class="grid-line"></span> READ</div>
+                    <h2 class="article-title">{{ .Title }}</h2>
+                    <p class="article-excerpt">{{ .Summary | truncate 80 }}</p>
+                </div>
             </a>
-            
-            <!-- 占位文章 2 -->
+            {{ end }}
+
+            <!-- 如果上面没有循环出文章，这下面是一个静态的示例，方便你看到排版 -->
             <a href="#" class="article-card">
                 <div class="img-box"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"></div>
-                <div class="grid-meta"><span class="grid-line"></span> ANALYSIS</div>
-                <h2 class="article-title">Market Trends 2026</h2>
-                <p class="article-excerpt">What the data tells us about the upcoming year.</p>
+                <div class="card-content">
+                    <div class="grid-meta"><span class="grid-line"></span> DEMO</div>
+                    <h2 class="article-title">Market Example</h2>
+                    <p class="article-excerpt">This is a demo card to show the layout.</p>
+                </div>
+            </a>
+             <a href="#" class="article-card">
+                <div class="img-box"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"></div>
+                <div class="card-content">
+                    <div class="grid-meta"><span class="grid-line"></span> DEMO</div>
+                    <h2 class="article-title">Analysis Example</h2>
+                    <p class="article-excerpt">Another demo card for the grid layout.</p>
+                </div>
             </a>
 
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-logo">DAISY SPACE</div>
         <div class="footer-columns">
