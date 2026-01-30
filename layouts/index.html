@@ -52,16 +52,19 @@
             z-index: 10;
         }
 
-        .text-logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
-            font-weight: 900; 
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-right: 60px;
-            color: white;
-            text-decoration: none;
-        }
+       /* 新的代码（针对图片的） */
+.text-logo {
+    margin-right: 60px; /* 保留和右边菜单的间距 */
+    display: flex;      /* 让图片垂直居中更好看 */
+    align-items: center;
+    text-decoration: none;
+}
+
+/* 专门控制 Logo 图片的大小 */
+.text-logo img {
+    height: 60px; /* 设置高度，宽度会自动调整。你可以改这个数字来调大小 */
+    width: auto;  /* 保证图片不变形 */
+}
 
         .menu a {
             font-family: 'Montserrat', sans-serif;
@@ -123,7 +126,9 @@
 
     <div class="hero">
         <nav>
-            <a href="#" class="text-logo">DAISY SPACE</a>
+<a href="/" class="text-logo">
+    <img src="/logo.png" alt="Daisy Space Logo">
+</a>
             <div class="menu">
                 <a href="/life/coffee/">Lifestyle☕️</a>
                 <a href="/business/">BUSINESS💼</a>
