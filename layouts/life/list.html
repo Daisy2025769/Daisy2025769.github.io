@@ -84,7 +84,6 @@
             transition: color 0.3s;
         }
         .sub-nav a:hover { color: #000; }
-        /* 激活状态：变成黑色且加粗 */
         .sub-nav a.active { color: #000; font-weight: bold; border-bottom: 1px solid #000; }
 
         /* --- 页面主体 --- */
@@ -124,24 +123,20 @@
         .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
         .article-card:hover .img-box img { transform: scale(1.05); }
 
-        /* --- 修改点：Grid Meta 颜色改为棕色 --- */
         .grid-meta { 
             font-family: 'Montserrat', sans-serif; 
             font-size: 11px; 
             font-weight: 700; 
             text-transform: uppercase; 
-            /* 棕色代码 */
             color: #8B4513; 
             margin-bottom: 10px; 
             letter-spacing: 1px; 
             display: flex; 
             align-items: center; 
         }
-        /* --- 修改点：细线颜色也改为棕色 --- */
         .grid-line { 
             width: 30px; 
             height: 1px; 
-            /* 棕色代码 */
             background: #8B4513; 
             margin-right: 10px; 
         }
@@ -149,7 +144,7 @@
         .article-title { font-family: 'Georgia', serif; font-size: 24px; font-weight: bold; line-height: 1.3; margin-bottom: 10px; text-transform: uppercase; }
         .article-excerpt { font-size: 14px; color: #666; line-height: 1.6; }
 
-        /* Footer (保持不变) */
+        /* Footer */
         .site-footer { position: fixed; bottom: 0; left: 0; width: 100%; height: 400px; background-color: #000; color: #fff; z-index: 1; padding: 60px 40px; display: flex; flex-direction: column; justify-content: space-between; }
         .footer-logo { text-align: center; font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 50px; }
         .footer-columns { display: flex; justify-content: space-between; max-width: 1200px; margin: 0 auto; width: 100%; }
@@ -172,29 +167,30 @@
 </head>
 <body>
 
-   <header class="chanel-header">
-    <div class="header-left">
-        <!-- 1. 这里加上了闭合标签 </a> 和 </div> -->
-        <a href="/" class="brand-logo" style="display: flex; align-items: center;">
-             <!-- 注意：确认你的文件名是 logo.jpg 还是 logo.svg -->
-             <img src="/logo.jpg" alt="Daisy Space Logo" style="height: 50px; width: auto;">       
-        </a>
-    </div>
+    <!-- 修复点：这里把 content-wrapper 加回来了，这是白色背景框的关键！ -->
+    <div class="content-wrapper">
 
-    <div class="header-center">
-        <!-- 修改点：这里被固定死了，永远显示 Lifestyle☕️ -->
-        <span class="page-title">Lifestyle☕️</span>
-    </div>
+        <header class="chanel-header">
+            <div class="header-left">
+                <!-- 这里是 Logo 图片代码，现在完全正确了 -->
+                <a href="/" class="brand-logo" style="display: flex; align-items: center;">
+                     <img src="/logo.jpg" alt="Daisy Space Logo" style="height: 50px; width: auto;">       
+                </a>
+            </div>
 
-    <div class="header-right">
-        <a href="/mailbox.html" class="icon-btn" data-tooltip="Contact">
-            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        </a>
-        <a href="/" class="icon-btn" data-tooltip="Home">
-            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-        </a>
-    </div>
-</header>
+            <div class="header-center">
+                <span class="page-title">Lifestyle☕️</span>
+            </div>
+
+            <div class="header-right">
+                <a href="/mailbox.html" class="icon-btn" data-tooltip="Contact">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <a href="/" class="icon-btn" data-tooltip="Home">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </a>
+            </div>
+        </header>
 
         <nav class="sub-nav">
             <a href="/life/coffee/" class="{{ if eq .Title "Coffee" }}active{{ end }}">Coffee</a>
@@ -210,7 +206,6 @@
                 <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071&auto=format&fit=crop" class="hero-bg" alt="Hero Image">
                 <div class="hero-overlay"></div>
                 <div class="hero-content">
-                    <!-- Hero 这里的标签也统一了 -->
                     <div class="hero-meta">
                         FEATURED <span class="hero-line"></span> {{ .Title | upper }}
                     </div>
@@ -227,8 +222,6 @@
                 <!-- 文章 1 -->
                 <a href="#" class="article-card">
                     <div class="img-box"><img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=800&q=80"></div>
-                    <!-- 修改点：这里使用了 {{ .Title | upper }} 自动获取页面名称（如 COFFEE, WINE） -->
-                    <!-- 并且上面的 CSS 已经把颜色改为棕色了 -->
                     <div class="grid-meta"><span class="grid-line"></span> {{ .Title | upper }}</div>
                     <h2 class="article-title">The Art of {{ .Title }}</h2>
                     <p class="article-excerpt">Exploring the finest details and hidden gems in the world of {{ .Title | lower }}.</p>
@@ -237,18 +230,15 @@
                 <!-- 文章 2 -->
                 <a href="#" class="article-card">
                     <div class="img-box"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80"></div>
-                    <!-- 修改点：这里也统一了，不再是 GUIDE，而是跟随页面主题 -->
                     <div class="grid-meta"><span class="grid-line"></span> {{ .Title | upper }}</div>
                     <h2 class="article-title">A Beginner's Guide</h2>
                     <p class="article-excerpt">Everything you need to know to start your journey into {{ .Title | lower }}.</p>
                 </a>
 
-                <!-- 如果你要加更多文章，就复制上面这一块 <a>...</a> 粘贴在下面 -->
-
             </div>
         </div>
 
-    </div>
+    </div> <!-- 这里是 content-wrapper 的结束，必须和上面的开始对应 -->
 
     <footer class="site-footer">
         <div class="footer-logo">DAISY SPACE</div>
