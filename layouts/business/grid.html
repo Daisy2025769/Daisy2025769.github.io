@@ -16,17 +16,45 @@
         body {
             font-family: 'Montserrat', 'Microsoft YaHei', sans-serif;
             color: #000;
-            background-color: #f4f4f4;
+            background-color: #000; /* 这里的背景色设为黑色，为了配合 Footer */
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        /* --- 2. Header 样式 (保持一致) --- */
+        /* --- 2. 关键：覆盖式 Footer 的核心逻辑 --- */
+        
+        /* 包裹所有页面内容的白色盒子 */
+        .content-wrapper {
+            position: relative;
+            z-index: 2; /* 层级高，盖住 Footer */
+            background-color: #f4f4f4; /* 必须有背景色(白/灰)，否则盖不住 */
+            margin-bottom: 400px; /* 【重点】必须等于 Footer 的高度 */
+            min-height: 100vh;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5); /* 加个阴影，覆盖感更强 */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 被压在底下的 Footer */
+        .site-footer {
+            position: fixed; /* 固定在底部不动 */
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 400px; /* 【重点】固定高度 */
+            z-index: 1; /* 层级低，在内容下面 */
+            background-color: #000;
+            color: #fff;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* --- 3. Header & Nav 样式 --- */
         .chanel-header {
-            position: sticky;
-            top: 0;
             background: white;
             z-index: 100;
             height: 90px;
@@ -34,28 +62,18 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 40px;
-            border-bottom: 1px solid transparent;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky; /* 导航栏吸顶 */
+            top: 0;
         }
         .header-left { flex: 1; display: flex; align-items: center; }
         .brand-logo { text-decoration: none; display: flex; align-items: center; }
         .header-center { flex: 1; text-align: center; display: flex; justify-content: center; }
-        
-        .page-title { 
-            font-family: 'Georgia', serif; 
-            font-style: italic; 
-            font-size: 36px; 
-            color: #333; 
-            font-weight: normal; 
-            letter-spacing: 1px; 
-        }
-        
+        .page-title { font-family: 'Georgia', serif; font-style: italic; font-size: 36px; color: #333; font-weight: normal; letter-spacing: 1px; }
         .header-right { flex: 1; display: flex; justify-content: flex-end; gap: 25px; }
         .icon-btn { position: relative; display: flex; align-items: center; justify-content: center; text-decoration: none; color: black; cursor: pointer; }
         .icon-svg { width: 24px; height: 24px; stroke-width: 1.5; transition: all 0.2s; }
         .icon-btn:hover .icon-svg { stroke: #555; transform: scale(1.1); }
 
-        /* --- 3. 导航栏样式 (保持一致) --- */
         .sub-nav {
             background-color: white;
             display: flex;
@@ -78,41 +96,37 @@
         .sub-nav a:hover { color: #000; }
         .sub-nav a.active { color: #000; font-weight: bold; border-bottom: 1px solid #000; }
 
-        /* --- 4. 双栏列表样式 (这里修复了乱码) --- */
+        /* --- 4. 页面内容样式 --- */
         .container {
             max-width: 1200px;
-            margin: 60px auto; /* 上边距加大一点 */
+            margin: 0 auto; 
             padding: 0 20px;
             flex: 1;
+            width: 100%;
         }
 
-        /* 简单的板块标题（替代原来的大图） */
-        .section-header {
+        /* 介绍文字 (只有描述，无标题) */
+        .intro-section {
+            padding: 80px 20px 60px 20px;
             text-align: center;
-            margin-bottom: 60px;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .section-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 32px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-        .section-desc {
+        .intro-text {
             font-family: 'Georgia', serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #444;
             font-style: italic;
-            color: #666;
         }
 
-        /* 真正的双栏 Grid 代码 */
+        /* Grid 列表 */
         .article-grid { 
             display: grid; 
-            grid-template-columns: 1fr 1fr; /* 这里定义了两列 */
-            gap: 50px; /* 列之间的间距 */
+            grid-template-columns: 1fr 1fr; 
+            gap: 50px; 
             margin-bottom: 100px; 
         }
-        
         .article-card { 
             cursor: pointer; 
             transition: opacity 0.3s; 
@@ -120,153 +134,130 @@
             color: black; 
             display: flex; 
             flex-direction: column; 
-            background: white; /* 给卡片加个白底 */
-            padding-bottom: 20px;
+            background: white; 
             border-radius: 4px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* 轻微阴影 */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         .article-card:hover { opacity: 0.9; transform: translateY(-5px); transition: transform 0.3s; }
         
-        .img-box { 
-            width: 100%; 
-            aspect-ratio: 16 / 9; 
-            overflow: hidden; 
-            margin-bottom: 20px; 
-            background: #ddd; 
-        }
+        .img-box { width: 100%; aspect-ratio: 16 / 9; overflow: hidden; margin-bottom: 20px; background: #ddd; }
         .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
         .article-card:hover .img-box img { transform: scale(1.05); }
 
-        .card-content { padding: 0 25px 15px 25px; }
-
-        .grid-meta { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 11px; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            color: #8B4513; 
-            margin-bottom: 10px; 
-            letter-spacing: 1px; 
-            display: flex; 
-            align-items: center; 
-        }
+        .card-content { padding: 0 25px 25px 25px; }
+        .grid-meta { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #8B4513; margin-bottom: 10px; letter-spacing: 1px; display: flex; align-items: center; }
         .grid-line { width: 30px; height: 1px; background: #8B4513; margin-right: 10px; }
-
         .article-title { font-family: 'Georgia', serif; font-size: 22px; font-weight: bold; line-height: 1.3; margin-bottom: 10px; text-transform: uppercase; }
         .article-excerpt { font-size: 14px; color: #666; line-height: 1.6; }
 
-        /* --- 5. Footer --- */
-        .site-footer { background-color: #000; color: #fff; padding: 60px 40px; display: flex; flex-direction: column; justify-content: space-between; margin-top: auto; }
-        .footer-logo { text-align: center; font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 50px; }
+        /* --- 5. Footer 内容样式 --- */
+        .footer-logo { text-align: center; font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 60px; }
         .footer-columns { display: flex; justify-content: space-between; max-width: 1200px; margin: 0 auto; width: 100%; }
-        .footer-col h4 { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
+        .footer-col { flex: 1; padding: 0 20px; }
+        .footer-col h4 { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 25px; letter-spacing: 1px; text-transform: uppercase; color: #fff; }
         .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 10px; }
-        .footer-col a { text-decoration: none; color: #999; font-size: 12px; transition: color 0.3s; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a { text-decoration: none; color: #999; font-size: 13px; transition: color 0.3s; }
         .footer-col a:hover { color: #fff; }
-        .footer-bottom { border-top: 1px solid #333; margin-top: 40px; padding-top: 20px; display: flex; justify-content: space-between; font-size: 10px; color: #666; }
+        .footer-bottom { border-top: 1px solid #333; margin-top: 60px; padding-top: 30px; text-align: center; font-size: 11px; color: #666; }
 
+        /* 手机适配 */
         @media (max-width: 768px) {
+            /* 手机上 Footer 高度要变高，margin 也要跟着变 */
+            .content-wrapper { margin-bottom: 600px; }
+            .site-footer { height: 600px; }
+            .footer-columns { flex-direction: column; text-align: center; gap: 40px; }
             .article-grid { grid-template-columns: 1fr; }
-            .footer-columns { flex-wrap: wrap; gap: 30px; }
-            .footer-col { width: 45%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="chanel-header">
-        <div class="header-left">
-            <a href="/" class="brand-logo">
-                 <img src="/logo.jpg" alt="Logo" style="height: 85px; width: auto;">       
-            </a>
+    <!-- !!! 关键结构调整：所有内容都包在 content-wrapper 里 !!! -->
+    <div class="content-wrapper">
+
+        <header class="chanel-header">
+            <div class="header-left">
+                <a href="/" class="brand-logo">
+                     <img src="/logo.jpg" alt="Logo" style="height: 85px; width: auto;">       
+                </a>
+            </div>
+            <div class="header-center">
+                <span class="page-title">Business💼</span>
+            </div>
+            <div class="header-right">
+                <a href="/mailbox.html" class="icon-btn" data-tooltip="Contact">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <a href="/" class="icon-btn" data-tooltip="Home">
+                    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </a>
+            </div>
+        </header>
+
+        <nav class="sub-nav">
+            <a href="/business/weekly-market-review/" class="{{ if eq .Title "Weekly Market Review" }}active{{ end }}">Weekly Market Review</a>
+            <a href="/business/podcast-takeaways/" class="{{ if eq .Title "Podcast Takeaways" }}active{{ end }}">Podcast Takeaways</a>
+            <a href="/business/web3-research/" class="{{ if eq .Title "Web3 Research" }}active{{ end }}">Web3 Research</a>
+        </nav>
+
+        <div class="intro-section">
+            <p class="intro-text">{{ .Description }}</p>
         </div>
 
-        <div class="header-center">
-            <span class="page-title">Business💼</span>
+        <div class="container">
+            <div class="article-grid">
+                
+                {{ range .Pages }}
+                <a href="{{ .RelPermalink }}" class="article-card">
+                    <div class="img-box">
+                        {{ if .Params.image }}
+                        <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                        {{ else }}
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80">
+                        {{ end }}
+                    </div>
+                    <div class="card-content">
+                        <div class="grid-meta"><span class="grid-line"></span> READ</div>
+                        <h2 class="article-title">{{ .Title }}</h2>
+                        <p class="article-excerpt">{{ .Summary | truncate 80 }}</p>
+                    </div>
+                </a>
+                {{ end }}
+
+                <!-- 静态示例 -->
+                <a href="#" class="article-card">
+                    <div class="img-box"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"></div>
+                    <div class="card-content">
+                        <div class="grid-meta"><span class="grid-line"></span> DEMO</div>
+                        <h2 class="article-title">Market Example</h2>
+                        <p class="article-excerpt">This is a demo card to show the layout.</p>
+                    </div>
+                </a>
+                 <a href="#" class="article-card">
+                    <div class="img-box"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"></div>
+                    <div class="card-content">
+                        <div class="grid-meta"><span class="grid-line"></span> DEMO</div>
+                        <h2 class="article-title">Analysis Example</h2>
+                        <p class="article-excerpt">Another demo card for the grid layout.</p>
+                    </div>
+                </a>
+            </div>
         </div>
 
-        <div class="header-right">
-            <a href="/mailbox.html" class="icon-btn" data-tooltip="Contact">
-                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            </a>
-            <a href="/" class="icon-btn" data-tooltip="Home">
-                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-            </a>
-        </div>
-    </header>
+    </div> <!-- content-wrapper 结束 -->
 
-    <!-- Nav -->
-    <nav class="sub-nav">
-        <a href="/business/weekly-market-review/" class="{{ if eq .Title "Weekly Market Review" }}active{{ end }}">Weekly Market Review</a>
-        <a href="/business/podcast-takeaways/" class="{{ if eq .Title "Podcast Takeaways" }}active{{ end }}">Podcast Takeaways</a>
-        <a href="/business/web3-research/" class="{{ if eq .Title "Web3 Research" }}active{{ end }}">Web3 Research</a>
-    </nav>
-
-    <div class="container">
-        
-        <!-- 这里删掉了大图，只保留一个简单的标题，告诉你现在在哪个版块 -->
-        <div class="section-header">
-            <h1 class="section-title">{{ .Title }}</h1>
-            <p class="section-desc">{{ .Description }}</p>
-        </div>
-
-        <!-- 文章双栏列表 -->
-        <div class="article-grid">
-            
-            <!-- 你在对应文件夹(如 /weekly-market-review/) 下写的 .md 文章会自动显示在这里 -->
-            <!-- 如果没有文章，可以暂时保留下面这两个作为示例 -->
-
-            {{ range .Pages }}
-            <a href="{{ .RelPermalink }}" class="article-card">
-                <div class="img-box">
-                    {{ if .Params.image }}
-                    <img src="{{ .Params.image }}" alt="{{ .Title }}">
-                    {{ else }}
-                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80">
-                    {{ end }}
-                </div>
-                <div class="card-content">
-                    <div class="grid-meta"><span class="grid-line"></span> READ</div>
-                    <h2 class="article-title">{{ .Title }}</h2>
-                    <p class="article-excerpt">{{ .Summary | truncate 80 }}</p>
-                </div>
-            </a>
-            {{ end }}
-
-            <!-- 如果上面没有循环出文章，这下面是一个静态的示例，方便你看到排版 -->
-            <a href="#" class="article-card">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"></div>
-                <div class="card-content">
-                    <div class="grid-meta"><span class="grid-line"></span> DEMO</div>
-                    <h2 class="article-title">Market Example</h2>
-                    <p class="article-excerpt">This is a demo card to show the layout.</p>
-                </div>
-            </a>
-             <a href="#" class="article-card">
-                <div class="img-box"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"></div>
-                <div class="card-content">
-                    <div class="grid-meta"><span class="grid-line"></span> DEMO</div>
-                    <h2 class="article-title">Analysis Example</h2>
-                    <p class="article-excerpt">Another demo card for the grid layout.</p>
-                </div>
-            </a>
-
-        </div>
-    </div>
-
-    <!-- Footer -->
+    <!-- !!! 关键结构：Footer 放在 wrapper 外面 !!! -->
     <footer class="site-footer">
         <div class="footer-logo">DAISY SPACE</div>
         <div class="footer-columns">
             <div class="footer-col">
-                <h4>Business</h4>
+                <h4>Explore</h4>
                 <ul>
                     <li><a href="/business/weekly-market-review/">Market Review</a></li>
-                    <li><a href="/business/podcast-takeaways/">Podcasts</a></li>
-                    <li><a href="/business/web3-research/">Web3</a></li>
+                    <li><a href="/business/podcast-takeaways/">Podcast Notes</a></li>
+                    <li><a href="/business/web3-research/">Web3 Research</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -280,7 +271,7 @@
                 <h4>Connect</h4>
                 <ul>
                     <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Xiaohongshu</a></li>
                 </ul>
             </div>
              <div class="footer-col">
