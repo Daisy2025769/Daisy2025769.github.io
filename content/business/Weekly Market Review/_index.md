@@ -1,6 +1,8 @@
 ---
-title: "Weekly Market Review"
-description: "Weekly updates on the market."
-date: 2026-01-30
-layout: "grid"    <-- 关键！这里告诉它：别用默认的简历，去用 grid.html (双栏)
+title: "business"
+description: "Latest insights on startups"
+# 强制属于 business 类型，这样它才能找到 layouts/business 文件夹
+type: "business"
+# 关键：告诉它不要用 list.html (简历)，而是用 grid.html (双栏)
+layout: "grid"   
 ---
