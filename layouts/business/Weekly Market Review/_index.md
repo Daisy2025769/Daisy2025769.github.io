@@ -1,5 +1,6 @@
 ---
-title: "Weekly Market Research"
-description: "Latest news for the previous week"
-layout: "list"     <-- 重点！这里指定用 list.html (默认其实就是 list，但写上更保险)
+title: "Weekly Market Review"
+description: "Weekly updates"
+type: "business"    <-- 必须写！告诉Hugo去 layouts/business 找文件
+layout: "grid"      <-- 必须写！告诉Hugo别用 resume，要用 grid.html
 ---
