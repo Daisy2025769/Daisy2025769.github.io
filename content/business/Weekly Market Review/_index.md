@@ -1,7 +1,7 @@
 ---
 title: "Weekly Market Review"
 # ⬇️ 下面这行就是将会显示在页面中间的那段“解释”
-description: "这里是每周市场观察板块。我每周会总结最新的创投动态、二级市场数据以及宏观经济趋势，帮助你快速捕捉商业机会。"
+description: "Here, I summarize the week's most critical financial news from Bloomberg and other major outlets. Updates are categorized by region—US, Asia, and Europe—with a dedicated section for Corporate Highlights, focusing on tech giants and market movers."
 type: "business"
 layout: "grid"
 ---
