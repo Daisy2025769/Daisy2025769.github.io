@@ -1,5 +1,5 @@
 ---
-title: "Web3 Research"
+title: "Emerging Content"
 description: "Latest insights on Web3"
 # 强制属于 business 类型，这样它才能找到 layouts/business 文件夹
 type: "business"
