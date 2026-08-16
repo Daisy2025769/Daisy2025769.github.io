@@ -1,10 +1,15 @@
-/* --- Tables: keep them from breaking the centered reading column, --- */
-/* --- and give every table a clean, centered header row.           --- */
-.post-content table {
-    display: block;
-    width: 100%;
+/* --- Tables: every table is exactly as wide as the article column, --- */
+/* --- with a horizontal scrollbar only as a safety net.             --- */
+.post-content .table-wrapper {
+    margin-bottom: var(--content-gap);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+.post-content .table-wrapper table {
+    width: 100%;
+    table-layout: fixed;
+    margin-bottom: 0;
 }
 
 .post-content table th {
@@ -18,6 +23,12 @@
 
 .post-content table td {
     vertical-align: top;
+}
+
+.post-content table th,
+.post-content table td {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* --- Table of Contents: scrollable panel for long posts --- */

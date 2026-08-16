@@ -4,6 +4,11 @@ date: 2026-08-15
 description: "My research case study on HICC pet's membership strategy — market context, a competitive benchmark against Pet Lovers Centre, and a lifecycle-to-KPI model for turning a membership card into measurable revenue."
 ShowToc: true
 tags: ["Market Research", "CRM", "Pet Industry", "Case Study"]
+image: "/image/hicc-invite-banner.webp"
+cover:
+  image: "/image/dogs-cover.jpg"
+  alt: "Two fluffy dogs looking up at the camera"
+  relative: false
 ---
 
 HICC pet should not be analysed as a conventional pet shop. Public information positions it as a U.S.-founded pet wellness and grooming brand with DTC e-commerce, a Singapore APAC Brand Experience Center, premium grooming, community events and showroom rental. Its membership programme therefore sits at the intersection of **retail, services, CRM and experiential/community marketing** — and that intersection is the subject of this case study.
