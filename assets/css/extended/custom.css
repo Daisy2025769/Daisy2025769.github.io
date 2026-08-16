@@ -1,0 +1,50 @@
+/* --- Tables: keep them from breaking the centered reading column, --- */
+/* --- and give every table a clean, centered header row.           --- */
+.post-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.post-content table th {
+    text-align: center;
+    background: var(--code-bg);
+}
+
+[data-theme="dark"] .post-content table th {
+    background: var(--entry);
+}
+
+.post-content table td {
+    vertical-align: top;
+}
+
+/* --- Table of Contents: scrollable panel for long posts --- */
+.toc .inner {
+    max-height: 320px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.toc .inner::-webkit-scrollbar {
+    width: 6px;
+}
+
+.toc .inner::-webkit-scrollbar-thumb {
+    background: var(--tertiary);
+    border-radius: 4px;
+}
+
+/* --- Sources / validation notes: smaller, quieter type --- */
+.post-sources {
+    font-size: 0.82em;
+    line-height: 1.7;
+    color: var(--secondary);
+}
+
+.post-sources h3 {
+    font-size: 1em;
+    color: var(--secondary);
+    margin-bottom: 0.6em;
+}

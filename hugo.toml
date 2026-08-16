@@ -3,6 +3,11 @@ languageCode = 'zh-cn'
 title = 'Daisy的个人主页' # 这里改成你的名字
 theme = 'PaperMod'
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true # 允许文章里使用少量自定义 HTML（比如 Sources 区块的样式包裹）
+
 [params]
   defaultTheme = "auto" # 自动跟随系统切换黑白模式
 

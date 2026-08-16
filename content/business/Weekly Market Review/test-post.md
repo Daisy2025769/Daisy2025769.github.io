@@ -1,12 +1,12 @@
 ---
-title: "HICC PET: From Membership Card to Customer Lifecycle"
+title: "HICC pet: From Membership Card to Customer Lifecycle"
 date: 2026-08-15
-description: "My research case study on HICC PET's membership strategy — market context, a competitive benchmark against Pet Lovers Centre, and a lifecycle-to-KPI model for turning a membership card into measurable revenue."
+description: "My research case study on HICC pet's membership strategy — market context, a competitive benchmark against Pet Lovers Centre, and a lifecycle-to-KPI model for turning a membership card into measurable revenue."
 ShowToc: true
 tags: ["Market Research", "CRM", "Pet Industry", "Case Study"]
 ---
 
-HICC PET should not be analysed as a conventional pet shop. Public information positions it as a U.S.-founded pet wellness and grooming brand with DTC e-commerce, a Singapore APAC Brand Experience Center, premium grooming, community events and showroom rental. Its membership programme therefore sits at the intersection of **retail, services, CRM and experiential/community marketing** — and that intersection is the subject of this case study.
+HICC pet should not be analysed as a conventional pet shop. Public information positions it as a U.S.-founded pet wellness and grooming brand with DTC e-commerce, a Singapore APAC Brand Experience Center, premium grooming, community events and showroom rental. Its membership programme therefore sits at the intersection of **retail, services, CRM and experiential/community marketing** — and that intersection is the subject of this case study.
 
 *Source: HICC SG About Us; HICC Membership Agreement; HICC LinkedIn / official company pages.*
 
@@ -84,7 +84,7 @@ The current SG catalogue shows 29 items across categories including Anal Gland C
 **Marketing implication:** HICC already has a natural "single need → complete care solution" architecture. CRM can use a purchased SKU as a trigger for a relevant kit, a replenishment reminder, or a complementary product.
 
 | Type | Examples | Current public SG price |
-|---|---|---|
+|:---:|---|:---:|
 | Single SKU | Plant-Based Pet Wipes | S$15.90 |
 | Single SKU | Hypoallergenic Pet Eye Wipes | S$18.90 |
 | Single SKU | Dental Finger Wipes | S$19.90 |
@@ -134,7 +134,7 @@ The current SG catalogue shows 29 items across categories including Anal Gland C
 
 PLC is the most useful Singapore benchmark because it combines physical retail, e-commerce, grooming and a mature loyalty system. It is not a like-for-like brand: **PLC wins on scale and assortment, while HICC can compete through specialisation, wellness and experience.**
 
-| Dimension | HICC PET | Pet Lovers Centre |
+| Dimension | HICC pet | Pet Lovers Centre |
 |---|---|---|
 | Core model | Specialist pet wellness/grooming brand + DTC + experience centre | Large omnichannel pet retailer / ecosystem |
 | Assortment | 29 items on current SG online catalogue | PLC states 15,000+ pet products |
@@ -189,7 +189,7 @@ The **cat segment** deserves a dedicated test rather than being treated as a min
 The following model uses the assumptions in the accompanying Excel case file. **All figures are illustrative targets, not HICC actuals.** The purpose is to demonstrate how the marketing team can translate CRM improvements into financial outcomes.
 
 | Input | Illustrative value | Unit |
-|---|---|---|
+|---|:---:|:---:|
 | Members at start | 1,000 | members |
 | New members / month | 120 | members |
 | Member activation rate | 65% | of new members |
@@ -202,7 +202,7 @@ The following model uses the assumptions in the accompanying Excel case file. **
 | Referral rate | 8% | of members |
 
 | Output | Calculation formula | Illustrative result |
-|---|---|---|
+|---|---|:---:|
 | Activated members | 1,000 × 65% | 650 |
 | Monthly member purchasers | 1,000 × 55% | 550 |
 | Member revenue / month | 550 × S$85 × 1.6 | S$74,800 |
@@ -241,12 +241,16 @@ HICC should not compete with PLC on assortment or scale. Its opportunity is to w
 
 ---
 
+<div class="post-sources">
+
 ### Sources / Validation Notes
 
 - Euromonitor — *The World Market for Pet Care (2025/2026)*: global market size, premiumisation, cat growth and channel trends.
 - Euromonitor — *Pet Care in Singapore (2026)*: Singapore premiumisation, health/wellness, e-commerce and competitive landscape.
 - Euromonitor — *Pet Products in Singapore (2026)*: fragmented market; top three companies <25%; Kit Cat 12% in 2025.
 - CNA / TODAY — *The Big Read on pets in Singapore*: 2023 dog/cat populations and humanisation trend.
-- HICC PET Singapore — official product catalogue, About Us, Grooming Booking, Showroom Venue Rental and Membership Agreement.
-- HICC PET — official global About Us / manufacturing pages and official LinkedIn company updates.
+- HICC pet Singapore — official product catalogue, About Us, Grooming Booking, Showroom Venue Rental and Membership Agreement.
+- HICC pet — official global About Us / manufacturing pages and official LinkedIn company updates.
 - Pet Lovers Centre — official corporate locations, VIP membership, benefits and Animal Arts Academy grooming pages.
+
+</div>
