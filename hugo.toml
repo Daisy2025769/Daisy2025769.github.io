@@ -5,7 +5,11 @@ theme = 'PaperMod'
 
 [params]
   defaultTheme = "auto" # 自动跟随系统切换黑白模式
-  
+
+  [params.author]
+    name = "Daisy"
+    email = "web1091026187@gmail.com"
+
   # 开启首页简介模式
   [params.profileMode]
     enabled = true
