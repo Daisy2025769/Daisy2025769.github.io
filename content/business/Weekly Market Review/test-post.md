@@ -1,6 +1,6 @@
 ---
 title: "HICC PET: From Membership Card to Customer Lifecycle"
-date: 2026-08-17
+date: 2026-08-15
 description: "My research case study on HICC PET's membership strategy — market context, a competitive benchmark against Pet Lovers Centre, and a lifecycle-to-KPI model for turning a membership card into measurable revenue."
 ShowToc: true
 tags: ["Market Research", "CRM", "Pet Industry", "Case Study"]
