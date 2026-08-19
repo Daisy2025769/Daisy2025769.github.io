@@ -1,5 +1,5 @@
 ---
-title: "Wine"
+title: "Travel"
 type: "life"
 layout: "list"
 ---

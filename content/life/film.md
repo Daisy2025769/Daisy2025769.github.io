@@ -1,5 +1,5 @@
 ---
-title: "Film & TV"
+title: "Media"
 type: "life"
 layout: "list"
 ---
