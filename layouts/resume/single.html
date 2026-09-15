@@ -130,6 +130,29 @@
             .skill-node:before { content:""; position:absolute; width:18px; height:2px; background:#aaa69c; left:-18px; top:35px; }
             .resume-image-container { padding:0; } .tree-root { bottom:0; }
         }
+            .brain-labels { display:grid; grid-template-columns:1fr 1fr; text-align:center; margin:38px 0 8px; }
+        .brain-labels h2 { font:italic 28px Georgia,serif; }
+        .brain-labels span { display:block; font:9px Montserrat,sans-serif; letter-spacing:3px; margin-top:10px; color:#777; }
+        .brain-tree { position:relative; height:800px; max-width:1000px; margin:auto; }
+        .brain-branches { position:absolute; inset:0; width:100%; height:100%; }
+        .hemisphere { fill:#eeede8; stroke:#b4b0a6; stroke-width:2; }
+        .hemisphere:nth-child(2) { fill:#f1ede8; }
+        .brain-half { position:absolute; top:110px; width:34%; display:grid; grid-template-rows:140px 140px 140px; gap:22px; }
+        .analytical { left:12%; } .creative { right:12%; }
+        .brain-skill { align-self:center; background:rgba(255,255,255,.94); border:1px solid #ddd9d2; padding:18px 12px; text-align:center; border-radius:22px; }
+        .brain-skill h3 { font:italic 21px Georgia,serif; }
+        .brain-skill p { font-size:11px; line-height:1.8; margin-top:10px; color:#666; }
+        .brain-bridge { position:absolute; top:660px; left:50%; transform:translateX(-50%); width:75%; text-align:center; background:#f4f4f4; padding:10px; }
+        .brain-bridge h2 { font:italic 25px Georgia,serif; } .brain-bridge p:last-child { font-size:12px; color:#666; margin-top:9px; }
+        .brain-bridge .eyebrow { margin-bottom:8px; }
+        .brain-root { position:absolute; bottom:0; left:50%; transform:translateX(-50%); letter-spacing:4px; font-size:11px; background:#f4f4f4; padding:8px; }
+        @media(max-width:600px) {
+            .brain-labels h2 { font-size:23px; } .brain-tree { height:760px; }
+            .brain-half { top:90px; width:43%; grid-template-rows:150px 150px 150px; gap:12px; }
+            .analytical { left:3%; } .creative { right:3%; }
+            .brain-skill { padding:14px 7px; border-radius:18px; } .brain-skill h3 { font-size:17px; overflow-wrap:break-word; } .brain-skill p { font-size:10px; }
+            .brain-bridge { top:620px; width:94%; } .brain-bridge h2 { font-size:22px; }
+        }
     </style>
 </head>
 <body>
@@ -169,22 +192,31 @@
     {{ else if eq .Params.resumeView "formal" }}
         <section class="empty-resume"><p class="eyebrow">THE PROFESSIONAL EDITION</p><h1 class="section-heading">Formal Resume</h1><p>Coming soon.</p><a href="/resume/informal/">Explore my informal resume &rarr;</a></section>
     {{ else }}
-        <header class="tree-intro"><p class="eyebrow">ROOTED IN EXPERIENCE · ALWAYS GROWING</p><h1 class="section-heading">Skills Tree</h1><p>A growing collection of what I bring to the table.</p></header>
-        <div class="skill-tree">
-            <svg class="branches" viewBox="0 0 1000 760" preserveAspectRatio="none" aria-hidden="true">
-                <g fill="none" stroke="currentColor" stroke-linecap="round">
-                    <path d="M500 710 C490 600 522 500 500 385 S510 210 500 85" stroke-width="9"/>
-                    <path d="M503 265 Q405 230 275 125 M500 350 Q620 250 725 190 M504 450 Q365 395 265 340 M504 515 Q625 445 735 400 M500 600 Q380 565 265 555 M500 650 Q625 605 735 600" stroke-width="4"/>
-                    <path d="M500 710 Q460 725 420 742 M500 710 Q540 725 580 742 M500 710 L500 745" stroke-width="3"/>
+        <header class="tree-intro"><p class="eyebrow">ANALYSIS MEETS IMAGINATION</p><h1 class="section-heading">Skills Tree</h1><p>Two ways of thinking. One connected mind.</p></header>
+        <div class="brain-labels"><h2>Analytical<span>LEFT BRAIN</span></h2><h2>Creative<span>RIGHT BRAIN</span></h2></div>
+        <div class="brain-tree">
+            <svg class="brain-branches" viewBox="0 0 1000 780" preserveAspectRatio="none" aria-hidden="true">
+                <path class="hemisphere" d="M478 90 C450 22 353 15 302 65 C229 38 143 76 131 139 C55 163 32 236 67 294 C13 352 42 444 104 467 C82 548 155 601 217 594 C266 672 397 650 477 581 Z"/>
+                <path class="hemisphere" d="M522 90 C550 22 647 15 698 65 C771 38 857 76 869 139 C945 163 968 236 933 294 C987 352 958 444 896 467 C918 548 845 601 783 594 C734 672 603 650 523 581 Z"/>
+                <g fill="none" stroke="#aaa69c" stroke-linecap="round">
+                    <path d="M500 746 Q486 670 500 594 M500 594 Q457 528 464 415 L460 137 M500 594 Q543 528 536 415 L540 137" stroke-width="7"/>
+                    <path d="M464 230 Q402 188 305 161 M464 353 Q350 320 218 316 M477 512 Q371 467 302 475 M536 230 Q598 188 695 161 M536 353 Q650 320 782 316 M523 512 Q629 467 698 475" stroke-width="3"/>
+                    <path d="M143 153 Q200 108 259 115 M82 286 Q100 240 134 224 M119 480 Q147 537 207 544 M857 153 Q800 108 741 115 M918 286 Q900 240 866 224 M881 480 Q853 537 793 544" stroke-width="2"/>
+                    <path d="M500 746 L450 771 M500 746 L550 771" stroke-width="3"/>
                 </g>
             </svg>
-            <section class="skill-node node-1"><span class="branch-number">01</span><h2>Finance &amp; Reporting</h2><ul><li>Fund accounting support</li><li>Capital account statements</li><li>Quarterly reporting</li></ul></section>
-            <section class="skill-node node-2"><span class="branch-number">02</span><h2>Market Analysis</h2><ul><li>Spot &amp; futures dynamics</li><li>Pricing efficiency</li><li>Market risk assessment</li></ul></section>
-            <section class="skill-node node-3"><span class="branch-number">03</span><h2>Financial Planning</h2><ul><li>Business financial planning</li><li>Profit management</li></ul></section>
-            <section class="skill-node node-4"><span class="branch-number">04</span><h2>Leadership &amp; Events</h2><ul><li>Team leadership</li><li>Event planning</li></ul></section>
-            <section class="skill-node node-5"><span class="branch-number">05</span><h2>Communication</h2><ul><li>Client-facing materials</li><li>Turning data into insights</li></ul></section>
-            <section class="skill-node node-6"><span class="branch-number">06</span><h2>Academic Foundations</h2><ul><li>Applied finance</li><li>International trade</li><li>Economics</li></ul></section>
-            <span class="tree-root">DAISY</span>
+            <div class="brain-half analytical">
+                <section class="brain-skill"><h3>Finance &amp; Reporting</h3><p>Fund accounting support<br>Capital account statements<br>Quarterly reporting</p></section>
+                <section class="brain-skill"><h3>Market Analysis</h3><p>Pricing efficiency<br>Spot &amp; futures dynamics<br>Market risk assessment</p></section>
+                <section class="brain-skill"><h3>Financial Planning</h3><p>Business financial planning<br>Profit management</p></section>
+            </div>
+            <div class="brain-half creative">
+                <section class="brain-skill"><h3>Brand Building</h3></section>
+                <section class="brain-skill"><h3>Marketing Operations</h3></section>
+                <section class="brain-skill"><h3>Leadership &amp; Communication</h3><p>Team leadership · Event planning<br>Client-facing materials</p></section>
+            </div>
+            <section class="brain-bridge"><p class="eyebrow">CONNECTING BOTH SIDES</p><h2>Storytelling Based on Data</h2><p>Turning data into clear insights.</p></section>
+            <span class="brain-root">DAISY</span>
         </div>
     {{ end }}
     </main>
