@@ -15,7 +15,7 @@
         <figure class="story-image">{{ if $slide.src }}<img src="{{ $slide.src }}" alt="{{ $slide.alt | default $slide.title }}" {{ if ne $index 0 }}loading="lazy"{{ end }}>{{ else }}<div class="story-placeholder">{{ .title }}</div>{{ end }}</figure>
       </article>
       {{ else }}
-      <article class="story-card story-card-empty" data-story>
+      <article class="story-card story-card-empty{{ if eq .key "dontfeedmonster" }} story-card-compact-title{{ end }}" data-story>
         <div class="story-copy"><div><span class="story-number">Next chapter</span><h2>{{ if eq .key "education" }}Project{{ else }}{{ .title }}{{ end }}</h2><blockquote>This part of my portfolio is taking shape. New stories, images and project notes will live here.</blockquote></div><span class="story-tag">Coming soon</span></div>
         <figure class="story-image"><div class="story-placeholder"><span>{{ .title }}</span></div></figure>
       </article>

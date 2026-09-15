@@ -19,6 +19,7 @@ body { min-height: 100vh; margin: 0; display: flex; flex-direction: column; over
 .story-copy { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(38px,5vw,76px) clamp(34px,4.5vw,68px); }
 .story-number { color: #999; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
 .story-copy h2 { max-width: 470px; margin: 20px 0 26px; font-size: clamp(38px,4.4vw,70px); font-weight: 900; line-height: 1.02; letter-spacing: -.045em; }
+.story-card-compact-title .story-copy h2 { font-size: clamp(32px,3.7vw,56px); overflow-wrap: anywhere; }
 .story-copy blockquote { max-width: 470px; margin: 0; color: #454545; font: 25px/1.48 Georgia, serif; }
 .story-copy blockquote::before { content: "“"; margin-right: 7px; color: #aaa; font-size: 38px; line-height: 0; vertical-align: -.18em; }
 .story-tag { align-self: flex-start; margin-top: 34px; padding: 10px 14px; border-radius: 9px; background: #f2f2f2; color: #666; font-size: 13px; }
@@ -48,6 +49,7 @@ a:focus-visible, button:focus-visible, .story-track:focus-visible { outline: 2px
   .story-card { flex-basis: 84vw; min-height: 0; grid-template-columns: 1fr; border-radius: 24px; }
   .story-copy { min-height: 320px; padding: 32px 28px 27px; }
   .story-copy h2 { margin: 15px 0 20px; font-size: clamp(35px,11vw,50px); }
+  .story-card-compact-title .story-copy h2 { font-size: clamp(29px,9vw,42px); }
   .story-copy blockquote { font-size: 19px; line-height: 1.45; }
   .story-tag { margin-top: 25px; }
   .story-image { aspect-ratio: 4/3; padding: 0 14px 14px; }
