@@ -3,9 +3,28 @@
 {{ $key := .Params.showcaseKey | default "internships" }}
 <nav class="quest-tabs" aria-label="Portfolio categories">{{ range $items }}<a href="{{ .url }}" {{ if eq .key $key }}aria-current="page"{{ end }}>{{ .title }}</a>{{ end }}</nav>
 {{ range $items }}{{ if eq .key $key }}
-<main class="showcase-main"><section class="slideshow" tabindex="0" role="region" aria-roledescription="carousel" aria-label="{{ .title }} slideshow">
-<div class="slide-window">{{ range $i,$slide := .slides }}<figure class="slide" {{ if ne $i 0 }}hidden{{ end }}><img src="{{ .src }}" alt="{{ .alt }}" width="1920" height="1080" {{ if ne $i 0 }}loading="lazy"{{ end }}></figure>{{ else }}<div class="slide-empty"><h1>{{ .title }}</h1><p>Coming soon</p></div>{{ end }}</div>
-<div class="slide-controls"><button type="button" data-prev aria-label="Previous slide" disabled>&larr;</button><output aria-live="off">{{ if .slides }}1 / {{ len .slides }}{{ else }}{{ .title }}{{ end }}</output><button type="button" data-next aria-label="Next slide" disabled>&rarr;</button><button type="button" data-pause disabled aria-label="Pause slideshow">Pause</button></div>
-</section>{{ if eq .key "education" }}<p class="research-link"><a href="/business/weekly-market-review/">Read my market research &rarr;</a></p>{{ end }}</main>
+<main class="showcase-main">
+  <section class="story-carousel" aria-label="{{ .title }} stories">
+    <div class="story-track" tabindex="0" aria-roledescription="carousel">
+      {{ range $index, $slide := .slides }}
+      <article class="story-card" data-story>
+        <div class="story-copy">
+          <div><span class="story-number">{{ printf "%02d" (add $index 1) }} · {{ $slide.eyebrow | default $.Title }}</span><h2>{{ $slide.title | default $slide.alt }}</h2><blockquote>{{ $slide.text | default "A closer look at the ideas, process and experience behind this project." }}</blockquote></div>
+          <span class="story-tag">{{ $slide.tag | default .title }}</span>
+        </div>
+        <figure class="story-image">{{ if $slide.src }}<img src="{{ $slide.src }}" alt="{{ $slide.alt | default $slide.title }}" {{ if ne $index 0 }}loading="lazy"{{ end }}>{{ else }}<div class="story-placeholder">{{ .title }}</div>{{ end }}</figure>
+      </article>
+      {{ else }}
+      <article class="story-card story-card-empty" data-story>
+        <div class="story-copy"><div><span class="story-number">Next chapter</span><h2>{{ .title }}</h2><blockquote>This part of my portfolio is taking shape. New stories, images and project notes will live here.</blockquote></div><span class="story-tag">Coming soon</span></div>
+        <figure class="story-image"><div class="story-placeholder"><span>{{ .title }}</span></div></figure>
+      </article>
+      {{ end }}
+    </div>
+    <div class="story-controls"><button class="story-arrow" type="button" data-previous aria-label="Previous story">&larr;</button><output class="story-count" aria-live="polite">{{ if .slides }}1 / {{ len .slides }}{{ else }}1 / 1{{ end }}</output><button class="story-arrow" type="button" data-next aria-label="Next story">&rarr;</button></div>
+    {{ if gt (len .slides) 1 }}<p class="scroll-hint">Scroll sideways · use the mouse wheel · or drag on mobile</p>{{ end }}
+  </section>
+  {{ if eq .key "education" }}<p class="research-link"><a href="/business/weekly-market-review/">Read my market research &rarr;</a></p>{{ end }}
+</main>
 {{ end }}{{ end }}
-<script src="/js/slideshow.js" defer></script>
+<script src="/js/story-carousel.js" defer></script>

@@ -82,15 +82,15 @@
             <section class="story-carousel" aria-label="DigiMarCon volunteering stories">
                 <div class="story-track" tabindex="0" aria-roledescription="carousel">
                     <article class="story-card" data-story>
-                        <div class="story-copy"><div><span class="story-number">01 · Team</span><h2>Showing up together</h2><blockquote>A shared day behind the scenes, supporting the people and energy that brought the event to life.</blockquote></div><span class="story-tag">DigiMarCon Southeast Asia 2026</span></div>
+                        <div class="story-copy"><div><span class="story-number">01 · AI &amp; Marketing</span><h2>AI still needs a marketing brain</h2><blockquote>AI agents are changing every marketing role, but they only become useful when they inherit human taste, expertise and judgment.</blockquote></div><span class="story-tag">Humans remain part of the process</span></div>
                         <figure class="story-image"><img src="/image/volunteering/digimarcon-team.jpg" alt="DigiMarCon Southeast Asia 2026 volunteer team" loading="eager"></figure>
                     </article>
                     <article class="story-card" data-story>
-                        <div class="story-copy"><div><span class="story-number">02 · On site</span><h2>Learning by doing</h2><blockquote>Volunteering turned a conference into a hands-on lesson in coordination, communication and hospitality.</blockquote></div><span class="story-tag">TECHSPO Singapore · August 2026</span></div>
+                        <div class="story-copy"><div><span class="story-number">02 · AI Workflows</span><h2>One agent cannot do everything</h2><blockquote>Research, CRM and Google Ads need different agents. Each workflow should be scored by impact, repeatability, complexity and risk.</blockquote></div><span class="story-tag">Brands now need to appeal to agents, too</span></div>
                         <figure class="story-image"><img src="/image/volunteering/digimarcon-daisy.jpg" alt="Daisy volunteering at DigiMarCon Southeast Asia 2026" loading="lazy"></figure>
                     </article>
                     <article class="story-card" data-story>
-                        <div class="story-copy"><div><span class="story-number">03 · Connections</span><h2>People make the experience</h2><blockquote>The best part was meeting people from different backgrounds and sharing one lively, memorable moment.</blockquote></div><span class="story-tag">People, teamwork &amp; new perspectives</span></div>
+                        <div class="story-copy"><div><span class="story-number">03 · A Human Reflection</span><h2>Relationships take time</h2><blockquote>After twelve sessions across two days, formal introductions became group photos, laughter and opportunities shared. Good connections grow through time and staying in touch.</blockquote></div><span class="story-tag">DigiMarCon &amp; TECHSPO Singapore · 2026</span></div>
                         <figure class="story-image"><img src="/image/volunteering/digimarcon-friends.jpg" alt="Volunteers at DigiMarCon Southeast Asia 2026" loading="lazy"></figure>
                     </article>
                 </div>
@@ -100,47 +100,6 @@
         </main>
     </div>
     {{ partial "daisy-footer.html" . }}
-    <script>
-    (() => {
-        const track = document.querySelector('.story-track');
-        if (!track) return;
-        const originals = [...track.querySelectorAll('[data-story]')];
-        const count = document.querySelector('.story-count');
-        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const before = originals.at(-1).cloneNode(true);
-        const after = originals[0].cloneNode(true);
-        before.dataset.clone = 'before';
-        after.dataset.clone = 'after';
-        before.setAttribute('aria-hidden', 'true');
-        after.setAttribute('aria-hidden', 'true');
-        track.prepend(before);
-        track.append(after);
-        const cards = [...track.querySelectorAll('[data-story]')];
-        let position = 1;
-        let settleTimer;
-        const logicalIndex = index => index === 0 ? originals.length - 1 : index === cards.length - 1 ? 0 : index - 1;
-        const update = index => { position = index; count.textContent = `${logicalIndex(index) + 1} / ${originals.length}`; };
-        const center = (index, smooth = true) => { index = Math.max(0, Math.min(cards.length - 1, index)); update(index); cards[index].scrollIntoView({ behavior: smooth && !reduced ? 'smooth' : 'auto', block: 'nearest', inline: 'center' }); };
-        const normalize = () => {
-            if (position === 0) center(originals.length, false);
-            if (position === cards.length - 1) center(1, false);
-        };
-        document.querySelector('[data-previous]').addEventListener('click', () => center(position - 1));
-        document.querySelector('[data-next]').addEventListener('click', () => center(position + 1));
-        track.addEventListener('keydown', event => { if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); center(position + (event.key === 'ArrowRight' ? 1 : -1)); } });
-        track.addEventListener('wheel', event => {
-            if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
-            const atStart = track.scrollLeft <= 1;
-            const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
-            if ((event.deltaY < 0 && atStart) || (event.deltaY > 0 && atEnd)) return;
-            event.preventDefault();
-            track.scrollBy({ left: event.deltaY, behavior: reduced ? 'auto' : 'smooth' });
-        }, { passive: false });
-        track.addEventListener('scroll', () => { clearTimeout(settleTimer); settleTimer = setTimeout(normalize, 180); }, { passive: true });
-        const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting && entry.intersectionRatio >= .6) update(cards.indexOf(entry.target)); }); }, { root: track, threshold: [.6] });
-        cards.forEach(card => observer.observe(card));
-        requestAnimationFrame(() => requestAnimationFrame(() => center(1, false)));
-    })();
-    </script>
+    <script src="/js/story-carousel.js" defer></script>
 </body>
 </html>
