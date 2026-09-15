@@ -1,7 +1,7 @@
 ---
 title: 'Volunteering'
 type: business
-layout: list
+layout: volunteering
 showcaseGroup: main
 showcaseKey: volunteering
 draft: false

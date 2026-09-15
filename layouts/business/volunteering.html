@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - Main Quest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/daisy-footer.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #000; color: #222; font-family: Montserrat, Arial, sans-serif; }
+        .content-wrapper { position: relative; z-index: 2; min-height: 100vh; margin-bottom: 400px; background: #f4f4f4; box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+        .chanel-header { position: sticky; top: 0; z-index: 100; height: 90px; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; background: #fff; }
+        .header-left, .header-center, .header-right { flex: 1; display: flex; align-items: center; }
+        .header-center { justify-content: center; }
+        .header-right { justify-content: flex-end; gap: 25px; }
+        .brand-logo img { display: block; width: auto; height: 85px; }
+        .page-title { font-family: Georgia, serif; font-size: 36px; font-style: italic; font-weight: 400; letter-spacing: 1px; color: #333; }
+        .icon-btn { display: flex; color: #000; }
+        .icon-svg { width: 24px; height: 24px; stroke-width: 1.5; transition: transform .2s; }
+        .icon-btn:hover .icon-svg { transform: scale(1.1); }
+        .sub-nav { display: flex; justify-content: center; gap: 40px; padding: 10px 20px 40px; border-bottom: 1px solid #eee; background: #fff; }
+        .sub-nav a { color: #888; font: italic 16px Georgia, serif; letter-spacing: .5px; text-decoration: none; }
+        .sub-nav a:hover, .sub-nav a.active { color: #000; }
+        .sub-nav a.active { border-bottom: 1px solid #000; font-weight: 700; }
+        .volunteer-intro { max-width: 780px; margin: 0 auto; padding: 74px 24px 52px; text-align: center; }
+        .volunteer-intro h1 { margin-bottom: 18px; font: italic 42px Georgia, serif; font-weight: 400; }
+        .volunteer-intro p { color: #666; font: italic 17px/1.8 Georgia, serif; }
+        .volunteer-gallery { width: min(1160px, calc(100% - 40px)); margin: 0 auto; padding-bottom: 110px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .volunteer-photo { align-self: start; overflow: hidden; border-radius: 4px; background: #e7e7e7; box-shadow: 0 7px 24px rgba(0,0,0,.08); }
+        .volunteer-photo:first-child { grid-column: 1 / -1; }
+        .volunteer-photo img { display: block; width: 100%; height: auto; transition: transform .55s ease; }
+        .volunteer-photo:hover img { transform: scale(1.018); }
+        @media (max-width: 768px) {
+            .content-wrapper { margin-bottom: 600px; }
+            .chanel-header { height: 76px; padding: 0 18px; }
+            .brand-logo img { height: 68px; }
+            .page-title { font-size: 25px; }
+            .header-right { gap: 16px; }
+            .sub-nav { gap: 18px; padding-bottom: 26px; overflow-x: auto; justify-content: flex-start; }
+            .sub-nav a { flex: 0 0 auto; font-size: 14px; }
+            .volunteer-intro { padding: 52px 20px 36px; }
+            .volunteer-intro h1 { font-size: 34px; }
+            .volunteer-gallery { grid-template-columns: 1fr; gap: 16px; padding-bottom: 70px; }
+            .volunteer-photo:first-child { grid-column: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <header class="chanel-header">
+            <div class="header-left"><a href="/" class="brand-logo"><img src="/logo.jpg" alt="Daisy Space"></a></div>
+            <div class="header-center"><span class="page-title">Main Quest</span></div>
+            <div class="header-right">
+                <a href="/contact/" class="icon-btn" aria-label="Contact"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+                <a href="/" class="icon-btn" aria-label="Home"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a>
+            </div>
+        </header>
+        <nav class="sub-nav"><a href="/business/">Internships</a><a href="/business/education-projects/">Education&amp;Projects</a><a class="active" href="/business/volunteering/">Volunteering</a></nav>
+        <main>
+            <section class="volunteer-intro">
+                <h1>Volunteering</h1>
+                <p>DigiMarCon Southeast Asia &amp; TECHSPO Singapore · August 2026</p>
+            </section>
+            <section class="volunteer-gallery" aria-label="Volunteering at DigiMarCon Southeast Asia 2026">
+                <figure class="volunteer-photo"><img src="/image/volunteering/digimarcon-team.jpg" alt="DigiMarCon Southeast Asia 2026 volunteer team" loading="eager"></figure>
+                <figure class="volunteer-photo"><img src="/image/volunteering/digimarcon-daisy.jpg" alt="Daisy volunteering at DigiMarCon Southeast Asia 2026" loading="lazy"></figure>
+                <figure class="volunteer-photo"><img src="/image/volunteering/digimarcon-friends.jpg" alt="Volunteers at DigiMarCon Southeast Asia 2026" loading="lazy"></figure>
+            </section>
+        </main>
+    </div>
+    {{ partial "daisy-footer.html" . }}
+</body>
+</html>
