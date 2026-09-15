@@ -25,14 +25,24 @@
         .sub-nav a { color: #888; font: italic 16px Georgia, serif; letter-spacing: .5px; text-decoration: none; }
         .sub-nav a:hover, .sub-nav a.active { color: #000; }
         .sub-nav a.active { border-bottom: 1px solid #000; font-weight: 700; }
-        .volunteer-intro { max-width: 780px; margin: 0 auto; padding: 74px 24px 52px; text-align: center; }
-        .volunteer-intro h1 { margin-bottom: 18px; font: italic 42px Georgia, serif; font-weight: 400; }
+        .volunteer-intro { max-width: 780px; margin: 0 auto; padding: 58px 24px 16px; text-align: center; }
         .volunteer-intro p { color: #666; font: italic 17px/1.8 Georgia, serif; }
-        .volunteer-gallery { width: min(1160px, calc(100% - 40px)); margin: 0 auto; padding-bottom: 110px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        .volunteer-photo { align-self: start; overflow: hidden; border-radius: 4px; background: #e7e7e7; box-shadow: 0 7px 24px rgba(0,0,0,.08); }
-        .volunteer-photo:first-child { grid-column: 1 / -1; }
-        .volunteer-photo img { display: block; width: 100%; height: auto; transition: transform .55s ease; }
-        .volunteer-photo:hover img { transform: scale(1.018); }
+        .fan-carousel { width: min(1220px, 100%); margin: 0 auto; padding: 0 20px 90px; }
+        .fan-stage { position: relative; height: clamp(390px, 53vw, 650px); overflow: hidden; perspective: 1400px; outline: none; }
+        .fan-card { --fan-x: 0%; --fan-y: 80px; --fan-rotate: 0deg; --fan-scale: .55; position: absolute; left: 50%; top: 7%; width: min(650px, 62vw); aspect-ratio: 4 / 3; padding: 7px; overflow: hidden; border: 0; border-radius: 5px; background: #fff; box-shadow: 0 18px 45px rgba(20,20,20,.19); cursor: pointer; opacity: 0; transform: translateX(-50%) translateX(var(--fan-x)) translateY(var(--fan-y)) rotate(var(--fan-rotate)) scale(var(--fan-scale)); transform-origin: 50% 100%; transition: transform .68s cubic-bezier(.2,.8,.2,1), opacity .5s ease, filter .5s ease; }
+        .fan-card img { display: block; width: 100%; height: 100%; object-fit: contain; background: #0b0b16; pointer-events: none; }
+        .fan-stage.is-ready .fan-card[data-slot="left"] { --fan-x: -35%; --fan-y: 5%; --fan-rotate: -10deg; --fan-scale: .88; z-index: 1; opacity: .84; filter: brightness(.9); }
+        .fan-stage.is-ready .fan-card[data-slot="center"] { --fan-x: 0%; --fan-y: 0%; --fan-rotate: 0deg; --fan-scale: 1; z-index: 10; opacity: 1; filter: none; }
+        .fan-stage.is-ready .fan-card[data-slot="right"] { --fan-x: 35%; --fan-y: 5%; --fan-rotate: 10deg; --fan-scale: .88; z-index: 1; opacity: .84; filter: brightness(.9); }
+        .fan-stage.is-ready .fan-card[data-slot="center"]:hover { --fan-y: -2%; --fan-scale: 1.025; }
+        .fan-stage.is-ready .fan-card[data-slot="left"]:hover { --fan-x: -39%; --fan-y: 2%; filter: brightness(.98); }
+        .fan-stage.is-ready .fan-card[data-slot="right"]:hover { --fan-x: 39%; --fan-y: 2%; filter: brightness(.98); }
+        .fan-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: -5px; }
+        .fan-arrow { width: 45px; height: 45px; display: grid; place-items: center; border: 1px solid rgba(0,0,0,.13); border-radius: 50%; background: rgba(255,255,255,.78); color: #333; font-size: 20px; cursor: pointer; box-shadow: 0 5px 18px rgba(0,0,0,.08); transition: transform .2s, background .2s; }
+        .fan-arrow:hover { transform: scale(1.06); background: #fff; }
+        .fan-dots { display: flex; align-items: center; gap: 9px; }
+        .fan-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: #c8c8c8; cursor: pointer; transition: transform .25s, background .25s; }
+        .fan-dot[aria-current="true"] { background: #586d4b; transform: scale(1.4); }
         @media (max-width: 768px) {
             .content-wrapper { margin-bottom: 600px; }
             .chanel-header { height: 76px; padding: 0 18px; }
@@ -41,10 +51,20 @@
             .header-right { gap: 16px; }
             .sub-nav { gap: 18px; padding-bottom: 26px; overflow-x: auto; justify-content: flex-start; }
             .sub-nav a { flex: 0 0 auto; font-size: 14px; }
-            .volunteer-intro { padding: 52px 20px 36px; }
-            .volunteer-intro h1 { font-size: 34px; }
-            .volunteer-gallery { grid-template-columns: 1fr; gap: 16px; padding-bottom: 70px; }
-            .volunteer-photo:first-child { grid-column: auto; }
+            .volunteer-intro { padding: 42px 20px 10px; }
+            .volunteer-intro p { font-size: 15px; }
+            .fan-carousel { padding: 0 8px 70px; }
+            .fan-stage { height: clamp(330px, 105vw, 500px); }
+            .fan-card { top: 10%; width: 82vw; padding: 4px; }
+            .fan-stage.is-ready .fan-card[data-slot="left"] { --fan-x: -17%; --fan-y: 5%; --fan-rotate: -7deg; --fan-scale: .86; }
+            .fan-stage.is-ready .fan-card[data-slot="right"] { --fan-x: 17%; --fan-y: 5%; --fan-rotate: 7deg; --fan-scale: .86; }
+            .fan-stage.is-ready .fan-card[data-slot="left"]:hover { --fan-x: -19%; }
+            .fan-stage.is-ready .fan-card[data-slot="right"]:hover { --fan-x: 19%; }
+            .fan-controls { margin-top: -18px; }
+            .fan-arrow { width: 42px; height: 42px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .fan-card { transition: opacity .15s ease; }
         }
     </style>
 </head>
@@ -61,16 +81,63 @@
         <nav class="sub-nav"><a href="/business/">Internships</a><a href="/business/education-projects/">Education&amp;Projects</a><a class="active" href="/business/volunteering/">Volunteering</a></nav>
         <main>
             <section class="volunteer-intro">
-                <h1>Volunteering</h1>
                 <p>DigiMarCon Southeast Asia &amp; TECHSPO Singapore · August 2026</p>
             </section>
-            <section class="volunteer-gallery" aria-label="Volunteering at DigiMarCon Southeast Asia 2026">
-                <figure class="volunteer-photo"><img src="/image/volunteering/digimarcon-team.jpg" alt="DigiMarCon Southeast Asia 2026 volunteer team" loading="eager"></figure>
-                <figure class="volunteer-photo"><img src="/image/volunteering/digimarcon-daisy.jpg" alt="Daisy volunteering at DigiMarCon Southeast Asia 2026" loading="lazy"></figure>
-                <figure class="volunteer-photo"><img src="/image/volunteering/digimarcon-friends.jpg" alt="Volunteers at DigiMarCon Southeast Asia 2026" loading="lazy"></figure>
+            <section class="fan-carousel" aria-label="Volunteering at DigiMarCon Southeast Asia 2026">
+                <div class="fan-stage" tabindex="0" aria-roledescription="carousel">
+                    <button class="fan-card" type="button" data-card="0" aria-label="Show volunteer team photo"><img src="/image/volunteering/digimarcon-team.jpg" alt="DigiMarCon Southeast Asia 2026 volunteer team" loading="eager"></button>
+                    <button class="fan-card" type="button" data-card="1" aria-label="Show Daisy's volunteering photo"><img src="/image/volunteering/digimarcon-daisy.jpg" alt="Daisy volunteering at DigiMarCon Southeast Asia 2026" loading="eager"></button>
+                    <button class="fan-card" type="button" data-card="2" aria-label="Show volunteer friends photo"><img src="/image/volunteering/digimarcon-friends.jpg" alt="Volunteers at DigiMarCon Southeast Asia 2026" loading="eager"></button>
+                </div>
+                <div class="fan-controls">
+                    <button class="fan-arrow" type="button" data-previous aria-label="Previous photo">&#8592;</button>
+                    <div class="fan-dots" aria-label="Choose a photo">
+                        <button class="fan-dot" type="button" data-dot="0" aria-label="Photo 1"></button>
+                        <button class="fan-dot" type="button" data-dot="1" aria-label="Photo 2"></button>
+                        <button class="fan-dot" type="button" data-dot="2" aria-label="Photo 3"></button>
+                    </div>
+                    <button class="fan-arrow" type="button" data-next aria-label="Next photo">&#8594;</button>
+                </div>
             </section>
         </main>
     </div>
     {{ partial "daisy-footer.html" . }}
+    <script>
+    (() => {
+        const stage = document.querySelector('.fan-stage');
+        if (!stage) return;
+        const cards = [...stage.querySelectorAll('.fan-card')];
+        const dots = [...document.querySelectorAll('.fan-dot')];
+        let active = 1;
+
+        const render = () => {
+            cards.forEach((card, index) => {
+                const distance = (index - active + cards.length) % cards.length;
+                const slot = distance === 0 ? 'center' : distance === 1 ? 'right' : 'left';
+                card.dataset.slot = slot;
+                card.setAttribute('aria-pressed', slot === 'center' ? 'true' : 'false');
+            });
+            dots.forEach((dot, index) => dot.setAttribute('aria-current', index === active ? 'true' : 'false'));
+        };
+
+        const move = direction => {
+            active = (active + direction + cards.length) % cards.length;
+            render();
+        };
+
+        cards.forEach((card, index) => card.addEventListener('click', () => { active = index; render(); }));
+        dots.forEach((dot, index) => dot.addEventListener('click', () => { active = index; render(); }));
+        document.querySelector('[data-previous]').addEventListener('click', () => move(-1));
+        document.querySelector('[data-next]').addEventListener('click', () => move(1));
+        stage.addEventListener('keydown', event => {
+            if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                event.preventDefault();
+                move(event.key === 'ArrowRight' ? 1 : -1);
+            }
+        });
+        render();
+        requestAnimationFrame(() => stage.classList.add('is-ready'));
+    })();
+    </script>
 </body>
 </html>
