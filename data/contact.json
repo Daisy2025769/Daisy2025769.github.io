@@ -1,1 +1,24 @@
-[{"platform":"LinkedIn","name":"Yumeng","url":"https://www.linkedin.com/in/yumeng-/","avatar":"/image/contact/linkedin.png","icon":"linkedin","crop":true},{"platform":"Instagram","name":"itisnotdaisy","url":"https://www.instagram.com/itisnotdaisy/","avatar":"/avatar.jpg","icon":"instagram"}]
+[
+    {
+        "platform":  "LinkedIn",
+        "name":  "Yumeng",
+        "url":  "https://www.linkedin.com/in/yumeng-/",
+        "avatar":  "/image/contact/linkedin.png",
+        "icon":  "linkedin",
+        "crop":  true
+    },
+    {
+        "platform":  "Instagram",
+        "name":  "itisnotdaisy",
+        "url":  "https://www.instagram.com/itisnotdaisy/",
+        "avatar":  "/avatar.jpg",
+        "icon":  "instagram"
+    },
+    {
+        "platform":  "Instagram",
+        "name":  "Archive of Human Evidence",
+        "url":  "https://www.instagram.com/thisisaofhe/",
+        "avatar":  "/avatar.jpg",
+        "icon":  "instagram"
+    }
+]

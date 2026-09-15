@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }} - Main Quest</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;900&family=Georgia&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
     <style>
         /* --- 1. 基础设置 --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
             font-family: 'Montserrat', 'Microsoft YaHei', sans-serif;
             color: #000;
@@ -24,7 +24,7 @@
         }
 
         /* --- 2. 关键：覆盖式 Footer 的核心逻辑 --- */
-        
+
         /* 包裹所有页面内容的白色盒子 */
         .content-wrapper {
             position: relative;
@@ -85,9 +85,9 @@
         .sub-nav a {
             text-decoration: none;
             color: #888;
-            font-family: 'Georgia', serif; 
-            font-style: italic; 
-            font-size: 16px; 
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            font-size: 16px;
             text-transform: capitalize;
             letter-spacing: 0.5px;
             position: relative;
@@ -99,7 +99,7 @@
         /* --- 4. 页面内容样式 --- */
         .container {
             max-width: 1200px;
-            margin: 0 auto; 
+            margin: 0 auto;
             padding: 0 20px;
             flex: 1;
             width: 100%;
@@ -121,26 +121,26 @@
         }
 
         /* Grid 列表 */
-        .article-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 50px; 
-            margin-bottom: 100px; 
+        .article-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 100px;
         }
-        .article-card { 
-            cursor: pointer; 
-            transition: opacity 0.3s; 
-            text-decoration: none; 
-            color: black; 
-            display: flex; 
-            flex-direction: column; 
-            background: white; 
+        .article-card {
+            cursor: pointer;
+            transition: opacity 0.3s;
+            text-decoration: none;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            background: white;
             border-radius: 4px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         .article-card:hover { opacity: 0.9; transform: translateY(-5px); transition: transform 0.3s; }
-        
+
         .img-box { width: 100%; aspect-ratio: 16 / 9; overflow: hidden; margin-bottom: 20px; background: #ddd; }
         .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
         .article-card:hover .img-box img { transform: scale(1.05); }
@@ -171,6 +171,7 @@
             .article-grid { grid-template-columns: 1fr; }
         }
     </style>
+<link rel="stylesheet" href="/css/daisy-footer.css">
 </head>
 <body>
 
@@ -180,7 +181,7 @@
         <header class="chanel-header">
             <div class="header-left">
                 <a href="/" class="brand-logo">
-                     <img src="/logo.jpg" alt="Logo" style="height: 85px; width: auto;">       
+                     <img src="/logo.jpg" alt="Logo" style="height: 85px; width: auto;">
                 </a>
             </div>
             <div class="header-center">
@@ -196,11 +197,7 @@
             </div>
         </header>
 
-        <nav class="sub-nav">
-            <a href="/business/weekly-market-review/" class="{{ if eq .Title "Market Research" }}active{{ end }}">Market Research</a>
-            <a href="/business/podcast-takeaways/" class="{{ if eq .Title "Podcast Takeaways" }}active{{ end }}">Podcast Takeaways</a>
-            <a href="/business/emerging-content/" class="{{ if eq .Title "Emerging Content" }}active{{ end }}">Emerging Content</a>
-        </nav>
+        <nav class="sub-nav"><a href="/business/">Internships</a><a href="/business/education-projects/">Education&amp;Projects</a><a href="/business/volunteering/">Volunteering</a></nav>
 
         <div class="intro-section">
             <p class="intro-text">{{ .Description }}</p>
@@ -208,7 +205,7 @@
 
         <div class="container">
             <div class="article-grid">
-                
+
                 {{ range .Pages }}
                 <a href="{{ .RelPermalink }}" class="article-card">
                     <div class="img-box">
@@ -225,66 +222,13 @@
                     </div>
                 </a>
                 {{ end }}
-
-                <!-- 静态示例 -->
-                <a href="#" class="article-card">
-                    <div class="img-box"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"></div>
-                    <div class="card-content">
-                        <div class="grid-meta"><span class="grid-line"></span> DEMO</div>
-                        <h2 class="article-title">Market Example</h2>
-                        <p class="article-excerpt">This is a demo card to show the layout.</p>
-                    </div>
-                </a>
-                 <a href="#" class="article-card">
-                    <div class="img-box"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"></div>
-                    <div class="card-content">
-                        <div class="grid-meta"><span class="grid-line"></span> DEMO</div>
-                        <h2 class="article-title">Analysis Example</h2>
-                        <p class="article-excerpt">Another demo card for the grid layout.</p>
-                    </div>
-                </a>
             </div>
         </div>
 
     </div> <!-- content-wrapper 结束 -->
 
     <!-- !!! 关键结构：Footer 放在 wrapper 外面 !!! -->
-    <footer class="site-footer">
-        <div class="footer-logo">DAISY SPACE</div>
-        <div class="footer-columns">
-            <div class="footer-col">
-                <h4>Explore</h4>
-                <ul>
-                    <li><a href="/business/weekly-market-review/">Market Research</a></li>
-                    <li><a href="/business/podcast-takeaways/">Podcast Notes</a></li>
-                    <li><a href="/business/emerging-content/">Emerging Content</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>About</h4>
-                <ul>
-                    <li><a href="/about.html">My Story</a></li>
-                    <li><a href="/contact/">Contact Me</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Connect</h4>
-                <ul>
-                    <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">Rednote</a></li>
-                </ul>
-            </div>
-             <div class="footer-col">
-                <h4>Newsletter</h4>
-                <ul>
-                    <li><a href="#">Subscribe</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span>&copy; 2026 DAISY SPACE. ALL RIGHTS RESERVED.</span>
-        </div>
-    </footer>
+    {{ partial "daisy-footer.html" . }}
 
 </body>
 </html>

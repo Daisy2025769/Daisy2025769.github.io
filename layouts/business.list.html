@@ -6,7 +6,7 @@
     <title>Resume - Daisy Business</title>
     <!-- 引入字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Georgia&display=swap" rel="stylesheet">
-    
+
     <style>
         /* --- 全局重置 --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,7 +35,7 @@
 
         /* 左侧边栏 */
         .resume-sidebar { background-color: #f0f0f0; padding: 40px 30px; position: relative; }
-        
+
         /* 那个蓝色的条条 (IT SUPPORT) */
         .blue-strip {
             position: absolute;
@@ -51,7 +51,7 @@
         }
 
         .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 30px; border: 4px solid white; }
-        
+
         .sidebar-section { margin-bottom: 40px; padding-right: 40px; }
         .sidebar-title { font-size: 18px; font-weight: 900; margin-bottom: 15px; text-transform: uppercase; }
         .contact-info div { margin-bottom: 10px; font-size: 14px; display: flex; align-items: center; gap: 10px; }
@@ -81,6 +81,7 @@
             .resume-sidebar { padding-right: 30px; }
         }
     </style>
+<link rel="stylesheet" href="/css/daisy-footer.css">
 </head>
 <body>
 
@@ -110,11 +111,11 @@
 
     <!-- 简历部分 -->
     <div class="resume-container">
-        
+
         <!-- 左侧边栏 -->
         <aside class="resume-sidebar">
             <div class="blue-strip"><span>MY RESUME</span></div>
-            
+
             <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=80" class="profile-img" alt="Profile">
 
             <div class="sidebar-section">
@@ -182,18 +183,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-logo">DAISY SPACE</div>
-        <div class="footer-links">
-            <div>MAIN QUEST</div>
-            <div>ABOUT</div>
-            <div>CONNECT</div>
-            <div>NEWSLETTER</div>
-        </div>
-        <div style="text-align:center; margin-top:40px; color:#555; font-size:10px;">
-            &copy; 2026 DAISY SPACE. ALL RIGHTS RESERVED.
-        </div>
-    </footer>
+    {{ partial "daisy-footer.html" . }}
 
 </body>
 </html>

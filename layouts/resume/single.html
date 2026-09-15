@@ -40,13 +40,13 @@
         .header-left { flex: 1; display: flex; align-items: center; }
         .brand-logo { text-decoration: none; display: flex; align-items: center; }
         .header-center { flex: 1; text-align: center; display: flex; justify-content: center; }
-        .page-title { 
-            font-family: 'Georgia', serif; 
-            font-style: italic; 
-            font-size: 36px; 
-            color: #333; 
-            font-weight: normal; 
-            letter-spacing: 1px; 
+        .page-title {
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            font-size: 36px;
+            color: #333;
+            font-weight: normal;
+            letter-spacing: 1px;
         }
         .header-right { flex: 1; display: flex; justify-content: flex-end; gap: 25px; }
         .icon-btn { position: relative; display: flex; align-items: center; justify-content: center; text-decoration: none; color: black; cursor: pointer; }
@@ -65,9 +65,9 @@
         .sub-nav a {
             text-decoration: none;
             color: #888;
-            font-family: 'Georgia', serif; 
-            font-style: italic; 
-            font-size: 16px; 
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            font-size: 16px;
             text-transform: capitalize;
             letter-spacing: 0.5px;
             position: relative;
@@ -177,7 +177,9 @@
 }
 @media(prefers-reduced-motion:reduce) { .skill-point { transition:none; } }
 .pdf-actions { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; margin:0 0 24px; font-size:13px; } .pdf-actions a { color:#333; text-underline-offset:4px; } .resume-pdf { display:block; width:100%; height:85vh; min-height:500px; border:1px solid #ddd; background:white; } @media(max-width:600px) { .resume-pdf { height:70vh; min-height:420px; } }
+.brain-introduction{max-width:900px;margin:0 auto 26px;font:italic 15px/1.85 Georgia,serif;color:#888}.skill-point{width:28%}.skill-point summary{font-size:14px;padding:10px 9px}.branch-left{left:13%}.branch-right{right:13%}.row-1{top:18%}.row-2{top:33%}.row-3{top:47%}.skill-detail{max-height:320px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;font-size:13px;line-height:1.7}.skill-detail p{margin:0 0 12px}.skill-detail p:last-child{margin-bottom:0}@media(max-width:600px){.brain-introduction{font-size:13px}.skill-point{width:43%}.branch-left{left:2%}.branch-right{right:2%}.row-1{top:15%}.row-2{top:30%}.row-3{top:45%}.skill-point summary{font-size:11px;padding:9px 4px}.skill-detail{font-size:12px;max-height:260px}}
 </style>
+<link rel="stylesheet" href="/css/daisy-footer.css">
 </head>
 <body>
 
@@ -185,11 +187,11 @@
     <header class="chanel-header">
         <div class="header-left">
             <a href="/" class="brand-logo">
-                 <img src="/logo.jpg" alt="Logo" style="height: 85px; width: auto;">       
+                 <img src="/logo.jpg" alt="Logo" style="height: 85px; width: auto;">
             </a>
         </div>
         <div class="header-center">
-            <span class="page-title">My Resume</span>
+            <span class="page-title">My Resume &#128196;</span>
         </div>
         <div class="header-right">
             <a href="/contact/" aria-label="Contact" class="icon-btn" data-tooltip="Contact">
@@ -219,13 +221,13 @@
  <object data="/documents/202608M-Yumeng-Resume.pdf" type="application/pdf" class="resume-pdf" aria-label="Yumeng's formal resume PDF"><p>Your browser cannot display this PDF inline. <a href="/documents/202608M-Yumeng-Resume.pdf">View or download the resume</a>.</p></object>
 </section>
     {{ else }}
-        <div class="brain-tree interactive-tree">
+        <p class="brain-introduction">Research suggests that the human brain is not built with one universal set of strengths. Different regions tend to specialize in different ways — the left hemisphere is more associated with language, logic, analytical thinking, and sequential processing, while the right hemisphere is more associated with visual-spatial thinking, holistic processing, imagination, and pattern recognition. Some strengths come naturally, some are shaped through experience and practice, and others are still waiting to grow.</p><div class="brain-tree interactive-tree">
 <svg class="brain-art" viewBox="0 0 1000 780" aria-hidden="true"><path class="tree-fill" fill="#e9eee6" d="M493 90 C458 45 378 44 333 79 C268 67 207 105 190 153 C126 178 103 234 112 290 C71 339 81 414 122 439 C149 455 176 429 213 431 C328 435 418 487 434 579 C448 650 422 691 395 714 Q500 750 605 714 C555 666 548 614 566 562 C590 481 681 437 782 431 C827 431 853 460 881 435 C919 400 919 339 887 299 C905 236 870 177 812 153 C790 102 736 70 674 79 C620 40 544 48 507 90 Q500 80 493 90 Z"/><g fill="none" stroke="#344539" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
 <path fill="none" d="M493 90 C458 45 378 44 333 79 C268 67 207 105 190 153 C126 178 103 234 112 290 C71 339 81 414 122 439 C149 455 176 429 213 431 C328 435 418 487 434 579 C448 650 422 691 395 714 M605 714 C555 666 548 614 566 562 C590 481 681 437 782 431 C827 431 853 460 881 435 C919 400 919 339 887 299 C905 236 870 177 812 153 C790 102 736 70 674 79 C620 40 544 48 507 90"/>
 <path d="M493 90 C462 151 477 204 505 239 C532 275 515 304 495 331 C460 377 474 455 489 518 C505 581 502 656 550 714 M482 384 C453 428 453 485 467 553 C486 636 472 682 450 717 M449 721 L424 746 M453 723 L477 746"/>
 <path d="M218 166 C253 151 288 163 308 185 M337 86 C313 113 318 146 348 162 C386 181 415 203 420 234 M382 111 C374 147 384 172 411 179 M173 239 C157 289 180 321 221 319 C275 313 317 337 353 375 M232 223 C231 257 252 275 282 274 M295 216 C343 209 372 240 376 273 M336 293 C386 274 432 291 451 329 M141 389 C197 367 252 382 293 402 M398 347 L378 323"/>
 <path d="M577 103 C553 140 566 177 603 187 C635 196 654 173 648 148 M677 87 C692 121 692 144 679 168 M724 164 C753 151 787 165 804 189 M559 241 C592 221 626 231 634 259 C642 291 610 309 594 330 M704 220 C709 258 686 283 654 297 M721 279 C760 262 808 272 827 296 M548 372 C605 341 645 357 680 328 M725 354 C779 335 826 354 850 385 M570 442 C633 393 697 387 757 399"/>
-</g></svg><details class="skill-point point-finance"><summary>Finance &amp; Reporting</summary><div class="skill-detail">Fund accounting support, capital account statements, and quarterly reporting.</div></details><details class="skill-point point-analysis"><summary>Market Analysis</summary><div class="skill-detail">Analyzing pricing efficiency, spot and futures dynamics, and market risk.</div></details><details class="skill-point point-planning"><summary>Financial Planning</summary><div class="skill-detail">Business financial planning and profit management.</div></details><details class="skill-point point-brand"><summary>Brand Building</summary><div class="skill-detail">Developing a brand through customer experience and events.</div></details><details class="skill-point point-marketing"><summary>Marketing Operations</summary><div class="skill-detail">Ran a cafe for approximately 1.5 years and made a profit.</div></details><details class="skill-point point-leadership"><summary>Leadership &amp; Communication</summary><div class="skill-detail">Team leadership, event planning, and clear client-facing materials.</div></details><details class="skill-point point-story"><summary>Storytelling Based on Data</summary><div class="skill-detail">Turning complex data into clear insights and an understandable story.</div></details><span class="brain-root">DAISY</span></div><p class="tree-help">Hover to explore</p>
+</g></svg><details class="skill-point branch-left row-1"><summary>Market Analysis</summary><div class="skill-detail"><p>During my first semester at SMU, I worked on an equity research project on Hershey. I was responsible for researching the confectionery industry, with a focus on the U.S. market, and analyzing Hershey’s financial performance over the past 10 years against major competitors such as Mars. These insights were then used to support our assumptions and valuation in a DCF model.</p></div></details><details class="skill-point branch-left row-2"><summary>Problem Segmentation</summary><div class="skill-detail"><p>I believe every complex task can be broken down into smaller workflow buckets and solved step by step. That is how I naturally make sense of problems.</p><p>During my internship at Axiom, I supported the finance team with the FY2024 valuation exercise. Once I understood the expected outcome, I segmented the task into clear steps and set deadlines for each: first, building PivotTables for each fund to organize the required data; second, applying 80/20 prioritization to identify material positions; and third, reviewing quarterly reports to identify key drivers and substantiate period-over-period valuation movements.</p></div></details><details class="skill-point branch-left row-3"><summary>Attention to Detail &amp; Simplification</summary><div class="skill-detail"><p>Studying business has taught me that details and timing matter. Whether I am working with sector data, company performance, or financial charts, I try to understand what is actually driving each rise or decline rather than simply report the numbers. At the same time, I believe good analysis should make complexity easier to understand. The final explanation should be clear, concise, and supported by evidence. In the workplace, this becomes even more important, as accuracy and clarity directly affect how efficiently people collaborate and make decisions.</p></div></details><details class="skill-point branch-right row-1"><summary>Creative Marketing Strategy</summary><div class="skill-detail"><p>From 2022 to 2023, while I was still at university, I co-ran a caf&#233; with two partners and took on the role of marketing manager for 1.5 years. It was my own business, so I had the freedom to experiment. I truly believe marketing should be creative and sometimes even a little “crazy.”</p><p>I created seasonal beverage series inspired by social media trends, such as a sakura latte in April. I organized an Outdoor Movie Night as a pre-launch experiment to test customer acceptance of a new sparkling drink. I also created a space in the caf&#233; for art students to sell their designs, giving them a small platform while creating an additional source of revenue for us.</p></div></details><details class="skill-point branch-right row-2"><summary>From Concept to Project</summary><div class="skill-detail"><p>My ideas often start with a simple observation from everyday life, or when I am struck by a story, an image, or a piece of music. What I enjoy most is the journey of turning those ideas into something real, even when they do not work perfectly the first time.</p><p>My Chrome extension, DontFeedMonster, came from a small frustration of my own. A normal to-do list did not make unfinished tasks feel real enough, and sometimes I could not even find my physical list on the table. So I designed Momo using Codex, a pink monster who loves sleeping and eating pizza. When you delay a task, Momo gets fed. Feed it too much, and it gradually becomes crazier and annoyes you.</p><p>Momo is one example of an idea that made its way from my head into the real world, and I still have plenty more waiting to come alive.</p></div></details><details class="skill-point branch-right row-3"><summary>Sense of Humor &amp; Reading the Room</summary><div class="skill-detail"><p>My school experience includes nearly 10 years as a class monitor and 1.5 years as a co-founder of a campus caf&#233;. I learned to read the room from an early age. As a class monitor, I had to “manage” my classmates on behalf of teachers while, technically, being one of the people being managed in the group. It taught me to understand different perspectives and adjust how I communicate.</p><p>Later, while running the caf&#233;, this instinct became useful in the real world. I negotiated partnerships with student clubs to increase foot traffic and worked with overseas education agencies looking for venues to host presentations on campus. Through these experiences, I learned how to communicate with different groups, understand what each side wants, negotiate around those interests(sometimes use a little humor to make things easier), and eventually turn conversations into relationships.</p></div></details></div><p class="tree-help">Hover to explore</p>
 <script>
 (() => {
  const points = [...document.querySelectorAll('.skill-point')];
@@ -243,18 +245,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-logo">DAISY SPACE</div>
-        <div class="footer-links">
-            <div>MAIN QUEST</div>
-            <div>ABOUT</div>
-            <div>CONNECT</div>
-            <div>NEWSLETTER</div>
-        </div>
-        <div style="text-align:center; margin-top:40px; color:#555; font-size:10px;">
-            &copy; 2026 DAISY SPACE. ALL RIGHTS RESERVED.
-        </div>
-    </footer>
+    {{ partial "daisy-footer.html" . }}
 
 </body>
 </html>

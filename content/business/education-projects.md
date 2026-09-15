@@ -1,8 +1,8 @@
 ---
-title: 'Main Quest'
+title: 'Education&Projects'
 type: business
 layout: list
 showcaseGroup: main
-showcaseKey: internships
+showcaseKey: education
 draft: false
 ---
