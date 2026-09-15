@@ -176,6 +176,7 @@
  .point-story { width:62%; left:19%; top:73%; }
 }
 @media(prefers-reduced-motion:reduce) { .skill-point { transition:none; } }
+.pdf-actions { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; margin:0 0 24px; font-size:13px; } .pdf-actions a { color:#333; text-underline-offset:4px; } .resume-pdf { display:block; width:100%; height:85vh; min-height:500px; border:1px solid #ddd; background:white; } @media(max-width:600px) { .resume-pdf { height:70vh; min-height:420px; } }
 </style>
 </head>
 <body>
@@ -213,7 +214,10 @@
 
         <div class="resume-image-container"><img src="/image/resume.png" alt="Daisy's informal resume: education and professional experience" class="resume-img" decoding="async"></div>
     {{ else if eq .Params.resumeView "formal" }}
-        <section class="empty-resume"><p class="eyebrow">THE PROFESSIONAL EDITION</p><h1 class="section-heading">Formal Resume</h1><p>Coming soon.</p><a href="/resume/informal/">Explore my informal resume &rarr;</a></section>
+        <section class="formal-document" aria-label="Formal Resume">
+ <p class="pdf-actions"><a href="/documents/202608M-Yumeng-Resume.pdf" target="_blank" rel="noopener">Open PDF in a new tab &#8599;</a><a href="/documents/202608M-Yumeng-Resume.pdf" download>Download PDF &#8595;</a></p>
+ <object data="/documents/202608M-Yumeng-Resume.pdf" type="application/pdf" class="resume-pdf" aria-label="Yumeng's formal resume PDF"><p>Your browser cannot display this PDF inline. <a href="/documents/202608M-Yumeng-Resume.pdf">View or download the resume</a>.</p></object>
+</section>
     {{ else }}
         <div class="brain-tree interactive-tree">
 <svg class="brain-art" viewBox="0 0 1000 780" aria-hidden="true"><path class="tree-fill" fill="#e9eee6" d="M493 90 C458 45 378 44 333 79 C268 67 207 105 190 153 C126 178 103 234 112 290 C71 339 81 414 122 439 C149 455 176 429 213 431 C328 435 418 487 434 579 C448 650 422 691 395 714 Q500 750 605 714 C555 666 548 614 566 562 C590 481 681 437 782 431 C827 431 853 460 881 435 C919 400 919 339 887 299 C905 236 870 177 812 153 C790 102 736 70 674 79 C620 40 544 48 507 90 Q500 80 493 90 Z"/><g fill="none" stroke="#344539" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
