@@ -103,6 +103,33 @@
             .footer-links { flex-direction: column; text-align: center; gap: 20px; }
             .resume-image-container { margin: 30px auto; } .chanel-header { padding: 0 16px; } .page-title { font-size: 24px; white-space: nowrap; } .header-right { gap: 14px; } .brand-logo img { max-width: 64px; object-fit: contain; }
         }
+            .resume-content { width:100%; max-width:1100px; margin:0 auto; padding:46px 24px 70px; }
+        .section-heading { font:italic 36px Georgia,serif; text-align:center; font-weight:normal; margin:0 0 18px; }
+        .tree-intro { text-align:center; }
+        .tree-intro p,.empty-resume p { color:#666; line-height:1.8; font-size:14px; }
+        .eyebrow { font-size:10px!important; letter-spacing:2px; margin-bottom:16px; }
+        .skill-tree { position:relative; height:760px; margin:25px auto 0; }
+        .branches { position:absolute; inset:0; width:100%; height:100%; color:#aaa69c; }
+        .skill-node { position:absolute; width:34%; padding:18px 22px; background:#fff; border:1px solid #deddd8; border-radius:3px 24px 3px 24px; }
+        .skill-node h2 { font:italic 21px Georgia,serif; margin:6px 0 12px; }
+        .skill-node ul { padding:0; list-style:none; font-size:12px; line-height:1.85; color:#555; }
+        .branch-number { font-size:10px; letter-spacing:2px; color:#888; }
+        .node-1 { top:25px; left:2%; } .node-2 { top:100px; right:2%; }
+        .node-3 { top:250px; left:2%; } .node-4 { top:320px; right:2%; }
+        .node-5 { top:470px; left:2%; } .node-6 { top:530px; right:2%; }
+        .tree-root { position:absolute; bottom:0; left:50%; transform:translateX(-50%); background:#f4f4f4; padding:8px 16px; letter-spacing:4px; font-size:12px; }
+        .empty-resume { min-height:380px; text-align:center; padding:65px 0; }
+        .empty-resume a { display:inline-block; margin-top:26px; color:#333; font-size:14px; text-underline-offset:5px; }
+        a:focus-visible { outline:2px solid #555; outline-offset:5px; }
+        @media(max-width:600px) {
+            .sub-nav { gap:20px; padding:16px 12px 26px; } .sub-nav a { font-size:14px; }
+            .resume-content { padding:32px 16px 48px; } .section-heading { font-size:30px; }
+            .skill-tree { height:auto; padding:10px 0 45px 25px; }
+            .branches { display:none; } .skill-tree:before { content:""; position:absolute; left:8px; top:0; bottom:30px; width:2px; background:#aaa69c; }
+            .skill-node { position:relative; width:100%; top:auto; left:auto; right:auto; margin:0 0 18px; }
+            .skill-node:before { content:""; position:absolute; width:18px; height:2px; background:#aaa69c; left:-18px; top:35px; }
+            .resume-image-container { padding:0; } .tree-root { bottom:0; }
+        }
     </style>
 </head>
 <body>
@@ -128,13 +155,38 @@
     </header>
 
     <!-- 导航栏 -->
-    <nav class="sub-nav"><a href="/business/">Main Quest</a><a href="/resume/" class="active" aria-current="page">My Resume</a></nav>
+    <nav class="sub-nav" aria-label="Resume sections">
+        <a href="/resume/" {{ if eq .Params.resumeView "skills" }}class="active" aria-current="page"{{ end }}>Skills Tree</a>
+        <a href="/resume/formal/" {{ if eq .Params.resumeView "formal" }}class="active" aria-current="page"{{ end }}>Formal Resume</a>
+        <a href="/resume/informal/" {{ if eq .Params.resumeView "informal" }}class="active" aria-current="page"{{ end }}>Informal Resume</a>
+    </nav>
 
     <!-- 简历图片展示区 -->
-    <main class="resume-image-container">
-        <!-- 注意：这里引用的是你刚刚放入 static/images/ 里的图片 -->
-        <!-- 如果你的图片名不是 resume.png，请在这里修改文件名 -->
-        <img src="/image/resume.png" alt="Daisy's Resume" class="resume-img" decoding="async">
+    <main class="resume-content">
+    {{ if eq .Params.resumeView "informal" }}
+        <h1 class="section-heading">Informal Resume</h1>
+        <div class="resume-image-container"><img src="/image/resume.png" alt="Daisy's informal resume: education and professional experience" class="resume-img" decoding="async"></div>
+    {{ else if eq .Params.resumeView "formal" }}
+        <section class="empty-resume"><p class="eyebrow">THE PROFESSIONAL EDITION</p><h1 class="section-heading">Formal Resume</h1><p>Coming soon.</p><a href="/resume/informal/">Explore my informal resume &rarr;</a></section>
+    {{ else }}
+        <header class="tree-intro"><p class="eyebrow">ROOTED IN EXPERIENCE · ALWAYS GROWING</p><h1 class="section-heading">Skills Tree</h1><p>A growing collection of what I bring to the table.</p></header>
+        <div class="skill-tree">
+            <svg class="branches" viewBox="0 0 1000 760" preserveAspectRatio="none" aria-hidden="true">
+                <g fill="none" stroke="currentColor" stroke-linecap="round">
+                    <path d="M500 710 C490 600 522 500 500 385 S510 210 500 85" stroke-width="9"/>
+                    <path d="M503 265 Q405 230 275 125 M500 350 Q620 250 725 190 M504 450 Q365 395 265 340 M504 515 Q625 445 735 400 M500 600 Q380 565 265 555 M500 650 Q625 605 735 600" stroke-width="4"/>
+                    <path d="M500 710 Q460 725 420 742 M500 710 Q540 725 580 742 M500 710 L500 745" stroke-width="3"/>
+                </g>
+            </svg>
+            <section class="skill-node node-1"><span class="branch-number">01</span><h2>Finance &amp; Reporting</h2><ul><li>Fund accounting support</li><li>Capital account statements</li><li>Quarterly reporting</li></ul></section>
+            <section class="skill-node node-2"><span class="branch-number">02</span><h2>Market Analysis</h2><ul><li>Spot &amp; futures dynamics</li><li>Pricing efficiency</li><li>Market risk assessment</li></ul></section>
+            <section class="skill-node node-3"><span class="branch-number">03</span><h2>Financial Planning</h2><ul><li>Business financial planning</li><li>Profit management</li></ul></section>
+            <section class="skill-node node-4"><span class="branch-number">04</span><h2>Leadership &amp; Events</h2><ul><li>Team leadership</li><li>Event planning</li></ul></section>
+            <section class="skill-node node-5"><span class="branch-number">05</span><h2>Communication</h2><ul><li>Client-facing materials</li><li>Turning data into insights</li></ul></section>
+            <section class="skill-node node-6"><span class="branch-number">06</span><h2>Academic Foundations</h2><ul><li>Applied finance</li><li>International trade</li><li>Economics</li></ul></section>
+            <span class="tree-root">DAISY</span>
+        </div>
+    {{ end }}
     </main>
 
     <!-- Footer -->
