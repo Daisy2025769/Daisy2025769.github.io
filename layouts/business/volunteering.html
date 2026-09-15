@@ -28,9 +28,9 @@
         .volunteer-intro { padding: 50px 24px 12px; text-align: center; }
         .volunteer-intro p { color: #666; font: italic 17px/1.8 Georgia, serif; }
         .story-carousel { width: 100%; padding: 0 0 90px; }
-        .story-track { display: flex; gap: 32px; width: 100%; padding: 28px 7vw 44px; overflow-x: auto; overscroll-behavior-inline: contain; scroll-behavior: smooth; scroll-padding-inline: 7vw; scroll-snap-type: x mandatory; scrollbar-width: none; cursor: ew-resize; outline: none; }
+        .story-track { display: flex; gap: 32px; width: 100%; padding: 28px 9vw 44px; overflow-x: auto; overscroll-behavior-inline: contain; scroll-behavior: smooth; scroll-padding-inline: 9vw; scroll-snap-type: x mandatory; scrollbar-width: none; cursor: ew-resize; outline: none; }
         .story-track::-webkit-scrollbar { display: none; }
-        .story-card { flex: 0 0 min(1120px, 86vw); min-height: 560px; display: grid; grid-template-columns: 43% 57%; overflow: hidden; border-radius: 34px; background: #fff; box-shadow: 0 20px 52px rgba(38,45,52,.12); scroll-snap-align: center; scroll-snap-stop: always; }
+        .story-card { flex: 0 0 min(1120px, 82vw); min-height: 560px; display: grid; grid-template-columns: 43% 57%; overflow: hidden; border-radius: 34px; background: #fff; box-shadow: 0 20px 52px rgba(38,45,52,.12); scroll-snap-align: center; scroll-snap-stop: always; }
         .story-copy { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(38px,5vw,76px) clamp(34px,4.5vw,68px); }
         .story-number { color: #9a9a9a; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
         .story-copy h2 { max-width: 470px; margin: 20px 0 26px; font-size: clamp(38px,4.4vw,70px); font-weight: 900; line-height: 1.02; letter-spacing: -.045em; }
@@ -54,8 +54,8 @@
             .sub-nav a { flex: 0 0 auto; font-size: 14px; }
             .volunteer-intro { padding: 38px 20px 4px; }
             .volunteer-intro p { font-size: 14px; }
-            .story-track { gap: 16px; padding: 20px 6vw 36px; scroll-padding-inline: 6vw; }
-            .story-card { flex-basis: 88vw; min-height: 0; grid-template-columns: 1fr; border-radius: 24px; }
+            .story-track { gap: 14px; padding: 20px 8vw 36px; scroll-padding-inline: 8vw; }
+            .story-card { flex-basis: 84vw; min-height: 0; grid-template-columns: 1fr; border-radius: 24px; }
             .story-copy { min-height: 320px; padding: 32px 28px 27px; }
             .story-copy h2 { margin: 15px 0 20px; font-size: clamp(35px,11vw,50px); }
             .story-copy blockquote { font-size: 19px; line-height: 1.45; }
@@ -104,15 +104,30 @@
     (() => {
         const track = document.querySelector('.story-track');
         if (!track) return;
-        const cards = [...track.querySelectorAll('[data-story]')];
+        const originals = [...track.querySelectorAll('[data-story]')];
         const count = document.querySelector('.story-count');
         const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        let active = 0;
-        const update = index => { active = (index + cards.length) % cards.length; count.textContent = `${active + 1} / ${cards.length}`; };
-        const go = index => { update(index); cards[active].scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest', inline: 'center' }); };
-        document.querySelector('[data-previous]').addEventListener('click', () => go(active - 1));
-        document.querySelector('[data-next]').addEventListener('click', () => go(active + 1));
-        track.addEventListener('keydown', event => { if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); go(active + (event.key === 'ArrowRight' ? 1 : -1)); } });
+        const before = originals.at(-1).cloneNode(true);
+        const after = originals[0].cloneNode(true);
+        before.dataset.clone = 'before';
+        after.dataset.clone = 'after';
+        before.setAttribute('aria-hidden', 'true');
+        after.setAttribute('aria-hidden', 'true');
+        track.prepend(before);
+        track.append(after);
+        const cards = [...track.querySelectorAll('[data-story]')];
+        let position = 1;
+        let settleTimer;
+        const logicalIndex = index => index === 0 ? originals.length - 1 : index === cards.length - 1 ? 0 : index - 1;
+        const update = index => { position = index; count.textContent = `${logicalIndex(index) + 1} / ${originals.length}`; };
+        const center = (index, smooth = true) => { index = Math.max(0, Math.min(cards.length - 1, index)); update(index); cards[index].scrollIntoView({ behavior: smooth && !reduced ? 'smooth' : 'auto', block: 'nearest', inline: 'center' }); };
+        const normalize = () => {
+            if (position === 0) center(originals.length, false);
+            if (position === cards.length - 1) center(1, false);
+        };
+        document.querySelector('[data-previous]').addEventListener('click', () => center(position - 1));
+        document.querySelector('[data-next]').addEventListener('click', () => center(position + 1));
+        track.addEventListener('keydown', event => { if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); center(position + (event.key === 'ArrowRight' ? 1 : -1)); } });
         track.addEventListener('wheel', event => {
             if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
             const atStart = track.scrollLeft <= 1;
@@ -121,8 +136,10 @@
             event.preventDefault();
             track.scrollBy({ left: event.deltaY, behavior: reduced ? 'auto' : 'smooth' });
         }, { passive: false });
+        track.addEventListener('scroll', () => { clearTimeout(settleTimer); settleTimer = setTimeout(normalize, 180); }, { passive: true });
         const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting && entry.intersectionRatio >= .6) update(cards.indexOf(entry.target)); }); }, { root: track, threshold: [.6] });
         cards.forEach(card => observer.observe(card));
+        requestAnimationFrame(() => requestAnimationFrame(() => center(1, false)));
     })();
     </script>
 </body>
