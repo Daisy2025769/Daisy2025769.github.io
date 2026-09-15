@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Resume - Daisy Space</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Georgia&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
     <style>
         /* --- 1. 基础设置 --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
             font-family: 'Montserrat', 'Microsoft YaHei', sans-serif;
             color: #000;
@@ -97,7 +97,7 @@
         .site-footer { background: #000; color: white; padding: 60px 40px; margin-top: auto; }
         .footer-logo { text-align: center; font-size: 24px; font-weight: 900; letter-spacing: 3px; margin-bottom: 40px; }
         .footer-links { display: flex; justify-content: center; gap: 40px; font-size: 12px; color: #999; }
-        
+
         @media (max-width: 768px) {
             .site-footer { padding: 40px 20px; }
             .footer-links { flex-direction: column; text-align: center; gap: 20px; }
@@ -210,20 +210,18 @@
     <!-- 简历图片展示区 -->
     <main class="resume-content">
     {{ if eq .Params.resumeView "informal" }}
-        
+
         <div class="resume-image-container"><img src="/image/resume.png" alt="Daisy's informal resume: education and professional experience" class="resume-img" decoding="async"></div>
     {{ else if eq .Params.resumeView "formal" }}
         <section class="empty-resume"><p class="eyebrow">THE PROFESSIONAL EDITION</p><h1 class="section-heading">Formal Resume</h1><p>Coming soon.</p><a href="/resume/informal/">Explore my informal resume &rarr;</a></section>
     {{ else }}
-        <header class="tree-intro"><p class="eyebrow">ANALYSIS MEETS IMAGINATION</p><h1 class="section-heading">Skills Tree</h1><p>Two ways of thinking. One connected mind.</p></header>
-        <div class="brain-labels"><h2>Analytical<span>LEFT BRAIN</span></h2><h2>Creative<span>RIGHT BRAIN</span></h2></div>
         <div class="brain-tree interactive-tree">
-<svg class="brain-art" viewBox="0 0 1000 780" aria-hidden="true"><g fill="none" stroke="#344539" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
-<path fill="#e9eee6" d="M493 90 C458 45 378 44 333 79 C268 67 207 105 190 153 C126 178 103 234 112 290 C71 339 81 414 122 439 C149 455 176 429 213 431 C328 435 418 487 434 579 C448 650 422 691 395 714 M605 714 C555 666 548 614 566 562 C590 481 681 437 782 431 C827 431 853 460 881 435 C919 400 919 339 887 299 C905 236 870 177 812 153 C790 102 736 70 674 79 C620 40 544 48 507 90"/>
+<svg class="brain-art" viewBox="0 0 1000 780" aria-hidden="true"><path class="tree-fill" fill="#e9eee6" d="M493 90 C458 45 378 44 333 79 C268 67 207 105 190 153 C126 178 103 234 112 290 C71 339 81 414 122 439 C149 455 176 429 213 431 C328 435 418 487 434 579 C448 650 422 691 395 714 Q500 750 605 714 C555 666 548 614 566 562 C590 481 681 437 782 431 C827 431 853 460 881 435 C919 400 919 339 887 299 C905 236 870 177 812 153 C790 102 736 70 674 79 C620 40 544 48 507 90 Q500 80 493 90 Z"/><g fill="none" stroke="#344539" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+<path fill="none" d="M493 90 C458 45 378 44 333 79 C268 67 207 105 190 153 C126 178 103 234 112 290 C71 339 81 414 122 439 C149 455 176 429 213 431 C328 435 418 487 434 579 C448 650 422 691 395 714 M605 714 C555 666 548 614 566 562 C590 481 681 437 782 431 C827 431 853 460 881 435 C919 400 919 339 887 299 C905 236 870 177 812 153 C790 102 736 70 674 79 C620 40 544 48 507 90"/>
 <path d="M493 90 C462 151 477 204 505 239 C532 275 515 304 495 331 C460 377 474 455 489 518 C505 581 502 656 550 714 M482 384 C453 428 453 485 467 553 C486 636 472 682 450 717 M449 721 L424 746 M453 723 L477 746"/>
 <path d="M218 166 C253 151 288 163 308 185 M337 86 C313 113 318 146 348 162 C386 181 415 203 420 234 M382 111 C374 147 384 172 411 179 M173 239 C157 289 180 321 221 319 C275 313 317 337 353 375 M232 223 C231 257 252 275 282 274 M295 216 C343 209 372 240 376 273 M336 293 C386 274 432 291 451 329 M141 389 C197 367 252 382 293 402 M398 347 L378 323"/>
 <path d="M577 103 C553 140 566 177 603 187 C635 196 654 173 648 148 M677 87 C692 121 692 144 679 168 M724 164 C753 151 787 165 804 189 M559 241 C592 221 626 231 634 259 C642 291 610 309 594 330 M704 220 C709 258 686 283 654 297 M721 279 C760 262 808 272 827 296 M548 372 C605 341 645 357 680 328 M725 354 C779 335 826 354 850 385 M570 442 C633 393 697 387 757 399"/>
-</g></svg><details class="skill-point point-finance"><summary>Finance &amp; Reporting</summary><div class="skill-detail">Fund accounting support, capital account statements, and quarterly reporting.</div></details><details class="skill-point point-analysis"><summary>Market Analysis</summary><div class="skill-detail">Analyzing pricing efficiency, spot and futures dynamics, and market risk.</div></details><details class="skill-point point-planning"><summary>Financial Planning</summary><div class="skill-detail">Business financial planning and profit management.</div></details><details class="skill-point point-brand"><summary>Brand Building</summary><div class="skill-detail">Developing a brand through customer experience and events.</div></details><details class="skill-point point-marketing"><summary>Marketing Operations</summary><div class="skill-detail">Ran a cafe for approximately 1.5 years and made a profit.</div></details><details class="skill-point point-leadership"><summary>Leadership &amp; Communication</summary><div class="skill-detail">Team leadership, event planning, and clear client-facing materials.</div></details><details class="skill-point point-story"><summary>Storytelling Based on Data</summary><div class="skill-detail">Turning complex data into clear insights and an understandable story.</div></details><span class="brain-root">DAISY</span></div><p class="tree-help">Hover to explore · Click or tap to keep a story open</p>
+</g></svg><details class="skill-point point-finance"><summary>Finance &amp; Reporting</summary><div class="skill-detail">Fund accounting support, capital account statements, and quarterly reporting.</div></details><details class="skill-point point-analysis"><summary>Market Analysis</summary><div class="skill-detail">Analyzing pricing efficiency, spot and futures dynamics, and market risk.</div></details><details class="skill-point point-planning"><summary>Financial Planning</summary><div class="skill-detail">Business financial planning and profit management.</div></details><details class="skill-point point-brand"><summary>Brand Building</summary><div class="skill-detail">Developing a brand through customer experience and events.</div></details><details class="skill-point point-marketing"><summary>Marketing Operations</summary><div class="skill-detail">Ran a cafe for approximately 1.5 years and made a profit.</div></details><details class="skill-point point-leadership"><summary>Leadership &amp; Communication</summary><div class="skill-detail">Team leadership, event planning, and clear client-facing materials.</div></details><details class="skill-point point-story"><summary>Storytelling Based on Data</summary><div class="skill-detail">Turning complex data into clear insights and an understandable story.</div></details><span class="brain-root">DAISY</span></div><p class="tree-help">Hover to explore</p>
 <script>
 (() => {
  const points = [...document.querySelectorAll('.skill-point')];
