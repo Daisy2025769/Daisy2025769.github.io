@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Internships - Daisy Space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/internships.css">
+  <link rel="stylesheet" href="/css/daisy-footer.css">
+  <link rel="stylesheet" href="/css/ui-icons.css">
+</head>
+<body>
+  <header class="chanel-header">
+    <div class="header-left"><a href="/" class="brand-logo"><img src="/logo.jpg" alt="Daisy Space"></a></div>
+    <div class="header-center"><span class="page-title">Main Quest<img class="nav-illustration" src="/image/ui/macbook.png" alt=""></span></div>
+    <div class="header-right">
+      <a href="/contact/" class="icon-btn" aria-label="Contact"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+      <a href="/" class="icon-btn" aria-label="Home"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a>
+    </div>
+  </header>
+
+  <nav class="quest-tabs" aria-label="Portfolio categories"><a href="/business/" aria-current="page">Internships</a><a href="/business/education-projects/">Education&amp;Projects</a><a href="/business/volunteering/">Volunteering</a></nav>
+
+  <main class="internship-main">
+    <section class="story-carousel" aria-label="Internship timeline">
+      <div class="story-track" tabindex="0" aria-roledescription="carousel">
+        <article class="internship-card card-cbd" data-story>
+          <section class="internship-copy water-panel">
+            <span class="timeline-label">Timeline</span>
+            <div class="date-line" aria-label="Internship dates from August to December 2025">
+              <div class="date-stop"><span>Check in</span><div class="date-boxes"><strong><small>Aug</small><b>—</b></strong><em>2025</em></div></div>
+              <div class="timeline-rule" aria-hidden="true"><i></i></div>
+              <div class="date-stop"><span>Check out</span><div class="date-boxes"><strong><small>Dec</small><b>—</b></strong><em>2025</em></div></div>
+            </div>
+
+            <div class="accordion-stack">
+              <details class="water-detail">
+                <summary>Axiom Asia Private Capital<span>About the firm</span></summary>
+                <p>Axiom Asia Private Capital is a Singapore-headquartered private equity investment firm founded in 2006, specializing in fund-of-funds, co-investments and secondary investments. It focuses exclusively on the Asia-Pacific private equity market, providing global institutional investors with diversified access to mid-market buyout, growth and venture opportunities across the region. A key milestone was the US$1.28 billion closing of its seventh flagship fund-of-funds, Axiom Asia 7, in 2025, bringing the firm’s cumulative fund commitments to more than US$9 billion.</p>
+              </details>
+              <details class="water-detail role-detail">
+                <summary>Finance Intern<span>What I worked on</span></summary>
+                <div class="bubble-pool" aria-label="Finance internship skills; drag the bubbles">
+                  <button type="button" class="skill-bubble">Fund Accounting</button>
+                  <button type="button" class="skill-bubble">Portfolio Valuation</button>
+                  <button type="button" class="skill-bubble">Cross-statement Reconciliation</button>
+                  <button type="button" class="skill-bubble">Daily Cash Flow Tracking</button>
+                  <button type="button" class="skill-bubble">Process Optimization</button>
+                </div>
+              </details>
+            </div>
+            <p class="water-hint">Hover over a title to touch the water · open it to explore</p>
+          </section>
+          <figure class="internship-image">
+            <img src="/image/internships/axiom-cbd.jpg" alt="Axiom internship location in Singapore CBD">
+            <div class="progressive-blur" aria-hidden="true"></div>
+            <figcaption><strong>Singapore CBD</strong><span>Where the internship began</span></figcaption>
+          </figure>
+        </article>
+
+        <article class="internship-card card-office" data-story>
+          <section class="internship-copy reflection-copy">
+            <span class="timeline-label">Inside the role</span>
+            <h2>Details build trust.</h2>
+            <blockquote>The work moved between fund accounting, valuation checks, cross-statement reconciliation, daily cash tracking and process improvements. Each careful check helped the wider investment process stay dependable.</blockquote>
+            <span class="card-tag">Axiom Asia Private Capital · Finance Intern</span>
+          </section>
+          <figure class="internship-image">
+            <img src="/image/internships/axiom-office.jpg" alt="Desk and financial documents during the Axiom internship" loading="lazy">
+            <div class="progressive-blur" aria-hidden="true"></div>
+            <figcaption><strong>Behind the numbers</strong><span>August — December 2025</span></figcaption>
+          </figure>
+        </article>
+      </div>
+      <div class="story-controls"><button class="story-arrow" type="button" data-previous aria-label="Previous story">←</button><output class="story-count" aria-live="polite">1 / 2</output><button class="story-arrow" type="button" data-next aria-label="Next story">→</button></div>
+      <p class="scroll-hint">Scroll sideways · use the mouse wheel · or drag on mobile</p>
+    </section>
+  </main>
+
+  {{ partial "daisy-footer.html" . }}
+  <script src="/js/story-carousel.js" defer></script>
+  <script src="/js/internship-interactions.js" defer></script>
+</body>
+</html>

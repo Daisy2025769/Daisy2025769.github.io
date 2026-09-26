@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/daisy-footer.css">
+    <link rel="stylesheet" href="/css/ui-icons.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { overflow-x: hidden; background: #000; color: #191919; font-family: Montserrat, Arial, sans-serif; }
@@ -30,7 +31,10 @@
         .story-carousel { width: 100%; padding: 0 0 90px; }
         .story-track { display: flex; gap: 32px; width: 100%; padding: 28px 9vw 44px; overflow-x: auto; overscroll-behavior-inline: contain; scroll-behavior: smooth; scroll-padding-inline: 9vw; scroll-snap-type: x mandatory; scrollbar-width: none; cursor: ew-resize; outline: none; }
         .story-track::-webkit-scrollbar { display: none; }
-        .story-card { flex: 0 0 min(1120px, 82vw); min-height: 560px; display: grid; grid-template-columns: 43% 57%; overflow: hidden; border-radius: 34px; background: #fff; box-shadow: 0 20px 52px rgba(38,45,52,.12); scroll-snap-align: center; scroll-snap-stop: always; }
+        .story-card { flex: 0 0 min(1120px, 82vw); min-height: 560px; display: grid; grid-template-columns: 43% 57%; overflow: hidden; border: 1px solid rgba(255,255,255,.8); border-radius: 34px; box-shadow: 0 24px 62px rgba(38,45,52,.17), inset 0 1px 0 rgba(255,255,255,.9); scroll-snap-align: center; scroll-snap-stop: always; }
+        .card-team { background: radial-gradient(circle at 18% 20%,rgba(241,170,91,.5),transparent 40%),radial-gradient(circle at 44% 86%,rgba(66,91,155,.28),transparent 43%),linear-gradient(145deg,#fffaf4,#eee9e5); }
+        .card-challenge { background: radial-gradient(circle at 20% 20%,rgba(239,135,58,.46),transparent 40%),radial-gradient(circle at 44% 88%,rgba(92,109,173,.28),transparent 42%),linear-gradient(145deg,#fff9f3,#eee9e7); }
+        .card-connections { background: radial-gradient(circle at 18% 18%,rgba(238,125,53,.43),transparent 39%),radial-gradient(circle at 45% 86%,rgba(102,95,145,.3),transparent 44%),linear-gradient(145deg,#fff9f4,#ebe8ea); }
         .story-copy { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(38px,5vw,76px) clamp(34px,4.5vw,68px); }
         .story-number { color: #9a9a9a; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
         .story-copy h2 { max-width: 470px; margin: 20px 0 26px; font-size: clamp(38px,4.4vw,70px); font-weight: 900; line-height: 1.02; letter-spacing: -.045em; }
@@ -70,7 +74,7 @@
     <div class="content-wrapper">
         <header class="chanel-header">
             <div class="header-left"><a href="/" class="brand-logo"><img src="/logo.jpg" alt="Daisy Space"></a></div>
-            <div class="header-center"><span class="page-title">Main Quest</span></div>
+            <div class="header-center"><span class="page-title">Main Quest<img class="nav-illustration" src="/image/ui/macbook.png" alt=""></span></div>
             <div class="header-right">
                 <a href="/contact/" class="icon-btn" aria-label="Contact"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
                 <a href="/" class="icon-btn" aria-label="Home"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a>
@@ -81,15 +85,15 @@
             <section class="volunteer-intro"><p>DigiMarCon Southeast Asia &amp; TECHSPO Singapore · August 2026</p></section>
             <section class="story-carousel" aria-label="DigiMarCon volunteering stories">
                 <div class="story-track" tabindex="0" aria-roledescription="carousel">
-                    <article class="story-card" data-story>
+                    <article class="story-card card-team" data-story>
                         <div class="story-copy"><div><span class="story-number">01 · Teamwork</span><h2>Building things takes teamwork</h2><blockquote>An event like this is built through many small contributions. Every smooth moment depends on people communicating, coordinating and stepping in for one another.</blockquote></div><span class="story-tag">DigiMarCon &amp; TECHSPO Singapore · 2026</span></div>
                         <figure class="story-image"><img src="/image/volunteering/digimarcon-team.jpg" alt="DigiMarCon Southeast Asia 2026 volunteer team" loading="eager"></figure>
                     </article>
-                    <article class="story-card" data-story>
+                    <article class="story-card card-challenge" data-story>
                         <div class="story-copy"><div><span class="story-number">02 · New Challenges</span><h2>Say “Yes” to new challenges</h2><blockquote>Before this, I had never volunteered at an international event or helped run one—from setting up banners to making sure everything stayed on schedule.</blockquote></div><span class="story-tag">DigiMarCon &amp; TECHSPO Singapore · 2026</span></div>
                         <figure class="story-image"><img src="/image/volunteering/digimarcon-daisy.jpg" alt="Daisy volunteering at DigiMarCon Southeast Asia 2026" loading="lazy"></figure>
                     </article>
-                    <article class="story-card" data-story>
+                    <article class="story-card card-connections" data-story>
                         <div class="story-copy"><div><span class="story-number">03 · A Human Reflection</span><h2>Relationships take time</h2><blockquote>Good connections grow through time and staying in touch.</blockquote></div><span class="story-tag">DigiMarCon &amp; TECHSPO Singapore · 2026</span></div>
                         <figure class="story-image"><img src="/image/volunteering/digimarcon-friends.jpg" alt="Volunteers at DigiMarCon Southeast Asia 2026" loading="lazy"></figure>
                     </article>

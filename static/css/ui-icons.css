@@ -1,0 +1,30 @@
+.nav-illustration {
+  display: inline-block;
+  width: 1.45em;
+  height: 1.45em;
+  margin-left: .28em;
+  object-fit: contain;
+  vertical-align: -.38em;
+}
+
+.page-title .nav-illustration {
+  width: 1.6em;
+  height: 1.35em;
+  margin-left: .2em;
+  vertical-align: -.34em;
+}
+
+.footer-link-with-icon {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.footer-link-with-icon .nav-illustration {
+  width: 2em;
+  height: 2em;
+  margin: 0;
+  filter: invert(1);
+  mix-blend-mode: screen;
+}

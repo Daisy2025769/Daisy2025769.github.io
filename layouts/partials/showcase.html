@@ -16,7 +16,7 @@
       </article>
       {{ else }}
       <article class="story-card story-card-empty{{ if or (eq .key "dontfeedmonster") (eq .key "aofhe") }} story-card-compact-title{{ end }}" data-story>
-        <div class="story-copy"><div><span class="story-number">Next chapter</span><h2>{{ if eq .key "education" }}Project{{ else if eq .key "aofhe" }}Archive of Human Evidence{{ else }}{{ .title }}{{ end }}</h2><blockquote>This part of my portfolio is taking shape. New stories, images and project notes will live here.</blockquote></div><span class="story-tag">Coming soon</span></div>
+        <div class="story-copy"><div><span class="story-number">Timeline</span><h2>{{ if eq .key "education" }}Project{{ else if eq .key "aofhe" }}Archive of Human Evidence{{ else }}{{ .title }}{{ end }}</h2><blockquote>This part of my portfolio is taking shape. New stories, images and project notes will live here.</blockquote></div><span class="story-tag">Coming soon</span></div>
         <figure class="story-image"><div class="story-placeholder"><span>{{ .title }}</span></div></figure>
       </article>
       {{ end }}

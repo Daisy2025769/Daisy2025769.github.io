@@ -15,7 +15,7 @@ body { min-height: 100vh; margin: 0; display: flex; flex-direction: column; over
 .story-carousel { width: 100%; padding: 10px 0 45px; }
 .story-track { display: flex; gap: 32px; width: 100%; padding: 28px 9vw 44px; overflow-x: auto; overscroll-behavior-inline: contain; scroll-behavior: smooth; scroll-padding-inline: 9vw; scroll-snap-type: x mandatory; scrollbar-width: none; cursor: ew-resize; outline: none; }
 .story-track::-webkit-scrollbar { display: none; }
-.story-card { flex: 0 0 min(1120px,82vw); min-height: 560px; display: grid; grid-template-columns: 43% 57%; overflow: hidden; border-radius: 34px; background: #fff; box-shadow: 0 20px 52px rgba(38,45,52,.12); scroll-snap-align: center; scroll-snap-stop: always; }
+.story-card { flex: 0 0 min(1120px,82vw); min-height: 560px; display: grid; grid-template-columns: 43% 57%; overflow: hidden; border: 1px solid rgba(255,255,255,.82); border-radius: 34px; background: radial-gradient(circle at 18% 18%,rgba(201,224,216,.56),transparent 38%),radial-gradient(circle at 45% 86%,rgba(222,212,232,.46),transparent 42%),linear-gradient(145deg,#fbfcfb,#edf2ef); box-shadow: 0 24px 62px rgba(38,45,52,.16),inset 0 1px 0 rgba(255,255,255,.9); scroll-snap-align: center; scroll-snap-stop: always; }
 .story-copy { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(38px,5vw,76px) clamp(34px,4.5vw,68px); }
 .story-number { color: #999; font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
 .story-copy h2 { max-width: 470px; margin: 20px 0 26px; font-size: clamp(38px,4.4vw,70px); font-weight: 900; line-height: 1.02; letter-spacing: -.045em; }

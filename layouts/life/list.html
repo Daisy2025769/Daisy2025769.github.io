@@ -1,11 +1,11 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{ .Title }} - Daisy Space</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/quests.css"><link rel="stylesheet" href="/css/daisy-footer.css"></head><body><header class="chanel-header">
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{ .Title }} - Daisy Space</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/css/quests.css"><link rel="stylesheet" href="/css/daisy-footer.css"><link rel="stylesheet" href="/css/ui-icons.css"></head><body><header class="chanel-header">
         <div class="header-left">
             <a href="/" class="brand-logo">
                  <img src="/logo.jpg" alt="Logo" style="height: 85px; width: auto;">
             </a>
         </div>
         <div class="header-center">
-            <span class="page-title">{{ if eq .Params.showcaseGroup "side" }}Side Quest&#9749;{{ else }}Main Quest&#128188;{{ end }}</span>
+            <span class="page-title">{{ if eq .Params.showcaseGroup "side" }}Side Quest<img class="nav-illustration" src="/image/ui/coffee.png" alt="">{{ else }}Main Quest<img class="nav-illustration" src="/image/ui/macbook.png" alt="">{{ end }}</span>
         </div>
         <div class="header-right">
             <a href="/contact/" class="icon-btn" data-tooltip="Contact">

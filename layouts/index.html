@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/ui-icons.css">
 
     <style>
         /* --- 全局设置 --- */
@@ -83,6 +84,11 @@
             text-shadow: 0 0 8px rgba(255,255,255,0.4);
         }
 
+        .menu .nav-illustration {
+            filter: invert(1) drop-shadow(0 0 2px rgba(255,255,255,.45));
+            mix-blend-mode: screen;
+        }
+
         /* --- 中心内容 --- */
         .hero-content {
             z-index: 2;
@@ -130,10 +136,10 @@
     <img src="/logo.jpg" alt="Daisy Space Logo">
 </a>
             <div class="menu">
-                <a href="/life/coffee/">Side Quest☕️</a>
-                <a href="/business/">MAIN QUEST💼</a>
-                <a href="/resume/">My Resume &#128196;</a>
-                <a href="/contact/">Contact📮</a>
+                <a href="/life/coffee/">Side Quest<img class="nav-illustration" src="/image/ui/coffee.png" alt=""></a>
+                <a href="/business/">MAIN QUEST<img class="nav-illustration" src="/image/ui/macbook.png" alt=""></a>
+                <a href="/resume/">My Resume<img class="nav-illustration" src="/image/ui/resume-girl.png" alt=""></a>
+                <a href="/contact/">Contact<img class="nav-illustration" src="/image/ui/mailbox.png" alt=""></a>
             </div>
         </nav>
 
