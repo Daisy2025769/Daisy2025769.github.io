@@ -38,4 +38,37 @@
   };
 
   document.querySelectorAll('.skill-bubble').forEach(initBubble);
+
+  document.querySelectorAll('.image-reel').forEach(reel => {
+    const slides = [...reel.querySelectorAll('.image-slide')];
+    const controls = [...reel.querySelectorAll('[data-image-slide]')];
+    if (slides.length < 2) return;
+    let index = 0;
+    let timer;
+
+    const show = next => {
+      index = (next + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => slide.classList.toggle('is-active', slideIndex === index));
+      controls.forEach((control, controlIndex) => {
+        const active = controlIndex === index;
+        control.classList.toggle('is-active', active);
+        control.setAttribute('aria-pressed', String(active));
+      });
+    };
+    const play = () => {
+      clearInterval(timer);
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(() => show(index + 1), 4200);
+    };
+
+    controls.forEach(control => control.addEventListener('click', () => {
+      show(Number(control.dataset.imageSlide));
+      play();
+    }));
+    reel.addEventListener('mouseenter', () => clearInterval(timer));
+    reel.addEventListener('mouseleave', play);
+    reel.addEventListener('focusin', () => clearInterval(timer));
+    reel.addEventListener('focusout', play);
+    show(0);
+    play();
+  });
 })();
