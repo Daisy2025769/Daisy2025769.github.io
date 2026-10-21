@@ -43,6 +43,74 @@
             z-index: 1;
         }
 
+        .rain-scene {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+            opacity: .52;
+            pointer-events: none;
+        }
+
+        .rain-field,
+        .rain-field::before,
+        .rain-field::after {
+            position: absolute;
+            inset: -35% -12%;
+            content: '';
+            background-image: repeating-linear-gradient(
+                102deg,
+                transparent 0 18px,
+                rgba(225, 238, 244, .28) 19px,
+                transparent 21px 45px
+            );
+            background-size: 82px 126px;
+            mix-blend-mode: screen;
+            transform: translate3d(0, -18%, 0);
+            animation: rainfall .82s linear infinite;
+        }
+
+        .rain-field::before {
+            opacity: .5;
+            background-size: 116px 176px;
+            filter: blur(.35px);
+            animation-duration: 1.2s;
+            animation-delay: -.45s;
+        }
+
+        .rain-field::after {
+            opacity: .3;
+            background-size: 58px 92px;
+            animation-duration: .58s;
+            animation-delay: -.2s;
+        }
+
+        .rain-reflection {
+            position: absolute;
+            right: -8%;
+            bottom: -15%;
+            left: -8%;
+            height: 58%;
+            opacity: .34;
+            background:
+                radial-gradient(ellipse at 24% 58%, rgba(234,242,244,.42) 0 1%, transparent 11%),
+                radial-gradient(ellipse at 59% 72%, rgba(226,237,239,.34) 0 1%, transparent 12%),
+                radial-gradient(ellipse at 82% 44%, rgba(238,245,246,.3) 0 1%, transparent 10%);
+            mix-blend-mode: screen;
+            filter: blur(2px);
+            animation: water-shimmer 4.8s ease-in-out infinite alternate;
+        }
+
+        @keyframes rainfall {
+            to { transform: translate3d(-2%, 36%, 0); }
+        }
+
+        @keyframes water-shimmer {
+            0% { transform: scale(1); opacity: .22; }
+            55% { transform: scale(1.035, .98); opacity: .4; }
+            100% { transform: scale(.985, 1.025); opacity: .28; }
+        }
+
         /* --- 顶部导航栏 --- */
         nav {
             position: absolute;
@@ -126,11 +194,23 @@
             .main-title { font-size: 36px; }
             .subtitle { font-size: 14px; }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            .rain-field,
+            .rain-field::before,
+            .rain-field::after,
+            .rain-reflection { animation: none; }
+            .rain-scene { opacity: .2; }
+        }
     </style> 
 </head>
 <body>
 
     <div class="hero">
+        <div class="rain-scene" aria-hidden="true">
+            <span class="rain-field"></span>
+            <span class="rain-reflection"></span>
+        </div>
         <nav>
 <a href="/" class="text-logo">
     <img src="/logo.jpg" alt="Daisy Space Logo">
