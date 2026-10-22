@@ -29,7 +29,7 @@
             position: relative;
             background-color: #fff;
             background-image: url('/image/home-cover-concept-v12.png');
-            background-size: contain;
+            background-size: 106% auto;
             background-position: center;
             background-repeat: no-repeat;
             display: flex;
@@ -52,20 +52,23 @@
             padding: 24px 32px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            gap: 24px;
             z-index: 10;
-            overflow-x: auto;
-            scrollbar-width: none;
         }
-
-        nav::-webkit-scrollbar { display: none; }
 
         .menu {
             display: flex;
             align-items: center;
             gap: clamp(18px, 3vw, 46px);
-            width: max-content;
+            flex: 1 1 auto;
+            min-width: 0;
             white-space: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
         }
+
+        .menu::-webkit-scrollbar { display: none; }
 
         .menu a {
             font-family: 'Courier Prime', 'Courier New', monospace;
@@ -92,6 +95,34 @@
             height: 25px;
             object-fit: contain;
             flex: 0 0 auto;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            flex: 0 0 auto;
+        }
+
+        .header-actions .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #111;
+            text-decoration: none;
+        }
+
+        .header-actions .icon-svg {
+            width: 29px;
+            height: 29px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.65;
+            transition: transform .2s ease;
+        }
+
+        .header-actions .icon-btn:hover .icon-svg {
+            transform: translateY(-2px);
         }
 
         /* --- 中心内容 --- */
@@ -128,6 +159,8 @@
             .menu { gap: 20px; }
             .menu a { font-size: 13px; }
             .menu .nav-illustration { width: 21px; height: 21px; }
+            .header-actions { gap: 14px; }
+            .header-actions .icon-svg { width: 25px; height: 25px; }
             .main-title { font-size: 36px; }
             .subtitle { font-size: 14px; }
         }
@@ -142,6 +175,14 @@
                 <a href="/business/">Main Quest<img class="nav-illustration" src="/image/ui/macbook.png" alt=""></a>
                 <a href="/resume/">My Resume<img class="nav-illustration" src="/image/ui/resume-girl.png" alt=""></a>
                 <a href="/contact/">Contact<img class="nav-illustration" src="/image/ui/mailbox.png" alt=""></a>
+            </div>
+            <div class="header-actions" aria-label="Quick links">
+                <a href="/contact/" class="icon-btn" aria-label="Contact">
+                    <svg class="icon-svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <a href="/" class="icon-btn" aria-label="Home">
+                    <svg class="icon-svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </a>
             </div>
         </nav>
 
