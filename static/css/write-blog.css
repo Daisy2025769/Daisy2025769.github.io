@@ -73,8 +73,8 @@ body::before {
 .tape-top { top: -19px; left: 50%; width: 145px; height: 43px; transform: translateX(-50%) rotate(-2.5deg); clip-path: polygon(2% 7%,98% 0,96% 95%,4% 100%); }
 .tape-side { left: -17px; bottom: 17%; width: 38px; height: 118px; transform: rotate(3deg); clip-path: polygon(4% 1%,95% 4%,100% 96%,0 100%); }
 .journal-copy { align-self: center; max-width: 590px; }
-.journal-date { display: block; margin: 0 0 38px; color: var(--muted); font: 500 clamp(21px,2.2vw,31px)/1.1 Caveat, "Segoe Print", cursive; letter-spacing: .08em; }
-.journal-copy p { margin: 0; font: 500 clamp(30px,3.5vw,50px)/1.23 Caveat, "Segoe Print", cursive; letter-spacing: .015em; }
+.journal-date { display: block; margin: 0 0 38px; color: var(--muted); font: 400 clamp(20px,2vw,29px)/1.15 "Gochi Hand", "Segoe Print", cursive; letter-spacing: .06em; }
+.journal-copy p { margin: 0; font: 400 clamp(27px,3.1vw,44px)/1.4 "Gochi Hand", "Segoe Print", cursive; letter-spacing: .012em; }
 [data-lang="zh"] { display: none; }
 html[data-blog-language="zh"] [data-lang="en"] { display: none; }
 html[data-blog-language="zh"] [data-lang="zh"] { display: block; }
