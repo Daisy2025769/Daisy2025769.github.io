@@ -1,7 +1,9 @@
 ---
-title: 'AofHE'
+title: 'Write'
 type: life
-layout: list
+layout: write-blog
+aliases:
+  - /life/film/
 showcaseGroup: side
 showcaseKey: aofhe
 draft: false

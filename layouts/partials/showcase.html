@@ -1,7 +1,7 @@
 {{ $group := .Params.showcaseGroup | default "main" }}
 {{ $items := index site.Data.showcases $group }}
 {{ $key := .Params.showcaseKey | default "internships" }}
-<nav class="quest-tabs" aria-label="Portfolio categories">{{ range $items }}<a href="{{ .url }}" {{ if eq .key $key }}aria-current="page"{{ end }}>{{ .title }}</a>{{ end }}</nav>
+{{ if ne $group "side" }}<nav class="quest-tabs" aria-label="Portfolio categories">{{ range $items }}<a href="{{ .url }}" {{ if eq .key $key }}aria-current="page"{{ end }}>{{ .title }}</a>{{ end }}</nav>{{ end }}
 {{ range $items }}{{ if eq .key $key }}
 <main class="showcase-main">
   <section class="story-carousel" aria-label="{{ .title }} stories">

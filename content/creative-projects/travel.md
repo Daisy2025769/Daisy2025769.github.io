@@ -1,7 +1,9 @@
 ---
-title: 'Write'
+title: 'AofHE'
 type: life
-layout: write-blog
+layout: list
+aliases:
+  - /life/wine/
 showcaseGroup: side
 showcaseKey: aofhe
 draft: false

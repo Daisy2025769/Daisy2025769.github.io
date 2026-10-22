@@ -1,5 +1,5 @@
 ---
-title: Side Quest
+title: My Creative Projects
 type: life
 layout: list
 showcaseGroup: side
