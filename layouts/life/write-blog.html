@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" data-blog-language="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Yumeng's bilingual visual journal">
+  <title>Write · Daisy Space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/write-blog.css">
+</head>
+<body>
+  <header class="journal-tools" aria-label="Blog controls">
+    <button class="language-switch" type="button" aria-pressed="false" aria-label="Switch language to Chinese">
+      <span class="switch-lamp" aria-hidden="true"><span class="lamp-glow"></span><span class="lamp-shade"></span><span class="lamp-stem"></span></span>
+      <span class="switch-track" aria-hidden="true"><span class="switch-knob"></span></span>
+      <span class="switch-label switch-label-en">EN</span>
+      <span class="switch-divider">/</span>
+      <span class="switch-label switch-label-zh" lang="zh-Hant">中</span>
+    </button>
+    <nav class="journal-nav" aria-label="Page navigation">
+      <a href="/" aria-label="Home" title="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      </a>
+    </nav>
+  </header>
+
+  <main class="journal" aria-label="Write journal">
+    <h1 class="visually-hidden">Write</h1>
+    {{ range $index, $post := site.Data.write_posts }}
+    <article class="journal-entry" style="--entry-index: {{ $index }}">
+      <figure class="journal-photo">
+        <span class="tape tape-top" aria-hidden="true"></span>
+        <span class="tape tape-side" aria-hidden="true"></span>
+        <img src="{{ $post.image }}" alt="{{ $post.alt_en }}" data-alt-en="{{ $post.alt_en }}" data-alt-zh="{{ $post.alt_zh }}" {{ if ne $index 0 }}loading="lazy"{{ end }}>
+      </figure>
+      <div class="journal-copy">
+        <time class="journal-date" datetime="{{ if eq $index 0 }}2026-10-22{{ else if eq $index 1 }}2026-09-12{{ else }}2026-05-20{{ end }}">
+          <span data-lang="en">{{ $post.date_en }}</span>
+          <span data-lang="zh" lang="zh-Hant">{{ $post.date_zh }}</span>
+        </time>
+        <p data-lang="en">{{ $post.text_en }}</p>
+        <p data-lang="zh" lang="zh-Hant">{{ $post.text_zh }}</p>
+      </div>
+    </article>
+    {{ end }}
+  </main>
+  <script src="/js/write-blog.js" defer></script>
+</body>
+</html>

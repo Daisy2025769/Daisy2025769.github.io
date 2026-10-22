@@ -1,7 +1,7 @@
 ---
-title: 'AofHE'
+title: 'Write'
 type: life
-layout: list
+layout: write-blog
 showcaseGroup: side
 showcaseKey: aofhe
 draft: false
