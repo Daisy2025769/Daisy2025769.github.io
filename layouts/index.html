@@ -141,6 +141,36 @@
             letter-spacing: -.055em;
         }
 
+        .cover-unit {
+            transition: color .28s ease, opacity .28s ease, filter .28s ease;
+        }
+
+        .cover-link {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .cover-link .inline-photo {
+            transition: transform .22s ease;
+        }
+
+        .cover-link:hover .inline-photo,
+        .cover-link:focus-visible .inline-photo {
+            transform: translateY(-.06em);
+        }
+
+        .cover-link:focus-visible {
+            outline: 2px solid currentColor;
+            outline-offset: .04em;
+        }
+
+        .hero.focus-side .cover-unit:not(.side-focus),
+        .hero.focus-main .cover-unit:not(.main-focus) {
+            color: #aaa;
+            opacity: .34;
+            filter: grayscale(1);
+        }
+
         .inline-photo {
             display: inline-block;
             width: 1.08em;
@@ -238,8 +268,8 @@
     <div class="hero">
         <nav>
             <div class="menu">
-                <a href="/life/coffee/">Side Quest<img class="nav-illustration" src="/image/ui/coffee.png" alt=""></a>
-                <a href="/business/">Main Quest<img class="nav-illustration" src="/image/ui/macbook.png" alt=""></a>
+                <a href="/life/coffee/" data-cover-focus="side">Side Quest<img class="nav-illustration" src="/image/ui/coffee.png" alt=""></a>
+                <a href="/business/" data-cover-focus="main">Main Quest<img class="nav-illustration" src="/image/ui/macbook.png" alt=""></a>
                 <a href="/resume/">My Resume<img class="nav-illustration" src="/image/ui/resume-girl.png" alt=""></a>
                 <a href="/contact/">Contact<img class="nav-illustration" src="/image/ui/mailbox.png" alt=""></a>
             </div>
@@ -255,17 +285,31 @@
 
         <main class="magazine-cover" aria-label="About Yumeng">
             <div class="cover-copy">
-                Hello, My Name is Yumeng<img class="inline-photo photo-yumeng" src="/image/home-cover/yumeng.jpg" alt="Yumeng">,
-                My Family Name is Qian<img class="inline-photo photo-qian" src="/image/home-cover/qian.jpg" alt="Money bag illustration">,
-                I Learnt Finance<img class="inline-photo photo-finance" src="/image/home-cover/finance.jpg" alt="Financial market display"> in SMU,
-                I Write<img class="inline-photo photo-write" src="/image/home-cover/write-v2.jpg" alt="Writing artwork">,
-                Design<img class="inline-photo photo-design" src="/image/home-cover/design.jpg" alt="Design artwork">,
-                I Explore during Travel<img class="inline-photo photo-travel" src="/image/home-cover/travel.jpg" alt="Travel scene">,
-                and Sometimes I Cook<img class="inline-photo photo-cook" src="/image/home-cover/cook.jpg" alt="Cooking still life">
+                <span class="cover-unit">Hello, My Name is Yumeng<img class="inline-photo photo-yumeng" src="/image/home-cover/yumeng.jpg" alt="Yumeng">, My Family Name is Qian<img class="inline-photo photo-qian" src="/image/home-cover/qian.jpg" alt="Money bag illustration">, I Learnt </span><a class="cover-unit cover-link main-focus" href="/business/">Finance<img class="inline-photo photo-finance" src="/image/home-cover/finance.jpg" alt="Financial market display"></a><span class="cover-unit"> in SMU, I </span><a class="cover-unit cover-link side-focus" href="/life/film/">Write<img class="inline-photo photo-write" src="/image/home-cover/write-v2.jpg" alt="Writing artwork"></a><span class="cover-unit">, </span><a class="cover-unit cover-link side-focus" href="/life/fashion/">Design<img class="inline-photo photo-design" src="/image/home-cover/design.jpg" alt="Design artwork"></a><span class="cover-unit">, I Explore during </span><a class="cover-unit cover-link side-focus" href="/life/wine/">Travel<img class="inline-photo photo-travel" src="/image/home-cover/travel.jpg" alt="Travel scene"></a><span class="cover-unit">, and Sometimes I </span><a class="cover-unit cover-link side-focus" href="/life/coffee/">Cook<img class="inline-photo photo-cook" src="/image/home-cover/cook.jpg" alt="Cooking still life"></a>
             </div>
         </main>
 
     </div>
+
+    <script>
+        (() => {
+            const hero = document.querySelector('.hero');
+            const triggers = document.querySelectorAll('[data-cover-focus]');
+
+            const activate = (mode) => {
+                hero.classList.remove('focus-side', 'focus-main');
+                if (mode) hero.classList.add(`focus-${mode}`);
+            };
+
+            triggers.forEach((trigger) => {
+                const mode = trigger.dataset.coverFocus;
+                trigger.addEventListener('mouseenter', () => activate(mode));
+                trigger.addEventListener('mouseleave', () => activate(null));
+                trigger.addEventListener('focus', () => activate(mode));
+                trigger.addEventListener('blur', () => activate(null));
+            });
+        })();
+    </script>
 
 </body>
 </html>
