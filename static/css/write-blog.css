@@ -73,8 +73,8 @@ body::before {
 .tape-top { top: -19px; left: 50%; width: 145px; height: 43px; transform: translateX(-50%) rotate(-2.5deg); clip-path: polygon(2% 7%,98% 0,96% 95%,4% 100%); }
 .tape-side { left: -17px; bottom: 17%; width: 38px; height: 118px; transform: rotate(3deg); clip-path: polygon(4% 1%,95% 4%,100% 96%,0 100%); }
 .journal-copy { align-self: center; max-width: 590px; }
-.journal-date { display: block; margin: 0 0 38px; color: var(--muted); font: 400 clamp(20px,2vw,29px)/1.15 "Gochi Hand", "Segoe Print", cursive; letter-spacing: .06em; }
-.journal-copy p { margin: 0; font: 400 clamp(27px,3.1vw,44px)/1.4 "Gochi Hand", "Segoe Print", cursive; letter-spacing: .012em; }
+.journal-date { display: block; margin: 0 0 44px; color: var(--muted); font: 400 clamp(19px,1.8vw,27px)/1.25 Handlee, "Segoe Print", cursive; letter-spacing: .065em; }
+.journal-copy p { max-width: 560px; margin: 0; font: 400 clamp(34px,3.35vw,48px)/1.55 Handlee, "Segoe Print", cursive; letter-spacing: .018em; }
 [data-lang="zh"] { display: none; }
 html[data-blog-language="zh"] [data-lang="en"] { display: none; }
 html[data-blog-language="zh"] [data-lang="zh"] { display: block; }
@@ -92,8 +92,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid #455746; outline-offs
   .journal-entry { min-height: 0; grid-template-columns: 1fr; gap: 48px; padding: 55px 0 92px; }
   .journal-photo { width: min(84vw, 390px); }
   .journal-copy { width: 92%; margin: 0 auto; }
-  .journal-date { margin-bottom: 25px; font-size: 23px; }
-  .journal-copy p { font-size: clamp(31px,9.8vw,45px); }
+  .journal-date { margin-bottom: 30px; font-size: 21px; }
+  .journal-copy p { font-size: clamp(29px,8.7vw,38px); line-height: 1.52; }
   html[data-blog-language="zh"] .journal-copy p { font-size: clamp(22px,6.2vw,31px); }
 }
 
