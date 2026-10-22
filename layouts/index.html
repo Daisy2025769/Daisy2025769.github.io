@@ -154,12 +154,7 @@
             transition: transform .22s ease;
         }
 
-        .main-focus:hover .inline-photo,
-        .main-focus:focus-visible .inline-photo {
-            transform: translateY(-.06em);
-        }
-
-        .side-focus {
+        .collision-target {
             display: inline-flex;
             align-items: baseline;
             white-space: nowrap;
@@ -168,12 +163,12 @@
 
         .collision-word,
         .collision-letter,
-        .side-focus .inline-photo {
+        .collision-target .inline-photo {
             display: inline-block;
             will-change: transform;
         }
 
-        .side-focus .inline-photo {
+        .collision-target .inline-photo {
             transform-origin: center;
         }
 
@@ -191,7 +186,7 @@
 
         @media (prefers-reduced-motion: reduce) {
             .collision-letter,
-            .side-focus .inline-photo {
+            .collision-target .inline-photo {
                 animation: none !important;
                 transform: none !important;
                 transition: none !important;
@@ -312,7 +307,7 @@
 
         <main class="magazine-cover" aria-label="About Yumeng">
             <div class="cover-copy">
-                <span class="cover-unit">Hello, My Name is Yumeng<img class="inline-photo photo-yumeng" src="/image/home-cover/yumeng.jpg" alt="Yumeng">, My Family Name is Qian<img class="inline-photo photo-qian" src="/image/home-cover/qian.jpg" alt="Money bag illustration">, I Learnt </span><a class="cover-unit cover-link main-focus" href="/business/">Finance<img class="inline-photo photo-finance" src="/image/home-cover/finance.jpg" alt="Financial market display"></a><span class="cover-unit"> in SMU, I </span><a class="cover-unit cover-link side-focus" href="/life/film/" aria-label="Write"><span class="collision-word">Write</span><img class="inline-photo photo-write" src="/image/home-cover/write-v2.jpg" alt=""></a><span class="cover-unit">, </span><a class="cover-unit cover-link side-focus" href="/life/fashion/" aria-label="Design"><span class="collision-word">Design</span><img class="inline-photo photo-design" src="/image/home-cover/design.jpg" alt=""></a><span class="cover-unit">, I Explore during </span><a class="cover-unit cover-link side-focus" href="/life/wine/" aria-label="Travel"><span class="collision-word">Travel</span><img class="inline-photo photo-travel" src="/image/home-cover/travel.jpg" alt=""></a><span class="cover-unit">, and Sometimes I </span><a class="cover-unit cover-link side-focus" href="/life/coffee/" aria-label="Cook"><span class="collision-word">Cook</span><img class="inline-photo photo-cook" src="/image/home-cover/cook.jpg" alt=""></a>
+                <span class="cover-unit">Hello, My Name is Yumeng<img class="inline-photo photo-yumeng" src="/image/home-cover/yumeng.jpg" alt="Yumeng">, My Family Name is Qian<img class="inline-photo photo-qian" src="/image/home-cover/qian.jpg" alt="Money bag illustration">, I Learnt </span><a class="cover-unit cover-link main-focus collision-target" href="/business/" aria-label="Finance"><span class="collision-word">Finance</span><img class="inline-photo photo-finance" src="/image/home-cover/finance.jpg" alt="Financial market display"></a><span class="cover-unit"> in SMU, I </span><a class="cover-unit cover-link side-focus collision-target" href="/life/film/" aria-label="Write"><span class="collision-word">Write</span><img class="inline-photo photo-write" src="/image/home-cover/write-v2.jpg" alt=""></a><span class="cover-unit">, </span><a class="cover-unit cover-link side-focus collision-target" href="/life/fashion/" aria-label="Design"><span class="collision-word">Design</span><img class="inline-photo photo-design" src="/image/home-cover/design.jpg" alt=""></a><span class="cover-unit">, I Explore during </span><a class="cover-unit cover-link side-focus collision-target" href="/life/wine/" aria-label="Travel"><span class="collision-word">Travel</span><img class="inline-photo photo-travel" src="/image/home-cover/travel.jpg" alt=""></a><span class="cover-unit">, and Sometimes I </span><a class="cover-unit cover-link side-focus collision-target" href="/life/coffee/" aria-label="Cook"><span class="collision-word">Cook</span><img class="inline-photo photo-cook" src="/image/home-cover/cook.jpg" alt=""></a>
             </div>
         </main>
 
@@ -337,7 +332,7 @@
             });
 
             const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const collisionLinks = document.querySelectorAll('.side-focus');
+            const collisionLinks = document.querySelectorAll('.collision-target');
 
             collisionLinks.forEach((link) => {
                 const word = link.querySelector('.collision-word');
