@@ -80,6 +80,7 @@
         .menu a:hover {
             color: #000;
             text-shadow: 0 0 8px rgba(0,0,0,0.16);
+            transform: translateY(-2px);
         }
 
         .menu .nav-illustration {
@@ -94,7 +95,7 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 22px;
+            gap: 16px;
             flex: 0 0 auto;
         }
 
@@ -104,18 +105,18 @@
             justify-content: center;
             color: #111;
             text-decoration: none;
-        }
-
-        .header-actions .icon-svg {
-            width: 29px;
-            height: 29px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.65;
             transition: transform .2s ease;
         }
 
-        .header-actions .icon-btn:hover .icon-svg {
+        .header-actions .icon-svg {
+            width: clamp(14px, 1.25vw, 19px);
+            height: clamp(14px, 1.25vw, 19px);
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.65;
+        }
+
+        .header-actions .icon-btn:hover {
             transform: translateY(-2px);
         }
 
@@ -208,8 +209,8 @@
             .menu { gap: 20px; }
             .menu a { font-size: 13px; }
             .menu .nav-illustration { width: 21px; height: 21px; }
-            .header-actions { gap: 14px; }
-            .header-actions .icon-svg { width: 25px; height: 25px; }
+            .header-actions { gap: 12px; }
+            .header-actions .icon-svg { width: 13px; height: 13px; }
             .magazine-cover {
                 position: relative;
                 min-height: 100svh;
