@@ -33,7 +33,7 @@ body::before {
 html[data-blog-language="zh"] body::before { opacity: .23; }
 .journal-tools { position: fixed; top: 0; left: 0; right: 0; z-index: 999; isolation: isolate; height: 168px; display: flex; align-items: flex-start; justify-content: center; padding: 20px 24px 0; border-bottom: 1px solid rgba(31,40,34,.08); background: var(--paper-header); pointer-events: none; transition: background-color .35s ease; }
 .language-switch, .journal-nav a { pointer-events: auto; }
-.journal-title { position: fixed; top: 18px; left: max(calc((100vw - 1180px)/2 + 12px),42px); font: 700 clamp(36px,3.1vw,52px)/1.05 "Courier Prime", "Courier New", monospace; letter-spacing: .015em; white-space: nowrap; }
+.journal-title { position: fixed; top: 18px; left: max(calc((100vw - 1180px)/2 + 12px),42px); font: 400 clamp(36px,3.1vw,52px)/1.05 "Courier Prime", "Courier New", monospace; letter-spacing: .015em; white-space: nowrap; }
 html[data-blog-language="zh"] .journal-title { top: 18px; left: max(calc((100vw - 1180px)/2 + 12px),42px); font-family: AbbrFes, "Noto Serif TC", serif; font-size: 48px; font-weight: 400; letter-spacing: .045em; }
 .language-switch {
   position: relative;
