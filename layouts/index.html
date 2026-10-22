@@ -154,9 +154,27 @@
             transition: transform .22s ease;
         }
 
-        .cover-link:hover .inline-photo,
-        .cover-link:focus-visible .inline-photo {
+        .main-focus:hover .inline-photo,
+        .main-focus:focus-visible .inline-photo {
             transform: translateY(-.06em);
+        }
+
+        .side-focus {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+            vertical-align: baseline;
+        }
+
+        .collision-word,
+        .collision-letter,
+        .side-focus .inline-photo {
+            display: inline-block;
+            will-change: transform;
+        }
+
+        .side-focus .inline-photo {
+            transform-origin: center;
         }
 
         .cover-link:focus-visible {
@@ -169,6 +187,15 @@
             color: #aaa;
             opacity: .34;
             filter: grayscale(1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .collision-letter,
+            .side-focus .inline-photo {
+                animation: none !important;
+                transform: none !important;
+                transition: none !important;
+            }
         }
 
         .inline-photo {
@@ -285,7 +312,7 @@
 
         <main class="magazine-cover" aria-label="About Yumeng">
             <div class="cover-copy">
-                <span class="cover-unit">Hello, My Name is Yumeng<img class="inline-photo photo-yumeng" src="/image/home-cover/yumeng.jpg" alt="Yumeng">, My Family Name is Qian<img class="inline-photo photo-qian" src="/image/home-cover/qian.jpg" alt="Money bag illustration">, I Learnt </span><a class="cover-unit cover-link main-focus" href="/business/">Finance<img class="inline-photo photo-finance" src="/image/home-cover/finance.jpg" alt="Financial market display"></a><span class="cover-unit"> in SMU, I </span><a class="cover-unit cover-link side-focus" href="/life/film/">Write<img class="inline-photo photo-write" src="/image/home-cover/write-v2.jpg" alt="Writing artwork"></a><span class="cover-unit">, </span><a class="cover-unit cover-link side-focus" href="/life/fashion/">Design<img class="inline-photo photo-design" src="/image/home-cover/design.jpg" alt="Design artwork"></a><span class="cover-unit">, I Explore during </span><a class="cover-unit cover-link side-focus" href="/life/wine/">Travel<img class="inline-photo photo-travel" src="/image/home-cover/travel.jpg" alt="Travel scene"></a><span class="cover-unit">, and Sometimes I </span><a class="cover-unit cover-link side-focus" href="/life/coffee/">Cook<img class="inline-photo photo-cook" src="/image/home-cover/cook.jpg" alt="Cooking still life"></a>
+                <span class="cover-unit">Hello, My Name is Yumeng<img class="inline-photo photo-yumeng" src="/image/home-cover/yumeng.jpg" alt="Yumeng">, My Family Name is Qian<img class="inline-photo photo-qian" src="/image/home-cover/qian.jpg" alt="Money bag illustration">, I Learnt </span><a class="cover-unit cover-link main-focus" href="/business/">Finance<img class="inline-photo photo-finance" src="/image/home-cover/finance.jpg" alt="Financial market display"></a><span class="cover-unit"> in SMU, I </span><a class="cover-unit cover-link side-focus" href="/life/film/" aria-label="Write"><span class="collision-word">Write</span><img class="inline-photo photo-write" src="/image/home-cover/write-v2.jpg" alt=""></a><span class="cover-unit">, </span><a class="cover-unit cover-link side-focus" href="/life/fashion/" aria-label="Design"><span class="collision-word">Design</span><img class="inline-photo photo-design" src="/image/home-cover/design.jpg" alt=""></a><span class="cover-unit">, I Explore during </span><a class="cover-unit cover-link side-focus" href="/life/wine/" aria-label="Travel"><span class="collision-word">Travel</span><img class="inline-photo photo-travel" src="/image/home-cover/travel.jpg" alt=""></a><span class="cover-unit">, and Sometimes I </span><a class="cover-unit cover-link side-focus" href="/life/coffee/" aria-label="Cook"><span class="collision-word">Cook</span><img class="inline-photo photo-cook" src="/image/home-cover/cook.jpg" alt=""></a>
             </div>
         </main>
 
@@ -307,6 +334,67 @@
                 trigger.addEventListener('mouseleave', () => activate(null));
                 trigger.addEventListener('focus', () => activate(mode));
                 trigger.addEventListener('blur', () => activate(null));
+            });
+
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const collisionLinks = document.querySelectorAll('.side-focus');
+
+            collisionLinks.forEach((link) => {
+                const word = link.querySelector('.collision-word');
+                const image = link.querySelector('.inline-photo');
+                const letters = [...word.textContent];
+
+                word.textContent = '';
+                letters.forEach((character) => {
+                    const letter = document.createElement('span');
+                    letter.className = 'collision-letter';
+                    letter.textContent = character;
+                    letter.setAttribute('aria-hidden', 'true');
+                    word.appendChild(letter);
+                });
+
+                const collide = () => {
+                    if (reducedMotion) return;
+
+                    word.querySelectorAll('.collision-letter').forEach((letter, index) => {
+                        letter.animate([
+                            { transform: 'translateX(0)' },
+                            { transform: 'translateX(.13em)', offset: .38 },
+                            { transform: 'translateX(-.035em)', offset: .68 },
+                            { transform: 'translateX(0)' }
+                        ], {
+                            duration: 520,
+                            delay: index * 28,
+                            easing: 'cubic-bezier(.2,.9,.25,1.25)'
+                        });
+                    });
+
+                    image.animate([
+                        { transform: 'translate3d(0,0,0) rotate(0) scale(1)' },
+                        { transform: 'translate3d(-.18em,0,0) rotate(-5deg) scale(1.1)', offset: .38 },
+                        { transform: 'translate3d(.05em,0,0) rotate(2deg) scale(.98)', offset: .68 },
+                        { transform: 'translate3d(0,0,0) rotate(0) scale(1)' }
+                    ], {
+                        duration: 620,
+                        easing: 'cubic-bezier(.2,.9,.25,1.2)'
+                    });
+                };
+
+                link.addEventListener('pointerenter', collide);
+                link.addEventListener('focus', collide);
+                link.addEventListener('pointermove', (event) => {
+                    if (reducedMotion) return;
+                    const rect = link.getBoundingClientRect();
+                    const x = ((event.clientX - rect.left) / rect.width) - .5;
+                    const y = ((event.clientY - rect.top) / rect.height) - .5;
+                    image.style.transform = `translate3d(${x * 10}px, ${y * 7}px, 0) rotate(${x * 3}deg)`;
+                });
+                link.addEventListener('pointerleave', () => {
+                    image.style.transform = '';
+                });
+                link.addEventListener('blur', () => {
+                    image.style.transform = '';
+                });
             });
         })();
     </script>
