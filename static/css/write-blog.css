@@ -29,8 +29,8 @@ body::before {
 }
 .journal-tools { position: fixed; top: 20px; left: 24px; right: 24px; z-index: 999; isolation: isolate; display: flex; align-items: flex-start; justify-content: center; pointer-events: none; }
 .language-switch, .journal-nav a { pointer-events: auto; }
-.journal-title { position: absolute; top: 25px; left: 0; font: 700 clamp(22px,2.1vw,31px)/1.1 Handlee, "Segoe Print", cursive; letter-spacing: .015em; white-space: nowrap; }
-html[data-blog-language="zh"] .journal-title { top: 24px; font-family: AbbrFes, "Noto Serif TC", serif; font-size: clamp(17px,1.6vw,23px); font-weight: 700; letter-spacing: .045em; }
+.journal-title { position: fixed; top: 18px; left: max(calc((100vw - 1180px)/2 + 12px),42px); font: 700 clamp(40px,3.6vw,58px)/1.05 Handlee, "Segoe Print", cursive; letter-spacing: .015em; white-space: nowrap; }
+html[data-blog-language="zh"] .journal-title { top: 19px; font-family: AbbrFes, "Noto Serif TC", serif; font-size: clamp(34px,3.1vw,48px); font-weight: 700; letter-spacing: .045em; }
 .language-switch {
   position: relative;
   width: 172px;
@@ -88,8 +88,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid #455746; outline-offs
 
 @media (max-width: 760px) {
   .journal-tools { top: 10px; left: 7px; right: 10px; }
-  .journal-title { top: 29px; font-size: 17px; }
-  html[data-blog-language="zh"] .journal-title { top: 28px; font-size: 14px; }
+  .journal-title { position: absolute; top: 29px; left: 10px; font-size: 28px; }
+  html[data-blog-language="zh"] .journal-title { top: 28px; font-size: 24px; }
   .language-switch { transform: scale(.78); transform-origin: top center; }
   .journal-nav { gap: 4px; transform: scale(.88); transform-origin: top right; }
   .journal { width: min(100% - 34px, 560px); padding: 112px 0 70px; }
