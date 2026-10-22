@@ -8,7 +8,7 @@
     <!-- 引入 Google 字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400&family=Merriweather:ital,wght@1,300&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/ui-icons.css">
 
     <style>
@@ -47,36 +47,35 @@
         nav {
             position: absolute;
             top: 0; left: 0; width: 100%;
-            padding: 30px 50px;
+            padding: 24px 32px;
             display: flex;
             align-items: center;
             z-index: 10;
+            overflow-x: auto;
+            scrollbar-width: none;
         }
 
-       /* 新的代码（针对图片的） */
-.text-logo {
-    margin-right: 60px; /* 保留和右边菜单的间距 */
-    display: flex;      /* 让图片垂直居中更好看 */
-    align-items: center;
-    text-decoration: none;
-}
+        nav::-webkit-scrollbar { display: none; }
 
-/* 专门控制 Logo 图片的大小 */
-.text-logo img {
-    height: 60px; /* 设置高度，宽度会自动调整。你可以改这个数字来调大小 */
-    width: auto;  /* 保证图片不变形 */
-}
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: clamp(18px, 3vw, 46px);
+            width: max-content;
+            white-space: nowrap;
+        }
 
         .menu a {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Courier Prime', 'Courier New', monospace;
             text-decoration: none;
             color: rgba(255, 255, 255, 0.85);
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-right: 30px;
-            letter-spacing: 1px;
+            font-size: clamp(14px, 1.25vw, 19px);
+            font-weight: 400;
+            letter-spacing: 0.02em;
             transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
         }
 
         .menu a:hover {
@@ -87,6 +86,10 @@
         .menu .nav-illustration {
             filter: invert(1) drop-shadow(0 0 2px rgba(255,255,255,.45));
             mix-blend-mode: screen;
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+            flex: 0 0 auto;
         }
 
         /* --- 中心内容 --- */
@@ -119,10 +122,10 @@
         }
         
         @media (max-width: 768px) {
-            nav { flex-direction: column; padding: 20px; }
-            .text-logo { margin-right: 0; margin-bottom: 20px; }
-            .menu { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-            .menu a { margin-right: 0; font-size: 12px; }
+            nav { padding: 18px 16px; }
+            .menu { gap: 20px; }
+            .menu a { font-size: 13px; }
+            .menu .nav-illustration { width: 21px; height: 21px; }
             .main-title { font-size: 36px; }
             .subtitle { font-size: 14px; }
         }
@@ -132,12 +135,9 @@
 
     <div class="hero">
         <nav>
-<a href="/" class="text-logo">
-    <img src="/logo.jpg" alt="Daisy Space Logo">
-</a>
             <div class="menu">
                 <a href="/life/coffee/">Side Quest<img class="nav-illustration" src="/image/ui/coffee.png" alt=""></a>
-                <a href="/business/">MAIN QUEST<img class="nav-illustration" src="/image/ui/macbook.png" alt=""></a>
+                <a href="/business/">Main Quest<img class="nav-illustration" src="/image/ui/macbook.png" alt=""></a>
                 <a href="/resume/">My Resume<img class="nav-illustration" src="/image/ui/resume-girl.png" alt=""></a>
                 <a href="/contact/">Contact<img class="nav-illustration" src="/image/ui/mailbox.png" alt=""></a>
             </div>
