@@ -92,6 +92,14 @@
             flex: 0 0 auto;
         }
 
+        .menu .nav-resource-icon {
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            flex: 0 0 auto;
+            background: #fff url('/image/ui/my-resources.jpg') center 46% / 250% auto no-repeat;
+        }
+
         .header-actions {
             display: flex;
             align-items: center;
@@ -268,6 +276,7 @@
             .menu { gap: 20px; }
             .menu a { font-size: 13px; }
             .menu .nav-illustration { width: 21px; height: 21px; }
+            .menu .nav-resource-icon { width: 21px; height: 21px; }
             .header-actions { gap: 12px; }
             .header-actions .icon-svg { width: 16px; height: 16px; }
             .magazine-cover {
@@ -293,7 +302,7 @@
                 <a href="/creative-projects/cook/" data-cover-focus="side">Side Quest<img class="nav-illustration" src="/image/ui/coffee.png" alt=""></a>
                 <a href="/business/" data-cover-focus="main">Main Quest<img class="nav-illustration" src="/image/ui/macbook.png" alt=""></a>
                 <a href="/resume/">My Resume<img class="nav-illustration" src="/image/ui/resume-girl.png" alt=""></a>
-                <a href="/contact/">Contact<img class="nav-illustration" src="/image/ui/mailbox.png" alt=""></a>
+                <a href="/contact/">My Resources<span class="nav-resource-icon" aria-hidden="true"></span></a>
             </div>
             <div class="header-actions" aria-label="Quick links">
                 <a href="/contact/" class="icon-btn" aria-label="Contact">
