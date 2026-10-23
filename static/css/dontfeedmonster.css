@@ -111,8 +111,8 @@ body {
     filter: drop-shadow(0 16px 16px rgba(109, 54, 43, .12));
 }
 
-.momo-lv2 { z-index: 1; left: 0; bottom: 4%; width: 35%; }
-.momo-lv1 { z-index: 2; left: 31%; top: 4%; width: 31%; }
+.momo-lv2 { z-index: 1; left: -1%; bottom: 3%; width: 39%; }
+.momo-lv1 { z-index: 2; left: 36%; top: -1%; width: 31%; }
 .momo-lv4 { z-index: 3; right: -2%; bottom: -2%; width: 47%; }
 
 a:focus-visible { outline: 2px solid #555; outline-offset: 4px; }
@@ -130,8 +130,8 @@ a:focus-visible { outline: 2px solid #555; outline-offset: 4px; }
     .monster-copy h1 { font-size: clamp(34px, 10vw, 50px); }
     .monster-copy p { max-width: 34ch; font-size: 16px; }
     .monster-gallery { aspect-ratio: 1.65; }
-    .momo-lv2 { left: -2%; width: 36%; }
-    .momo-lv1 { left: 30%; top: 2%; width: 32%; }
+    .momo-lv2 { left: -3%; width: 40%; }
+    .momo-lv1 { left: 36%; top: -2%; width: 32%; }
     .momo-lv4 { right: -3%; width: 48%; }
 }
 
