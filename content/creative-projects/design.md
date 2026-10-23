@@ -1,7 +1,7 @@
 ---
-title: 'Photography'
+title: 'DontFeedMonster'
 type: life
-layout: list
+layout: dontfeedmonster
 aliases:
   - /life/fashion/
 showcaseGroup: side
