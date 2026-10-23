@@ -75,13 +75,13 @@ body {
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    padding: clamp(38px, 5vw, 76px);
+    padding: clamp(34px, 4vw, 62px);
 }
 
 .monster-copy h1 {
     max-width: 100%;
     margin: 0;
-    font-size: clamp(40px, 4.1vw, 64px);
+    font-size: clamp(48px, 4.6vw, 72px);
     font-weight: 400;
     line-height: .94;
     letter-spacing: -.06em;
@@ -90,10 +90,10 @@ body {
 .monster-copy h1 span { display: block; }
 
 .monster-copy p {
-    max-width: 390px;
+    max-width: 410px;
     margin: 0;
-    font-size: clamp(16px, 1.3vw, 21px);
-    line-height: 1.5;
+    font-size: clamp(18px, 1.5vw, 24px);
+    line-height: 1.45;
     letter-spacing: -.015em;
 }
 
@@ -127,8 +127,8 @@ a:focus-visible { outline: 2px solid #555; outline-offset: 4px; }
     .monster-main { display: block; padding: 14px 6vw 28px; }
     .monster-card { width: 100%; height: auto; min-height: 0; grid-template-columns: 1fr; border-radius: 24px; }
     .monster-copy { min-height: 280px; padding: 34px 25px 27px; }
-    .monster-copy h1 { font-size: clamp(34px, 10vw, 50px); }
-    .monster-copy p { max-width: 34ch; font-size: 16px; }
+    .monster-copy h1 { font-size: clamp(42px, 12vw, 56px); }
+    .monster-copy p { max-width: 34ch; font-size: 18px; }
     .monster-gallery { aspect-ratio: 1.65; }
     .momo-lv2 { left: -3%; width: 40%; }
     .momo-lv1 { left: 36%; top: -2%; width: 32%; }
