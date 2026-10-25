@@ -252,7 +252,7 @@
         document.querySelector('#articlesPanel').hidden = selected !== 'articles';
         document.querySelector('#podcastsPanel').hidden = selected !== 'podcasts';
         const labels = {
-            books: ['Books', '6 saved books'],
+            books: ['Books', '4 saved books'],
             articles: ['Articles', '6 saved articles'],
             podcasts: ['Podcasts', '4 saved podcasts']
         };
