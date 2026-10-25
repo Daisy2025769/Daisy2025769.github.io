@@ -1,73 +1,97 @@
 (() => {
-    const uploadButton = document.querySelector('#uploadButton');
-    const stickerInput = document.querySelector('#stickerInput');
-    const stickerTray = document.querySelector('#stickerTray');
     const dropzone = document.querySelector('#coverDropzone');
+    const kindleCover = document.querySelector('.kindle-cover');
+    const carousel = document.querySelector('#stickerCarousel');
+    const stickerChoices = [...document.querySelectorAll('.sticker-choice')];
+    const previousSticker = document.querySelector('.carousel-prev');
+    const nextSticker = document.querySelector('.carousel-next');
     const tabs = [...document.querySelectorAll('.tab')];
     const title = document.querySelector('#libraryTitle');
     const count = document.querySelector('#resourceCount');
     const kindle = document.querySelector('.kindle');
     const swatches = [...document.querySelectorAll('.color-swatch')];
 
-    if (!uploadButton || !stickerInput || !stickerTray || !dropzone) return;
+    if (!dropzone || !carousel) return;
 
-    const openTray = () => stickerTray.classList.add('is-open');
+    let carouselIndex = 0;
+    let carouselTimer;
 
-    uploadButton.addEventListener('click', () => {
-        openTray();
-        stickerInput.click();
-    });
+    const renderCarousel = () => {
+        const total = stickerChoices.length;
+        const spacing = carousel.clientWidth < 220 ? 38 : 78;
+        stickerChoices.forEach((sticker, index) => {
+            let offset = (index - carouselIndex + total) % total;
+            if (offset > total / 2) offset -= total;
+            const distance = Math.abs(offset);
+            sticker.style.opacity = distance > 2 ? '0' : `${1 - distance * .25}`;
+            sticker.style.zIndex = `${10 - distance}`;
+            sticker.style.pointerEvents = distance > 2 ? 'none' : 'auto';
+            sticker.style.transform = `translate(-50%, -50%) translateX(${offset * spacing}px) translateZ(${(2 - distance) * 24}px) rotateY(${-offset * 52}deg) scale(${1 - distance * .16})`;
+        });
+    };
 
-    const placeSticker = (src, clientX, clientY) => {
+    const rotateCarousel = direction => {
+        carouselIndex = (carouselIndex + direction + stickerChoices.length) % stickerChoices.length;
+        renderCarousel();
+    };
+
+    const startCarousel = () => {
+        clearInterval(carouselTimer);
+        carouselTimer = setInterval(() => rotateCarousel(1), 2400);
+    };
+
+    previousSticker.addEventListener('click', () => { rotateCarousel(-1); startCarousel(); });
+    nextSticker.addEventListener('click', () => { rotateCarousel(1); startCarousel(); });
+    carousel.addEventListener('pointerenter', () => clearInterval(carouselTimer));
+    carousel.addEventListener('pointerleave', startCarousel);
+
+    const placeSticker = (source, clientX, clientY) => {
         const rect = dropzone.getBoundingClientRect();
-        const sticker = document.createElement('img');
-        sticker.src = src;
-        sticker.alt = 'Uploaded sticker';
-        sticker.className = 'placed-sticker';
+        const sticker = document.createElement('div');
+        sticker.className = `placed-sticker ${source.dataset.variant}`;
+        sticker.innerHTML = source.innerHTML;
+        sticker.setAttribute('role', 'img');
+        sticker.setAttribute('aria-label', source.getAttribute('aria-label'));
         sticker.style.left = `${Math.max(0, Math.min(rect.width, clientX - rect.left))}px`;
         sticker.style.top = `${Math.max(0, Math.min(rect.height, clientY - rect.top))}px`;
         dropzone.appendChild(sticker);
         enablePointerDrag(sticker);
     };
 
-    const addPreview = file => {
-        if (!file.type.startsWith('image/')) return;
-        const reader = new FileReader();
-        reader.addEventListener('load', () => {
-            stickerTray.querySelector('p')?.remove();
-            const preview = document.createElement('img');
-            preview.src = reader.result;
-            preview.alt = file.name;
-            preview.className = 'sticker-preview';
-            preview.draggable = true;
-            preview.addEventListener('dragstart', event => event.dataTransfer.setData('text/plain', preview.src));
-            preview.addEventListener('dblclick', () => {
-                const rect = dropzone.getBoundingClientRect();
-                placeSticker(preview.src, rect.left + rect.width / 2, rect.top + rect.height / 2);
-            });
-            stickerTray.appendChild(preview);
+    stickerChoices.forEach(sticker => {
+        sticker.addEventListener('pointerdown', () => dropzone.classList.add('is-ready'));
+        sticker.addEventListener('dragstart', event => {
+            clearInterval(carouselTimer);
+            event.dataTransfer.setData('text/plain', sticker.dataset.sticker);
+            event.dataTransfer.effectAllowed = 'copy';
+            dropzone.classList.add('is-ready');
+            kindleCover.classList.add('is-dragging');
         });
-        reader.readAsDataURL(file);
-    };
-
-    stickerInput.addEventListener('change', () => {
-        openTray();
-        [...stickerInput.files].forEach(addPreview);
-        stickerInput.value = '';
+        sticker.addEventListener('dragend', () => {
+            dropzone.classList.remove('is-ready', 'is-over');
+            kindleCover.classList.remove('is-dragging');
+            startCarousel();
+        });
     });
+
+    document.addEventListener('pointerup', () => dropzone.classList.remove('is-ready'));
 
     dropzone.addEventListener('dragover', event => { event.preventDefault(); dropzone.classList.add('is-over'); });
     dropzone.addEventListener('dragleave', () => dropzone.classList.remove('is-over'));
     dropzone.addEventListener('drop', event => {
         event.preventDefault();
         dropzone.classList.remove('is-over');
-        const src = event.dataTransfer.getData('text/plain');
-        if (src) placeSticker(src, event.clientX, event.clientY);
+        const stickerId = event.dataTransfer.getData('text/plain');
+        const source = stickerChoices.find(sticker => sticker.dataset.sticker === stickerId);
+        if (source) placeSticker(source, event.clientX, event.clientY);
+        dropzone.classList.remove('is-ready');
+        kindleCover.classList.remove('is-dragging');
     });
 
     function enablePointerDrag(sticker) {
         sticker.addEventListener('pointerdown', event => {
             event.preventDefault();
+            dropzone.classList.add('is-ready');
             sticker.setPointerCapture(event.pointerId);
             const move = moveEvent => {
                 const rect = dropzone.getBoundingClientRect();
@@ -77,6 +101,7 @@
                 sticker.style.top = `${y}px`;
             };
             const finish = () => {
+                dropzone.classList.remove('is-ready');
                 sticker.removeEventListener('pointermove', move);
                 sticker.removeEventListener('pointerup', finish);
                 sticker.removeEventListener('pointercancel', finish);
@@ -86,6 +111,10 @@
             sticker.addEventListener('pointercancel', finish);
         });
     }
+
+    renderCarousel();
+    startCarousel();
+    window.addEventListener('resize', renderCarousel);
 
     tabs.forEach(tab => tab.addEventListener('click', () => {
         const selected = tab.dataset.tab;

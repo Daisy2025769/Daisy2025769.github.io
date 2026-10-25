@@ -26,17 +26,19 @@
         <section class="kindle" aria-label="My resources library">
             <div class="kindle-spine" aria-hidden="true"></div>
             <aside class="kindle-cover">
-                <div class="upload-tools">
-                    <button class="upload-button" type="button" id="uploadButton">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v5h14v-5"/></svg>
-                        Upload sticker
-                    </button>
-                    <input id="stickerInput" type="file" accept="image/*" multiple hidden>
-                    <div class="sticker-tray" id="stickerTray" aria-live="polite">
-                        <p>Drag a sticker onto the cover</p>
+                <div class="sticker-picker" aria-label="Choose a sticker">
+                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous sticker">‹</button>
+                    <div class="sticker-carousel" id="stickerCarousel">
+                        <button class="sticker-choice sticker-note" type="button" draggable="true" data-sticker="note" data-variant="sticker-note" aria-label="Still matters sticker"><span>STILL<br>MATTERS</span></button>
+                        <button class="sticker-choice sticker-flower" type="button" draggable="true" data-sticker="flower" data-variant="sticker-flower" aria-label="Flower sticker"><span>✿</span></button>
+                        <button class="sticker-choice sticker-label" type="button" draggable="true" data-sticker="label" data-variant="sticker-label" aria-label="Make sticker"><span>MAKE</span></button>
+                        <button class="sticker-choice sticker-star" type="button" draggable="true" data-sticker="star" data-variant="sticker-star" aria-label="Star sticker"><span>★</span></button>
+                        <button class="sticker-choice sticker-smile" type="button" draggable="true" data-sticker="smile" data-variant="sticker-smile" aria-label="Smile sticker"><span>☺</span></button>
                     </div>
+                    <button class="carousel-arrow carousel-next" type="button" aria-label="Next sticker">›</button>
+                    <p>Drag a sticker onto the cover</p>
                 </div>
-                <div class="cover-dropzone" id="coverDropzone" aria-label="Kindle cover sticker area"></div>
+                <div class="cover-dropzone" id="coverDropzone" aria-label="Kindle cover sticker area"><span class="drop-outline" aria-hidden="true"></span></div>
             </aside>
 
             <section class="kindle-device">

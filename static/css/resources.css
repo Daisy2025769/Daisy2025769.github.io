@@ -83,58 +83,81 @@ body {
     box-shadow: inset 0 0 0 1px #ffffff8f, inset 0 0 34px #ffffff42;
 }
 
-.upload-tools { position: absolute; z-index: 10; top: 24px; left: 24px; right: 24px; }
-
-.upload-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 14px;
-    border: 1px solid #ffffff73;
-    border-radius: 999px;
-    background: #181818d9;
-    color: #fff;
-    font: 600 12px/1 "DM Sans", sans-serif;
-    letter-spacing: .04em;
-    cursor: pointer;
-    backdrop-filter: blur(7px);
-}
-
-.upload-button svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; }
-
-.sticker-tray {
+.sticker-picker {
+    position: absolute;
+    z-index: 10;
+    top: 29%;
+    left: 0;
     width: 100%;
-    min-height: 84px;
-    margin-top: 12px;
-    padding: 10px;
-    display: none;
-    align-items: center;
-    gap: 9px;
-    overflow-x: auto;
-    border: 2px solid transparent;
-    border-radius: 16px;
-    background: linear-gradient(#171717, #171717) padding-box, linear-gradient(115deg, #ffd769, #ff7fa8, #8caeff, #7fe1c4) border-box;
-    box-shadow: 0 12px 30px #0008;
+    height: 210px;
+    transform: translateY(-50%);
+    perspective: 700px;
 }
 
-.sticker-tray.is-open { display: flex; }
-.sticker-tray p { margin: auto; color: #aaa; font-size: 11px; white-space: nowrap; }
-.sticker-preview { width: 58px; height: 58px; flex: 0 0 auto; object-fit: contain; cursor: grab; filter: drop-shadow(0 5px 5px #0008); }
+.sticker-carousel { position: absolute; inset: 0 38px 28px; transform-style: preserve-3d; }
+.sticker-choice {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 92px;
+    height: 108px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border: 0;
+    cursor: grab;
+    transform-style: preserve-3d;
+    transition: transform .65s cubic-bezier(.22,.7,.2,1), opacity .5s ease, filter .5s ease;
+    filter: drop-shadow(0 12px 12px #3c47403b);
+    user-select: none;
+}
+.sticker-choice:active { cursor: grabbing; }
+.sticker-choice span { pointer-events: none; }
 
-.cover-dropzone { position: absolute; inset: 0; overflow: hidden; }
-.cover-dropzone.is-over { box-shadow: inset 0 0 0 3px #ff9ec3; }
+.carousel-arrow {
+    position: absolute;
+    z-index: 20;
+    top: 45%;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid #ffffffa6;
+    border-radius: 50%;
+    background: #ffffff55;
+    color: #3f4b45;
+    font: 24px/1 Georgia, serif;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+}
+.carousel-prev { left: 15px; }
+.carousel-next { right: 15px; }
+.sticker-picker p { position: absolute; right: 0; bottom: 0; left: 0; margin: 0; color: #47534d; font-size: 9px; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
+.kindle-cover.is-dragging .sticker-picker { opacity: 0; pointer-events: none; }
+
+.sticker-note { background: #f2e8c8; color: #557292; font: 700 13px/1.2 "DM Sans", sans-serif; transform: rotate(-3deg); }
+.sticker-flower { border-radius: 48% 52% 44% 56%; background: #d86d61; color: #f9df90; font: 54px/1 Georgia, serif; }
+.sticker-label { height: 78px; background: #e95c2f; color: #ffe48f; font: 700 16px/1 "DM Sans", sans-serif; letter-spacing: -.04em; }
+.sticker-star { clip-path: polygon(50% 0,61% 32%,95% 20%,72% 50%,100% 70%,64% 69%,52% 100%,40% 70%,4% 82%,27% 52%,0 33%,38% 33%); background: #f4c744; color: #c94337; font: 38px/1 Georgia,serif; }
+.sticker-smile { border-radius: 50%; background: #c9d6c1; color: #27352e; font: 54px/1 Georgia,serif; }
+
+.cover-dropzone { position: absolute; z-index: 2; inset: 0; overflow: hidden; }
+.drop-outline { position: absolute; z-index: 30; inset: 14px; border: 2px dashed #777; border-radius: 17px; opacity: 0; pointer-events: none; transition: opacity .18s ease; }
+.cover-dropzone.is-ready .drop-outline { opacity: .8; }
+.cover-dropzone.is-over .drop-outline { border-color: #444; background: #ffffff1f; opacity: 1; }
 .placed-sticker {
     position: absolute;
     z-index: 5;
-    width: 105px;
-    height: 105px;
-    object-fit: contain;
+    width: 94px;
+    height: 100px;
+    display: grid;
+    place-items: center;
     transform: translate(-50%, -50%);
     cursor: grab;
     touch-action: none;
     user-select: none;
     filter: drop-shadow(0 7px 7px #0008);
 }
+.placed-sticker.sticker-label { height: 72px; }
 
 .kindle-device {
     position: relative;
@@ -220,7 +243,8 @@ body {
 .cover-five { background: #d2c4b2; }
 .cover-six { background: linear-gradient(150deg, #ddd 0 43%, #777 44% 55%, #bbb 56%); }
 
-.article-list, .podcast-list { padding-top: 8px; }
+.kindle-screen > [hidden] { display: none !important; }
+.article-list, .podcast-list { display: block; padding-top: 8px; }
 .article-link {
     min-height: 63px;
     display: grid;
@@ -305,9 +329,20 @@ button:focus-visible, a:focus-visible { outline: 2px solid #ff8fbc; outline-offs
     .resource-card { min-height: 92px; padding: 8px; }
     .resource-card h2 { margin: 7px 0; font-size: 9px; }
     .resource-card p, .card-index { font-size: 6px; }
-    .upload-tools { top: 10px; left: 10px; right: 10px; }
-    .upload-button { padding: 7px 9px; font-size: 9px; }
-    .sticker-tray { min-height: 60px; }
+    .sticker-picker { top: 31%; height: 112px; }
+    .sticker-carousel { inset: 0 20px 18px; }
+    .sticker-choice { width: 48px; height: 58px; }
+    .sticker-choice.sticker-label { height: 40px; }
+    .sticker-note { font-size: 7px; }
+    .sticker-flower, .sticker-smile { font-size: 28px; }
+    .sticker-star { font-size: 20px; }
+    .sticker-label { font-size: 8px; }
+    .carousel-arrow { width: 20px; height: 20px; font-size: 15px; }
+    .carousel-prev { left: 4px; }
+    .carousel-next { right: 4px; }
+    .sticker-picker p { font-size: 5px; }
+    .drop-outline { inset: 7px; border-width: 1px; }
+    .placed-sticker { width: 50px; height: 54px; }
     .kindle-screen { padding: 8px; }
     .library-heading h1 { font-size: 18px; }
     .tab { padding: 5px 7px; font-size: 8px; }
