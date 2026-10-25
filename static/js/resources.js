@@ -71,12 +71,25 @@
         const sticker = document.createElement('div');
         sticker.className = `placed-sticker ${source.dataset.variant}`;
         sticker.innerHTML = source.innerHTML;
-        sticker.setAttribute('role', 'img');
+        sticker.insertAdjacentHTML('beforeend', '<button class="sticker-handle rotate-handle" type="button" aria-label="Rotate sticker"></button><button class="sticker-handle resize-handle" type="button" aria-label="Resize sticker"></button>');
+        sticker.setAttribute('role', 'group');
         sticker.setAttribute('aria-label', source.getAttribute('aria-label'));
+        sticker.dataset.scale = '1';
+        sticker.dataset.rotation = '0';
         sticker.style.left = `${Math.max(0, Math.min(rect.width, clientX - rect.left))}px`;
         sticker.style.top = `${Math.max(0, Math.min(rect.height, clientY - rect.top))}px`;
         dropzone.appendChild(sticker);
         enablePointerDrag(sticker);
+        selectSticker(sticker);
+    };
+
+    const selectSticker = selected => {
+        dropzone.querySelectorAll('.placed-sticker').forEach(sticker => sticker.classList.toggle('is-selected', sticker === selected));
+    };
+
+    const applyStickerTransform = sticker => {
+        sticker.style.setProperty('--sticker-scale', sticker.dataset.scale || '1');
+        sticker.style.setProperty('--sticker-rotation', `${sticker.dataset.rotation || 0}deg`);
     };
 
     stickerChoices.forEach(sticker => {
@@ -101,6 +114,9 @@
 
     dropzone.addEventListener('dragover', event => { event.preventDefault(); dropzone.classList.add('is-over'); });
     dropzone.addEventListener('dragleave', () => dropzone.classList.remove('is-over'));
+    dropzone.addEventListener('pointerdown', event => {
+        if (!event.target.closest('.placed-sticker')) selectSticker(null);
+    });
     dropzone.addEventListener('drop', event => {
         event.preventDefault();
         dropzone.classList.remove('is-over');
@@ -111,8 +127,63 @@
     });
 
     function enablePointerDrag(sticker) {
-        sticker.addEventListener('pointerdown', event => {
+        const resizeHandle = sticker.querySelector('.resize-handle');
+        const rotateHandle = sticker.querySelector('.rotate-handle');
+
+        resizeHandle.addEventListener('pointerdown', event => {
             event.preventDefault();
+            event.stopPropagation();
+            selectSticker(sticker);
+            resizeHandle.setPointerCapture(event.pointerId);
+            const rect = sticker.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const startDistance = Math.max(1, Math.hypot(event.clientX - centerX, event.clientY - centerY));
+            const startScale = Number(sticker.dataset.scale) || 1;
+            const move = moveEvent => {
+                const distance = Math.hypot(moveEvent.clientX - centerX, moveEvent.clientY - centerY);
+                sticker.dataset.scale = String(Math.max(.45, Math.min(2.4, startScale * distance / startDistance)));
+                applyStickerTransform(sticker);
+            };
+            const finish = () => {
+                resizeHandle.removeEventListener('pointermove', move);
+                resizeHandle.removeEventListener('pointerup', finish);
+                resizeHandle.removeEventListener('pointercancel', finish);
+            };
+            resizeHandle.addEventListener('pointermove', move);
+            resizeHandle.addEventListener('pointerup', finish);
+            resizeHandle.addEventListener('pointercancel', finish);
+        });
+
+        rotateHandle.addEventListener('pointerdown', event => {
+            event.preventDefault();
+            event.stopPropagation();
+            selectSticker(sticker);
+            rotateHandle.setPointerCapture(event.pointerId);
+            const rect = sticker.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const startPointerAngle = Math.atan2(event.clientY - centerY, event.clientX - centerX) * 180 / Math.PI;
+            const startRotation = Number(sticker.dataset.rotation) || 0;
+            const move = moveEvent => {
+                const pointerAngle = Math.atan2(moveEvent.clientY - centerY, moveEvent.clientX - centerX) * 180 / Math.PI;
+                sticker.dataset.rotation = String(startRotation + pointerAngle - startPointerAngle);
+                applyStickerTransform(sticker);
+            };
+            const finish = () => {
+                rotateHandle.removeEventListener('pointermove', move);
+                rotateHandle.removeEventListener('pointerup', finish);
+                rotateHandle.removeEventListener('pointercancel', finish);
+            };
+            rotateHandle.addEventListener('pointermove', move);
+            rotateHandle.addEventListener('pointerup', finish);
+            rotateHandle.addEventListener('pointercancel', finish);
+        });
+
+        sticker.addEventListener('pointerdown', event => {
+            if (event.target.closest('.sticker-handle')) return;
+            event.preventDefault();
+            selectSticker(sticker);
             dropzone.classList.add('is-ready');
             sticker.setPointerCapture(event.pointerId);
             const move = moveEvent => {

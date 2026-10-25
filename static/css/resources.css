@@ -146,13 +146,21 @@ body {
     height: 76px;
     display: grid;
     place-items: center;
-    transform: translate(-50%, -50%);
+    --sticker-scale: 1;
+    --sticker-rotation: 0deg;
+    transform: translate(-50%, -50%) rotate(var(--sticker-rotation)) scale(var(--sticker-scale));
     cursor: grab;
     touch-action: none;
     user-select: none;
     filter: drop-shadow(0 7px 7px #0008);
 }
 .placed-sticker img { width: 100%; height: 100%; display: block; object-fit: contain; pointer-events: none; }
+.placed-sticker.is-selected::after { content: ""; position: absolute; inset: -6px; border: 1px dashed #686868; border-radius: 5px; pointer-events: none; }
+.sticker-handle { position: absolute; z-index: 3; width: 15px; height: 15px; padding: 0; display: none; border: 1px solid #555; border-radius: 50%; background: #f8f7f1; box-shadow: 0 1px 4px #0003; cursor: pointer; touch-action: none; }
+.placed-sticker.is-selected .sticker-handle { display: block; }
+.resize-handle { right: -12px; bottom: -12px; cursor: nwse-resize; }
+.rotate-handle { top: -27px; left: 50%; transform: translateX(-50%); cursor: grab; }
+.rotate-handle::after { content: ""; position: absolute; top: 14px; left: 6px; width: 1px; height: 11px; background: #686868; }
 
 .kindle-device {
     position: relative;
