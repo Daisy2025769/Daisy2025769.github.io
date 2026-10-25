@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>My Resources - Daisy Space</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Libre+Caslon+Text:wght@400;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/resources.css">
+</head>
+<body>
+    <header class="resource-header">
+        <a class="brand" href="/" aria-label="Daisy Space home"><img src="/logo.jpg" alt="Daisy Space"></a>
+        <div class="resource-actions">
+            <a href="/contact/" class="icon-btn" aria-label="Contact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </a>
+            <a href="/" class="icon-btn" aria-label="Home">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </a>
+        </div>
+    </header>
+
+    <main class="resources-main">
+        <section class="kindle" aria-label="My resources library">
+            <div class="kindle-spine" aria-hidden="true"></div>
+            <aside class="kindle-cover">
+                <div class="upload-tools">
+                    <button class="upload-button" type="button" id="uploadButton">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v5h14v-5"/></svg>
+                        Upload sticker
+                    </button>
+                    <input id="stickerInput" type="file" accept="image/*" multiple hidden>
+                    <div class="sticker-tray" id="stickerTray" aria-live="polite">
+                        <p>Drag a sticker onto the cover</p>
+                    </div>
+                </div>
+                <div class="cover-dropzone" id="coverDropzone" aria-label="Kindle cover sticker area">
+                    <span class="cover-mark">MY<br>RESOURCES</span>
+                </div>
+            </aside>
+
+            <section class="kindle-device">
+                <div class="kindle-screen">
+                    <div class="status-bar"><span>My Library</span><span>YUMENG · 100%</span></div>
+                    <nav class="library-tabs" aria-label="Resource categories">
+                        <button type="button" class="tab is-active" data-tab="articles" aria-selected="true">Articles</button>
+                        <button type="button" class="tab" data-tab="podcasts" aria-selected="false">Podcasts</button>
+                    </nav>
+                    <div class="library-heading">
+                        <h1 id="libraryTitle">Articles</h1>
+                        <span>Collections⌄</span>
+                    </div>
+                    <div class="resource-grid" id="articlesPanel">
+                        <article class="resource-card tone-cream"><span class="card-index">01</span><h2>Ideas worth returning to</h2><p>Thinking · Culture</p></article>
+                        <article class="resource-card tone-blue"><span class="card-index">02</span><h2>Work, attention &amp; the internet</h2><p>Digital life</p></article>
+                        <article class="resource-card tone-photo"><span class="card-index">03</span><h2>Notes from elsewhere</h2><p>Travel · Observation</p></article>
+                        <article class="resource-card tone-red"><span class="card-index">04</span><h2>Designing for people</h2><p>Design · Research</p></article>
+                        <article class="resource-card tone-green"><span class="card-index">05</span><h2>Small systems, better days</h2><p>Productivity</p></article>
+                        <article class="resource-card tone-mono"><span class="card-index">06</span><h2>The long way around</h2><p>Essays</p></article>
+                    </div>
+                    <div class="resource-grid" id="podcastsPanel" hidden>
+                        <article class="resource-card tone-mono"><span class="card-index">01</span><h2>Conversations on craft</h2><p>Creative practice</p></article>
+                        <article class="resource-card tone-red"><span class="card-index">02</span><h2>Business, slowly</h2><p>Work · Strategy</p></article>
+                        <article class="resource-card tone-blue"><span class="card-index">03</span><h2>People behind products</h2><p>Design stories</p></article>
+                        <article class="resource-card tone-cream"><span class="card-index">04</span><h2>Curious minds</h2><p>Ideas · Society</p></article>
+                    </div>
+                    <p class="resource-count" id="resourceCount">6 saved articles</p>
+                </div>
+                <span class="kindle-wordmark">kindle</span>
+            </section>
+        </section>
+    </main>
+    <script src="/js/resources.js" defer></script>
+</body>
+</html>
