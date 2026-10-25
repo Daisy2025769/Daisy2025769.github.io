@@ -92,9 +92,15 @@
             item.classList.toggle('is-active', active);
             item.setAttribute('aria-selected', active ? 'true' : 'false');
         });
+        document.querySelector('#booksPanel').hidden = selected !== 'books';
         document.querySelector('#articlesPanel').hidden = selected !== 'articles';
         document.querySelector('#podcastsPanel').hidden = selected !== 'podcasts';
-        title.textContent = selected === 'articles' ? 'Articles' : 'Podcasts';
-        count.textContent = selected === 'articles' ? '6 saved articles' : '4 saved podcasts';
+        const labels = {
+            books: ['Books', '6 saved books'],
+            articles: ['Articles', '6 saved articles'],
+            podcasts: ['Podcasts', '4 saved podcasts']
+        };
+        title.textContent = labels[selected][0];
+        count.textContent = labels[selected][1];
     }));
 })();

@@ -34,14 +34,15 @@ body {
 
 .kindle {
     position: relative;
-    width: min(1120px, 90vw);
-    height: min(690px, calc(100svh - 130px));
-    min-height: 560px;
+    width: min(980px, 88vw, calc((100svh - 132px) * 1.42));
+    height: auto;
+    aspect-ratio: 1.42;
+    min-height: 0;
     display: grid;
-    grid-template-columns: 38% 62%;
+    grid-template-columns: 46% 54%;
     overflow: hidden;
-    border: 10px solid var(--device);
-    border-radius: 28px;
+    border: 9px solid var(--device);
+    border-radius: 34px;
     background: var(--device);
     box-shadow: 0 28px 60px rgba(21, 19, 17, .23), inset 0 0 0 1px #3b3b3b;
 }
@@ -51,8 +52,8 @@ body {
     z-index: 8;
     top: 0;
     bottom: 0;
-    left: 38%;
-    width: 18px;
+    left: 46%;
+    width: 20px;
     transform: translateX(-50%);
     background: linear-gradient(90deg, #050505, #363636 46%, #080808 55%, #202020);
     box-shadow: -8px 0 14px #0008, 8px 0 14px #0006;
@@ -61,7 +62,7 @@ body {
 .kindle-cover {
     position: relative;
     overflow: hidden;
-    border-radius: 17px 2px 2px 17px;
+    border-radius: 24px 3px 3px 24px;
     background:
         radial-gradient(circle at 15% 15%, #303030 0 2px, transparent 2.5px),
         linear-gradient(145deg, #242424, #0a0a0a 62%, #181818);
@@ -125,9 +126,9 @@ body {
 
 .kindle-device {
     position: relative;
-    padding: 22px 22px 44px 30px;
+    padding: 25px 23px 47px 31px;
     overflow: hidden;
-    border-radius: 2px 17px 17px 2px;
+    border-radius: 3px 24px 24px 3px;
     background: linear-gradient(145deg, #232323, #050505);
 }
 
@@ -150,13 +151,13 @@ body {
     margin: 0 auto 13px;
     padding: 4px;
     display: flex;
-    gap: 3px;
+    gap: 2px;
     border-radius: 999px;
     background: #d8d7d0;
 }
 
 .tab {
-    padding: 7px 17px;
+    padding: 7px 14px;
     border: 0;
     border-radius: 999px;
     background: transparent;
@@ -194,6 +195,12 @@ body {
 .tone-red { background: #c9b4a7; }
 .tone-green { background: #bfc7b2; }
 .tone-mono { background: #d8d8d3; }
+.cover-one { background: #ded8c3; }
+.cover-two { background: #b7c3c3; }
+.cover-three { background: #deddd6; border: 4px solid #585858; }
+.cover-four { background: #b8b5ab; }
+.cover-five { background: #d2c4b2; }
+.cover-six { background: linear-gradient(150deg, #ddd 0 43%, #777 44% 55%, #bbb 56%); }
 .resource-count { margin: 20px 0 0; text-align: center; color: #777; font-size: 9px; }
 .kindle-wordmark { position: absolute; bottom: 14px; left: 53%; transform: translateX(-50%); color: #777; font: 500 12px Georgia, serif; letter-spacing: .03em; }
 
@@ -203,7 +210,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #ff8fbc; outline-offs
     .resource-header { height: 72px; padding: 0 20px; }
     .brand img { height: 58px; }
     .resources-main { min-height: calc(100svh - 72px); padding: 10px 16px 28px; }
-    .kindle { width: min(620px, 96vw); height: auto; min-height: 0; grid-template-columns: 1fr; border-width: 8px; }
+    .kindle { width: min(620px, 96vw); height: auto; min-height: 0; aspect-ratio: auto; grid-template-columns: 1fr; border-width: 8px; }
     .kindle-spine { display: none; }
     .kindle-cover { min-height: 420px; border-radius: 18px 18px 3px 3px; }
     .kindle-device { min-height: 620px; padding: 18px 16px 40px; border-radius: 3px 3px 18px 18px; }

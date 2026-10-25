@@ -45,14 +45,23 @@
                 <div class="kindle-screen">
                     <div class="status-bar"><span>My Library</span><span>YUMENG · 100%</span></div>
                     <nav class="library-tabs" aria-label="Resource categories">
-                        <button type="button" class="tab is-active" data-tab="articles" aria-selected="true">Articles</button>
+                        <button type="button" class="tab is-active" data-tab="books" aria-selected="true">Books</button>
+                        <button type="button" class="tab" data-tab="articles" aria-selected="false">Articles</button>
                         <button type="button" class="tab" data-tab="podcasts" aria-selected="false">Podcasts</button>
                     </nav>
                     <div class="library-heading">
-                        <h1 id="libraryTitle">Articles</h1>
+                        <h1 id="libraryTitle">Books</h1>
                         <span>Collections⌄</span>
                     </div>
-                    <div class="resource-grid" id="articlesPanel">
+                    <div class="resource-grid" id="booksPanel">
+                        <article class="resource-card book-cover cover-one"><span class="card-index">01</span><h2>Ways of Seeing</h2><p>John Berger</p></article>
+                        <article class="resource-card book-cover cover-two"><span class="card-index">02</span><h2>The Creative Act</h2><p>Rick Rubin</p></article>
+                        <article class="resource-card book-cover cover-three"><span class="card-index">03</span><h2>On Photography</h2><p>Susan Sontag</p></article>
+                        <article class="resource-card book-cover cover-four"><span class="card-index">04</span><h2>Design as Art</h2><p>Bruno Munari</p></article>
+                        <article class="resource-card book-cover cover-five"><span class="card-index">05</span><h2>Kitchen</h2><p>Banana Yoshimoto</p></article>
+                        <article class="resource-card book-cover cover-six"><span class="card-index">06</span><h2>The Art of Travel</h2><p>Alain de Botton</p></article>
+                    </div>
+                    <div class="resource-grid" id="articlesPanel" hidden>
                         <article class="resource-card tone-cream"><span class="card-index">01</span><h2>Ideas worth returning to</h2><p>Thinking · Culture</p></article>
                         <article class="resource-card tone-blue"><span class="card-index">02</span><h2>Work, attention &amp; the internet</h2><p>Digital life</p></article>
                         <article class="resource-card tone-photo"><span class="card-index">03</span><h2>Notes from elsewhere</h2><p>Travel · Observation</p></article>
@@ -66,7 +75,7 @@
                         <article class="resource-card tone-blue"><span class="card-index">03</span><h2>People behind products</h2><p>Design stories</p></article>
                         <article class="resource-card tone-cream"><span class="card-index">04</span><h2>Curious minds</h2><p>Ideas · Society</p></article>
                     </div>
-                    <p class="resource-count" id="resourceCount">6 saved articles</p>
+                    <p class="resource-count" id="resourceCount">6 saved books</p>
                 </div>
                 <span class="kindle-wordmark">kindle</span>
             </section>
