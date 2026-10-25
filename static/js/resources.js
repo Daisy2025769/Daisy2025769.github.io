@@ -12,41 +12,57 @@
 
     if (!dropzone || !carousel) return;
 
-    let carouselIndex = 0;
-    let carouselTimer;
+    let carouselAngle = 0;
+    let hoveredSticker = null;
+    let lastFrame = performance.now();
+    let animationFrame;
+    const drawProgress = new WeakMap(stickerChoices.map(sticker => [sticker, 0]));
 
     const renderCarousel = () => {
         const total = stickerChoices.length;
-        const spacing = carousel.clientWidth < 120 ? 22 : carousel.clientWidth < 220 ? 36 : 55;
+        const radiusX = carousel.clientWidth < 100 ? 27 : carousel.clientWidth < 170 ? 47 : 82;
+        const radiusY = carousel.clientWidth < 100 ? 11 : carousel.clientWidth < 170 ? 17 : 27;
         stickerChoices.forEach((sticker, index) => {
-            let offset = (index - carouselIndex + total) % total;
-            if (offset > total / 2) offset -= total;
-            const distance = Math.abs(offset);
-            sticker.style.opacity = distance > 3 ? '0' : `${1 - distance * .19}`;
-            sticker.style.zIndex = `${10 - distance}`;
-            sticker.style.pointerEvents = distance > 3 ? 'none' : 'auto';
-            sticker.style.transform = `translate(-50%, -50%) translateX(${offset * spacing}px) translateY(${distance * 24}px) translateZ(${(3 - distance) * 34}px) rotateY(${-offset * 58}deg) scale(${1 - distance * .13})`;
+            const theta = carouselAngle + (index / total) * Math.PI * 2;
+            const depth = (Math.cos(theta) + 1) / 2;
+            const x = Math.sin(theta) * radiusX;
+            const y = (1 - depth) * radiusY;
+            const scale = .56 + depth * .44;
+            const rotate = -Math.sin(theta) * 66;
+            const isDrawn = hoveredSticker === sticker;
+            const currentProgress = drawProgress.get(sticker) || 0;
+            const nextProgress = currentProgress + ((isDrawn ? 1 : 0) - currentProgress) * .13;
+            drawProgress.set(sticker, Math.abs(nextProgress - (isDrawn ? 1 : 0)) < .002 ? (isDrawn ? 1 : 0) : nextProgress);
+            const pull = nextProgress * nextProgress * (3 - 2 * nextProgress);
+            const pulledY = y - 28 * pull;
+            const pulledZ = depth * 95 + (250 - depth * 95) * pull;
+            const pulledRotate = rotate * (1 - pull);
+            const pulledScale = scale + (1.28 - scale) * pull;
+            sticker.classList.toggle('is-drawn', isDrawn);
+            sticker.style.opacity = `${.24 + depth * .76 + (1 - (.24 + depth * .76)) * pull}`;
+            sticker.style.zIndex = pull > .03 ? '100' : `${Math.round(depth * 80)}`;
+            sticker.style.transform = `translate(-50%, -50%) translateX(${x}px) translateY(${pulledY}px) translateZ(${pulledZ}px) rotateY(${pulledRotate}deg) scale(${pulledScale})`;
         });
     };
 
     const rotateCarousel = direction => {
-        carouselIndex = (carouselIndex + direction + stickerChoices.length) % stickerChoices.length;
+        carouselAngle += direction * ((Math.PI * 2) / stickerChoices.length);
         renderCarousel();
     };
 
-    const startCarousel = () => {
-        clearInterval(carouselTimer);
-        carouselTimer = setInterval(() => rotateCarousel(1), 2400);
+    const animateCarousel = now => {
+        const elapsed = Math.min(now - lastFrame, 50);
+        lastFrame = now;
+        if (!hoveredSticker && !document.hidden) carouselAngle += elapsed * .00013;
+        renderCarousel();
+        animationFrame = requestAnimationFrame(animateCarousel);
     };
 
-    previousSticker.addEventListener('click', () => { rotateCarousel(-1); startCarousel(); });
-    nextSticker.addEventListener('click', () => { rotateCarousel(1); startCarousel(); });
-    carousel.addEventListener('pointerenter', () => clearInterval(carouselTimer));
-    carousel.addEventListener('pointerleave', startCarousel);
+    previousSticker.addEventListener('click', () => rotateCarousel(-1));
+    nextSticker.addEventListener('click', () => rotateCarousel(1));
     carousel.addEventListener('wheel', event => {
         event.preventDefault();
         rotateCarousel(event.deltaY > 0 || event.deltaX > 0 ? 1 : -1);
-        startCarousel();
     }, { passive: false });
 
     const placeSticker = (source, clientX, clientY) => {
@@ -63,16 +79,20 @@
     };
 
     stickerChoices.forEach(sticker => {
+        sticker.addEventListener('pointerenter', () => { hoveredSticker = sticker; });
+        sticker.addEventListener('pointerleave', () => { if (hoveredSticker === sticker) hoveredSticker = null; });
+        sticker.addEventListener('focus', () => { hoveredSticker = sticker; });
+        sticker.addEventListener('blur', () => { if (hoveredSticker === sticker) hoveredSticker = null; });
         sticker.addEventListener('pointerdown', () => dropzone.classList.add('is-ready'));
         sticker.addEventListener('dragstart', event => {
-            clearInterval(carouselTimer);
+            hoveredSticker = sticker;
             event.dataTransfer.setData('text/plain', sticker.dataset.sticker);
             event.dataTransfer.effectAllowed = 'copy';
             dropzone.classList.add('is-ready');
         });
         sticker.addEventListener('dragend', () => {
             dropzone.classList.remove('is-ready', 'is-over');
-            startCarousel();
+            hoveredSticker = null;
         });
     });
 
@@ -114,8 +134,9 @@
     }
 
     renderCarousel();
-    startCarousel();
+    animationFrame = requestAnimationFrame(animateCarousel);
     window.addEventListener('resize', renderCarousel);
+    window.addEventListener('pagehide', () => cancelAnimationFrame(animationFrame));
 
     tabs.forEach(tab => tab.addEventListener('click', () => {
         const selected = tab.dataset.tab;
