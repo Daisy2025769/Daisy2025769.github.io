@@ -71,7 +71,7 @@
         const sticker = document.createElement('div');
         sticker.className = `placed-sticker ${source.dataset.variant}`;
         sticker.innerHTML = source.innerHTML;
-        sticker.insertAdjacentHTML('beforeend', '<button class="sticker-handle rotate-handle" type="button" aria-label="Rotate sticker"></button><button class="sticker-handle resize-handle" type="button" aria-label="Resize sticker"></button>');
+        sticker.insertAdjacentHTML('beforeend', '<span class="crop-mark crop-n" aria-hidden="true"></span><span class="crop-mark crop-e" aria-hidden="true"></span><span class="crop-mark crop-s" aria-hidden="true"></span><span class="crop-mark crop-w" aria-hidden="true"></span><button class="sticker-handle resize-handle crop-nw" type="button" aria-label="Resize sticker from top left"></button><button class="sticker-handle resize-handle crop-ne" type="button" aria-label="Resize sticker from top right"></button><button class="sticker-handle resize-handle crop-sw" type="button" aria-label="Resize sticker from bottom left"></button><button class="sticker-handle resize-handle crop-se" type="button" aria-label="Resize sticker from bottom right"></button><button class="sticker-handle rotate-handle" type="button" aria-label="Rotate sticker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5"></path><path d="M19 12a7 7 0 1 0-2 5"></path></svg></button>');
         sticker.setAttribute('role', 'group');
         sticker.setAttribute('aria-label', source.getAttribute('aria-label'));
         sticker.dataset.scale = '1';
@@ -127,33 +127,33 @@
     });
 
     function enablePointerDrag(sticker) {
-        const resizeHandle = sticker.querySelector('.resize-handle');
+        const resizeHandles = [...sticker.querySelectorAll('.resize-handle')];
         const rotateHandle = sticker.querySelector('.rotate-handle');
 
-        resizeHandle.addEventListener('pointerdown', event => {
-            event.preventDefault();
-            event.stopPropagation();
-            selectSticker(sticker);
-            resizeHandle.setPointerCapture(event.pointerId);
-            const rect = sticker.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            const startDistance = Math.max(1, Math.hypot(event.clientX - centerX, event.clientY - centerY));
-            const startScale = Number(sticker.dataset.scale) || 1;
-            const move = moveEvent => {
-                const distance = Math.hypot(moveEvent.clientX - centerX, moveEvent.clientY - centerY);
-                sticker.dataset.scale = String(Math.max(.45, Math.min(2.4, startScale * distance / startDistance)));
-                applyStickerTransform(sticker);
-            };
-            const finish = () => {
-                resizeHandle.removeEventListener('pointermove', move);
-                resizeHandle.removeEventListener('pointerup', finish);
-                resizeHandle.removeEventListener('pointercancel', finish);
-            };
-            resizeHandle.addEventListener('pointermove', move);
-            resizeHandle.addEventListener('pointerup', finish);
-            resizeHandle.addEventListener('pointercancel', finish);
-        });
+        resizeHandles.forEach(resizeHandle => resizeHandle.addEventListener('pointerdown', event => {
+                event.preventDefault();
+                event.stopPropagation();
+                selectSticker(sticker);
+                resizeHandle.setPointerCapture(event.pointerId);
+                const rect = sticker.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const startDistance = Math.max(1, Math.hypot(event.clientX - centerX, event.clientY - centerY));
+                const startScale = Number(sticker.dataset.scale) || 1;
+                const move = moveEvent => {
+                    const distance = Math.hypot(moveEvent.clientX - centerX, moveEvent.clientY - centerY);
+                    sticker.dataset.scale = String(Math.max(.45, Math.min(2.4, startScale * distance / startDistance)));
+                    applyStickerTransform(sticker);
+                };
+                const finish = () => {
+                    resizeHandle.removeEventListener('pointermove', move);
+                    resizeHandle.removeEventListener('pointerup', finish);
+                    resizeHandle.removeEventListener('pointercancel', finish);
+                };
+                resizeHandle.addEventListener('pointermove', move);
+                resizeHandle.addEventListener('pointerup', finish);
+                resizeHandle.addEventListener('pointercancel', finish);
+            }));
 
         rotateHandle.addEventListener('pointerdown', event => {
             event.preventDefault();
