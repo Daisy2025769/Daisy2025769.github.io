@@ -6,6 +6,8 @@
     const tabs = [...document.querySelectorAll('.tab')];
     const title = document.querySelector('#libraryTitle');
     const count = document.querySelector('#resourceCount');
+    const kindle = document.querySelector('.kindle');
+    const swatches = [...document.querySelectorAll('.color-swatch')];
 
     if (!uploadButton || !stickerInput || !stickerTray || !dropzone) return;
 
@@ -102,5 +104,16 @@
         };
         title.textContent = labels[selected][0];
         count.textContent = labels[selected][1];
+    }));
+
+    swatches.forEach(swatch => swatch.addEventListener('click', () => {
+        kindle.style.setProperty('--case', swatch.dataset.case);
+        kindle.style.setProperty('--case-highlight', swatch.dataset.highlight);
+        kindle.style.setProperty('--case-deep', swatch.dataset.deep);
+        swatches.forEach(option => {
+            const selected = option === swatch;
+            option.classList.toggle('is-selected', selected);
+            option.setAttribute('aria-pressed', selected ? 'true' : 'false');
+        });
     }));
 })();
