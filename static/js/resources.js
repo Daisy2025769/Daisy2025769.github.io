@@ -1,6 +1,5 @@
 (() => {
     const dropzone = document.querySelector('#coverDropzone');
-    const kindleCover = document.querySelector('.kindle-cover');
     const carousel = document.querySelector('#stickerCarousel');
     const stickerChoices = [...document.querySelectorAll('.sticker-choice')];
     const previousSticker = document.querySelector('.carousel-prev');
@@ -18,15 +17,15 @@
 
     const renderCarousel = () => {
         const total = stickerChoices.length;
-        const spacing = carousel.clientWidth < 220 ? 38 : 78;
+        const spacing = carousel.clientWidth < 120 ? 22 : carousel.clientWidth < 220 ? 36 : 55;
         stickerChoices.forEach((sticker, index) => {
             let offset = (index - carouselIndex + total) % total;
             if (offset > total / 2) offset -= total;
             const distance = Math.abs(offset);
-            sticker.style.opacity = distance > 2 ? '0' : `${1 - distance * .25}`;
+            sticker.style.opacity = distance > 3 ? '0' : `${1 - distance * .19}`;
             sticker.style.zIndex = `${10 - distance}`;
-            sticker.style.pointerEvents = distance > 2 ? 'none' : 'auto';
-            sticker.style.transform = `translate(-50%, -50%) translateX(${offset * spacing}px) translateZ(${(2 - distance) * 24}px) rotateY(${-offset * 52}deg) scale(${1 - distance * .16})`;
+            sticker.style.pointerEvents = distance > 3 ? 'none' : 'auto';
+            sticker.style.transform = `translate(-50%, -50%) translateX(${offset * spacing}px) translateY(${distance * 24}px) translateZ(${(3 - distance) * 34}px) rotateY(${-offset * 58}deg) scale(${1 - distance * .13})`;
         });
     };
 
@@ -44,6 +43,11 @@
     nextSticker.addEventListener('click', () => { rotateCarousel(1); startCarousel(); });
     carousel.addEventListener('pointerenter', () => clearInterval(carouselTimer));
     carousel.addEventListener('pointerleave', startCarousel);
+    carousel.addEventListener('wheel', event => {
+        event.preventDefault();
+        rotateCarousel(event.deltaY > 0 || event.deltaX > 0 ? 1 : -1);
+        startCarousel();
+    }, { passive: false });
 
     const placeSticker = (source, clientX, clientY) => {
         const rect = dropzone.getBoundingClientRect();
@@ -65,11 +69,9 @@
             event.dataTransfer.setData('text/plain', sticker.dataset.sticker);
             event.dataTransfer.effectAllowed = 'copy';
             dropzone.classList.add('is-ready');
-            kindleCover.classList.add('is-dragging');
         });
         sticker.addEventListener('dragend', () => {
             dropzone.classList.remove('is-ready', 'is-over');
-            kindleCover.classList.remove('is-dragging');
             startCarousel();
         });
     });
@@ -85,7 +87,6 @@
         const source = stickerChoices.find(sticker => sticker.dataset.sticker === stickerId);
         if (source) placeSticker(source, event.clientX, event.clientY);
         dropzone.classList.remove('is-ready');
-        kindleCover.classList.remove('is-dragging');
     });
 
     function enablePointerDrag(sticker) {

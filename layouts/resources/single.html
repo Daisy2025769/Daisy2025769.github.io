@@ -23,26 +23,35 @@
     </header>
 
     <main class="resources-main">
-        <section class="kindle" aria-label="My resources library">
-            <div class="kindle-spine" aria-hidden="true"></div>
-            <aside class="kindle-cover">
+        <div class="resource-stage">
+            <aside class="sticker-dock" aria-label="Sticker selector">
                 <div class="sticker-picker" aria-label="Choose a sticker">
-                    <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous sticker">‹</button>
                     <div class="sticker-carousel" id="stickerCarousel">
                         <button class="sticker-choice sticker-note" type="button" draggable="true" data-sticker="note" data-variant="sticker-note" aria-label="Still matters sticker"><span>STILL<br>MATTERS</span></button>
                         <button class="sticker-choice sticker-flower" type="button" draggable="true" data-sticker="flower" data-variant="sticker-flower" aria-label="Flower sticker"><span>✿</span></button>
                         <button class="sticker-choice sticker-label" type="button" draggable="true" data-sticker="label" data-variant="sticker-label" aria-label="Make sticker"><span>MAKE</span></button>
                         <button class="sticker-choice sticker-star" type="button" draggable="true" data-sticker="star" data-variant="sticker-star" aria-label="Star sticker"><span>★</span></button>
                         <button class="sticker-choice sticker-smile" type="button" draggable="true" data-sticker="smile" data-variant="sticker-smile" aria-label="Smile sticker"><span>☺</span></button>
+                        <button class="sticker-choice sticker-eye" type="button" draggable="true" data-sticker="eye" data-variant="sticker-eye" aria-label="Eye sticker"><span>◉</span></button>
+                        <button class="sticker-choice sticker-wave" type="button" draggable="true" data-sticker="wave" data-variant="sticker-wave" aria-label="Wave sticker"><span>≈</span></button>
                     </div>
-                    <button class="carousel-arrow carousel-next" type="button" aria-label="Next sticker">›</button>
-                    <p>Drag a sticker onto the cover</p>
+                    <div class="carousel-controls">
+                        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous sticker">‹</button>
+                        <p>Choose · drag · place</p>
+                        <button class="carousel-arrow carousel-next" type="button" aria-label="Next sticker">›</button>
+                    </div>
                 </div>
-                <div class="cover-dropzone" id="coverDropzone" aria-label="Kindle cover sticker area"><span class="drop-outline" aria-hidden="true"></span></div>
             </aside>
 
-            <section class="kindle-device">
-                <div class="kindle-screen">
+            <div class="kindle-column">
+                <section class="kindle" aria-label="My resources library">
+                    <div class="kindle-spine" aria-hidden="true"></div>
+                    <aside class="kindle-cover">
+                        <div class="cover-dropzone" id="coverDropzone" aria-label="Kindle cover sticker area"><span class="drop-outline" aria-hidden="true"></span></div>
+                    </aside>
+
+                    <section class="kindle-device">
+                        <div class="kindle-screen">
                     <div class="status-bar"><span>My Library</span><span>YUMENG · 100%</span></div>
                     <nav class="library-tabs" aria-label="Resource categories">
                         <button type="button" class="tab is-active" data-tab="books" aria-selected="true">Books</button>
@@ -75,20 +84,22 @@
                         <a class="podcast-row" href="#" data-placeholder-link><span class="podcast-cover podcast-four">04</span><span><strong>Curious minds</strong><em>Ideas &amp; society · 29 min</em></span><b>↗</b></a>
                     </div>
                     <p class="resource-count" id="resourceCount">6 saved books</p>
-                </div>
-                <span class="kindle-wordmark">kindle</span>
-            </section>
-        </section>
-        <section class="color-picker" aria-labelledby="colorPickerTitle">
-            <h2 id="colorPickerTitle">Choose a color</h2>
-            <div class="color-options">
-                <button class="color-swatch sky is-selected" type="button" data-case="#a7cfe9" data-highlight="#d1e6f3" data-deep="#739bb5" aria-label="Sky blue case" aria-pressed="true"><span></span></button>
-                <button class="color-swatch tobacco" type="button" data-case="#684735" data-highlight="#98715a" data-deep="#40291e" aria-label="Tobacco brown case" aria-pressed="false"><span></span></button>
-                <button class="color-swatch butter" type="button" data-case="#f3d996" data-highlight="#fff0bd" data-deep="#c5a85d" aria-label="Butter yellow case" aria-pressed="false"><span></span></button>
-                <button class="color-swatch orange" type="button" data-case="#f46a21" data-highlight="#ff9a60" data-deep="#b84612" aria-label="Orange case" aria-pressed="false"><span></span></button>
-                <button class="color-swatch sage" type="button" data-case="#a8b7a0" data-highlight="#d0dacb" data-deep="#74816e" aria-label="Sage green case" aria-pressed="false"><span></span></button>
+                        </div>
+                        <span class="kindle-wordmark">kindle</span>
+                    </section>
+                </section>
+                <section class="color-picker" aria-labelledby="colorPickerTitle">
+                    <h2 id="colorPickerTitle">Choose a color</h2>
+                    <div class="color-options">
+                        <button class="color-swatch sky is-selected" type="button" data-case="#a7cfe9" data-highlight="#d1e6f3" data-deep="#739bb5" aria-label="Sky blue case" aria-pressed="true"><span></span></button>
+                        <button class="color-swatch tobacco" type="button" data-case="#684735" data-highlight="#98715a" data-deep="#40291e" aria-label="Tobacco brown case" aria-pressed="false"><span></span></button>
+                        <button class="color-swatch butter" type="button" data-case="#f3d996" data-highlight="#fff0bd" data-deep="#c5a85d" aria-label="Butter yellow case" aria-pressed="false"><span></span></button>
+                        <button class="color-swatch orange" type="button" data-case="#f46a21" data-highlight="#ff9a60" data-deep="#b84612" aria-label="Orange case" aria-pressed="false"><span></span></button>
+                        <button class="color-swatch sage" type="button" data-case="#a8b7a0" data-highlight="#d0dacb" data-deep="#74816e" aria-label="Sage green case" aria-pressed="false"><span></span></button>
+                    </div>
+                </section>
             </div>
-        </section>
+        </div>
     </main>
     <script src="/js/resources.js" defer></script>
 </body>

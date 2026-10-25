@@ -38,14 +38,24 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 9px;
     overflow: hidden;
     padding: 8px 5vw 16px;
 }
 
+.resource-stage {
+    width: min(1480px, 96vw);
+    display: grid;
+    grid-template-columns: minmax(240px, 330px) minmax(0, 1040px);
+    align-items: center;
+    justify-content: center;
+    gap: clamp(18px, 2.4vw, 38px);
+}
+
+.kindle-column { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 9px; }
+
 .kindle {
     position: relative;
-    width: min(1040px, 90vw, calc((100svh - 170px) * 1.42));
+    width: min(1040px, calc(96vw - 290px), calc((100svh - 170px) * 1.42));
     height: auto;
     aspect-ratio: 1.42;
     min-height: 0;
@@ -83,24 +93,15 @@ body {
     box-shadow: inset 0 0 0 1px #ffffff8f, inset 0 0 34px #ffffff42;
 }
 
-.sticker-picker {
-    position: absolute;
-    z-index: 10;
-    top: 29%;
-    left: 0;
-    width: 100%;
-    height: 210px;
-    transform: translateY(-50%);
-    perspective: 700px;
-}
-
-.sticker-carousel { position: absolute; inset: 0 38px 28px; transform-style: preserve-3d; }
+.sticker-dock { width: 100%; height: min(460px, 62svh); display: grid; place-items: center; }
+.sticker-picker { position: relative; width: 100%; height: 330px; perspective: 950px; }
+.sticker-carousel { position: absolute; inset: 0 0 62px; transform-style: preserve-3d; }
 .sticker-choice {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 92px;
-    height: 108px;
+    width: 76px;
+    height: 94px;
     padding: 0;
     display: grid;
     place-items: center;
@@ -114,10 +115,10 @@ body {
 .sticker-choice:active { cursor: grabbing; }
 .sticker-choice span { pointer-events: none; }
 
+.carousel-controls { position: absolute; right: 0; bottom: 20px; left: 0; display: flex; align-items: center; justify-content: center; gap: 13px; }
 .carousel-arrow {
-    position: absolute;
+    position: static;
     z-index: 20;
-    top: 45%;
     width: 30px;
     height: 30px;
     padding: 0;
@@ -129,16 +130,15 @@ body {
     cursor: pointer;
     backdrop-filter: blur(8px);
 }
-.carousel-prev { left: 15px; }
-.carousel-next { right: 15px; }
-.sticker-picker p { position: absolute; right: 0; bottom: 0; left: 0; margin: 0; color: #47534d; font-size: 9px; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
-.kindle-cover.is-dragging .sticker-picker { opacity: 0; pointer-events: none; }
+.sticker-picker p { margin: 0; color: #6d746f; font-size: 9px; letter-spacing: .08em; text-align: center; text-transform: uppercase; }
 
 .sticker-note { background: #f2e8c8; color: #557292; font: 700 13px/1.2 "DM Sans", sans-serif; transform: rotate(-3deg); }
 .sticker-flower { border-radius: 48% 52% 44% 56%; background: #d86d61; color: #f9df90; font: 54px/1 Georgia, serif; }
 .sticker-label { height: 78px; background: #e95c2f; color: #ffe48f; font: 700 16px/1 "DM Sans", sans-serif; letter-spacing: -.04em; }
 .sticker-star { clip-path: polygon(50% 0,61% 32%,95% 20%,72% 50%,100% 70%,64% 69%,52% 100%,40% 70%,4% 82%,27% 52%,0 33%,38% 33%); background: #f4c744; color: #c94337; font: 38px/1 Georgia,serif; }
 .sticker-smile { border-radius: 50%; background: #c9d6c1; color: #27352e; font: 54px/1 Georgia,serif; }
+.sticker-eye { border-radius: 50%; background: #ded8c3; color: #28332f; font: 46px/1 Georgia,serif; }
+.sticker-wave { height: 70px; border-radius: 50%; background: #9fc7d8; color: #fff; font: 58px/1 Georgia,serif; }
 
 .cover-dropzone { position: absolute; z-index: 2; inset: 0; overflow: hidden; }
 .drop-outline { position: absolute; z-index: 30; inset: 14px; border: 2px dashed #777; border-radius: 17px; opacity: 0; pointer-events: none; transition: opacity .18s ease; }
@@ -283,7 +283,7 @@ body {
 .resource-count { margin: 20px 0 0; text-align: center; color: #777; font-size: 9px; }
 .kindle-wordmark { position: absolute; bottom: 14px; left: 53%; transform: translateX(-50%); color: #777; font: 500 12px Georgia, serif; letter-spacing: .03em; }
 
-.color-picker { width: min(1040px, 90vw); flex: 0 0 auto; text-align: center; }
+.color-picker { width: 100%; flex: 0 0 auto; text-align: center; }
 .color-picker h2 { margin: 0 0 5px; font: 500 12px "DM Sans", sans-serif; letter-spacing: .01em; }
 .color-options { display: flex; align-items: center; justify-content: center; gap: 10px; }
 .color-swatch {
@@ -312,25 +312,30 @@ button:focus-visible, a:focus-visible { outline: 2px solid #ff8fbc; outline-offs
 @media (max-width: 850px) {
     .resource-header { height: 72px; padding: 0 20px; }
     .brand img { height: 58px; }
-    .resources-main { height: calc(100svh - 72px); gap: 7px; padding: 6px 14px 10px; }
-    .kindle { width: min(760px, 97vw, calc((100svh - 145px) * 1.42)); height: auto; min-height: 0; aspect-ratio: 1.42; grid-template-columns: 46% 54%; border-width: 7px; }
+    .resources-main { height: calc(100svh - 72px); padding: 6px 10px 10px; }
+    .resource-stage { width: 98vw; grid-template-columns: 155px minmax(0, 1fr); gap: 8px; }
+    .sticker-dock { height: 330px; }
+    .sticker-picker { height: 220px; }
+    .kindle { width: min(760px, calc(98vw - 163px), calc((100svh - 145px) * 1.42)); height: auto; min-height: 0; aspect-ratio: 1.42; grid-template-columns: 46% 54%; border-width: 7px; }
     .kindle-spine { display: block; }
     .kindle-cover { min-height: 0; border-radius: 18px 2px 2px 18px; }
     .kindle-device { min-height: 0; padding: 14px 12px 30px 18px; border-radius: 2px 18px 18px 2px; }
-    .color-picker { width: 96vw; }
+    .color-picker { width: 100%; }
 }
 
 @media (max-width: 520px) {
     .resource-header { height: 60px; padding: 0 14px; }
     .brand img { height: 48px; }
-    .resources-main { height: calc(100svh - 60px); gap: 7px; padding: 5px 8px 9px; }
-    .kindle { width: min(98vw, calc((100svh - 150px) * 1.42)); }
+    .resources-main { height: calc(100svh - 60px); padding: 5px 5px 9px; }
+    .resource-stage { grid-template-columns: 88px minmax(0, 1fr); gap: 4px; }
+    .sticker-dock { height: 230px; }
+    .sticker-picker { height: 150px; }
+    .kindle { width: min(calc(98vw - 92px), calc((100svh - 130px) * 1.42)); }
     .resource-grid { gap: 8px; padding-top: 9px; }
     .resource-card { min-height: 92px; padding: 8px; }
     .resource-card h2 { margin: 7px 0; font-size: 9px; }
     .resource-card p, .card-index { font-size: 6px; }
-    .sticker-picker { top: 31%; height: 112px; }
-    .sticker-carousel { inset: 0 20px 18px; }
+    .sticker-carousel { inset: 0 0 38px; }
     .sticker-choice { width: 48px; height: 58px; }
     .sticker-choice.sticker-label { height: 40px; }
     .sticker-note { font-size: 7px; }
@@ -338,8 +343,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #ff8fbc; outline-offs
     .sticker-star { font-size: 20px; }
     .sticker-label { font-size: 8px; }
     .carousel-arrow { width: 20px; height: 20px; font-size: 15px; }
-    .carousel-prev { left: 4px; }
-    .carousel-next { right: 4px; }
+    .carousel-controls { bottom: 7px; gap: 4px; }
     .sticker-picker p { font-size: 5px; }
     .drop-outline { inset: 7px; border-width: 1px; }
     .placed-sticker { width: 50px; height: 54px; }
