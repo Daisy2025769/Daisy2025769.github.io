@@ -54,7 +54,10 @@
 
                     <section class="kindle-device">
                         <div class="kindle-screen">
-                    <div class="status-bar"><span>My Library</span><span>YUMENG · 100%</span></div>
+                    <div class="status-bar">
+                        <span>My Library</span>
+                        <span class="device-status"><svg class="wifi-icon" viewBox="0 0 24 24" aria-label="Wi-Fi"><path d="M2.5 8.8a14.6 14.6 0 0 1 19 0M5.8 12.2a9.7 9.7 0 0 1 12.4 0M9.2 15.6a4.7 4.7 0 0 1 5.6 0"></path><circle cx="12" cy="19" r="1.15"></circle></svg><span>100%</span></span>
+                    </div>
                     <nav class="library-tabs" aria-label="Resource categories">
                         <button type="button" class="tab is-active" data-tab="books" aria-selected="true">Books</button>
                         <button type="button" class="tab" data-tab="articles" aria-selected="false">Articles</button>
@@ -62,7 +65,7 @@
                     </nav>
                     <div class="library-heading">
                         <h1 id="libraryTitle">Books</h1>
-                        <span>Collections⌄</span>
+                        <button class="sort-toggle" id="sortToggle" type="button" data-order="latest" aria-label="Order: latest first. Click for earliest first." title="Latest first"><span aria-hidden="true">↑</span><span aria-hidden="true">↓</span></button>
                     </div>
                     <div class="resource-grid books-grid" id="booksPanel">
                         <article class="resource-card book-cover cover-one"><span class="card-index">01</span><h2>Ways of Seeing</h2><p>John Berger</p></article>

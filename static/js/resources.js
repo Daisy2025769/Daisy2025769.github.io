@@ -7,6 +7,7 @@
     const tabs = [...document.querySelectorAll('.tab')];
     const title = document.querySelector('#libraryTitle');
     const count = document.querySelector('#resourceCount');
+    const sortToggle = document.querySelector('#sortToggle');
     const kindle = document.querySelector('.kindle');
     const swatches = [...document.querySelectorAll('.color-swatch')];
 
@@ -156,6 +157,17 @@
         title.textContent = labels[selected][0];
         count.textContent = labels[selected][1];
     }));
+
+    sortToggle.addEventListener('click', () => {
+        const nextOrder = sortToggle.dataset.order === 'latest' ? 'earliest' : 'latest';
+        sortToggle.dataset.order = nextOrder;
+        sortToggle.title = nextOrder === 'latest' ? 'Latest first' : 'Earliest first';
+        sortToggle.setAttribute('aria-label', `Order: ${nextOrder} first. Click for ${nextOrder === 'latest' ? 'earliest' : 'latest'} first.`);
+        ['#booksPanel', '#articlesPanel', '#podcastsPanel'].forEach(selector => {
+            const panel = document.querySelector(selector);
+            [...panel.children].reverse().forEach(item => panel.appendChild(item));
+        });
+    });
 
     swatches.forEach(swatch => swatch.addEventListener('click', () => {
         kindle.style.setProperty('--case', swatch.dataset.case);
