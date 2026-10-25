@@ -62,11 +62,10 @@ body {
     display: grid;
     grid-template-columns: 46% 54%;
     overflow: hidden;
-    border: 9px solid color-mix(in srgb, var(--case-deep) 58%, transparent);
+    border: 8px solid color-mix(in srgb, var(--case) 84%, var(--case-deep));
     border-radius: 34px;
-    background: color-mix(in srgb, var(--case) 32%, transparent);
-    box-shadow: 0 26px 55px rgba(62, 68, 63, .16), inset 0 0 0 1px #ffffffa8, inset 0 0 22px #ffffff38;
-    backdrop-filter: blur(13px) saturate(.9);
+    background: var(--case);
+    box-shadow: 0 25px 48px rgba(53, 55, 51, .18), inset 0 1px 0 #ffffff66, inset 0 -1px 0 #00000014;
     transition: border-color .3s ease, background-color .3s ease;
 }
 
@@ -78,19 +77,16 @@ body {
     left: 46%;
     width: 20px;
     transform: translateX(-50%);
-    background: linear-gradient(90deg, color-mix(in srgb,var(--case-deep) 58%,transparent), color-mix(in srgb,var(--case-highlight) 74%,white) 46%, color-mix(in srgb,var(--case-deep) 48%,transparent) 55%, color-mix(in srgb,var(--case) 58%,transparent));
-    box-shadow: -7px 0 13px #4d554c32, 7px 0 13px #4d554c26;
+    background: color-mix(in srgb, var(--case) 78%, var(--case-deep));
+    box-shadow: -4px 0 8px #00000016, 4px 0 8px #00000012;
 }
 
 .kindle-cover {
     position: relative;
     overflow: hidden;
     border-radius: 24px 3px 3px 24px;
-    background:
-        radial-gradient(circle at 15% 15%, #ffffff4d 0 2px, transparent 2.5px),
-        linear-gradient(145deg, color-mix(in srgb,var(--case-highlight) 68%,white), color-mix(in srgb,var(--case) 54%,transparent) 58%, color-mix(in srgb,var(--case-deep) 48%,transparent));
-    background-size: 16px 16px, auto;
-    box-shadow: inset 0 0 0 1px #ffffff8f, inset 0 0 34px #ffffff42;
+    background: var(--case);
+    box-shadow: inset 1px 1px 0 #ffffff52, inset -1px -1px 0 #00000012;
 }
 
 .sticker-dock { width: 100%; height: min(390px, 55svh); display: grid; place-items: center; }
@@ -152,9 +148,9 @@ body {
     cursor: grab;
     touch-action: none;
     user-select: none;
-    filter: drop-shadow(0 7px 7px #0008);
+    filter: none;
 }
-.placed-sticker img { width: 100%; height: 100%; display: block; object-fit: fill; pointer-events: none; }
+.placed-sticker img { width: 100%; height: 100%; display: block; object-fit: fill; pointer-events: none; mix-blend-mode: multiply; opacity: .96; filter: saturate(.92) contrast(.98); }
 .placed-sticker.is-selected::after { content: ""; position: absolute; inset: -7px; border: 1px solid #fff; box-shadow: 0 0 0 1px #38383899, 0 0 8px #0004; pointer-events: none; }
 .sticker-handle { position: absolute; z-index: 4; display: none; touch-action: none; }
 .placed-sticker.is-selected .sticker-handle { display: block; }
@@ -175,8 +171,8 @@ body {
     padding: 25px 23px 47px 31px;
     overflow: hidden;
     border-radius: 3px 24px 24px 3px;
-    background: linear-gradient(145deg, color-mix(in srgb,var(--case-highlight) 74%,white), color-mix(in srgb,var(--case-deep) 58%,transparent));
-    box-shadow: inset 0 0 0 1px #ffffff85;
+    background: var(--case);
+    box-shadow: inset 1px 1px 0 #ffffff52, inset -1px -1px 0 #00000012;
     transition: background .3s ease;
 }
 
