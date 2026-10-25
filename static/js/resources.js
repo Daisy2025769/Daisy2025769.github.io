@@ -71,7 +71,7 @@
         const sticker = document.createElement('div');
         sticker.className = `placed-sticker ${source.dataset.variant}`;
         sticker.innerHTML = source.innerHTML;
-        sticker.insertAdjacentHTML('beforeend', '<span class="crop-mark crop-n" aria-hidden="true"></span><span class="crop-mark crop-e" aria-hidden="true"></span><span class="crop-mark crop-s" aria-hidden="true"></span><span class="crop-mark crop-w" aria-hidden="true"></span><button class="sticker-handle resize-handle crop-nw" type="button" aria-label="Resize sticker from top left"></button><button class="sticker-handle resize-handle crop-ne" type="button" aria-label="Resize sticker from top right"></button><button class="sticker-handle resize-handle crop-sw" type="button" aria-label="Resize sticker from bottom left"></button><button class="sticker-handle resize-handle crop-se" type="button" aria-label="Resize sticker from bottom right"></button><button class="sticker-handle rotate-handle" type="button" aria-label="Rotate sticker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5"></path><path d="M19 12a7 7 0 1 0-2 5"></path></svg></button>');
+        sticker.insertAdjacentHTML('beforeend', '<button class="sticker-handle edge-resize-handle crop-n" type="button" data-axis="y" data-direction="-1" aria-label="Stretch sticker upward"></button><button class="sticker-handle edge-resize-handle crop-e" type="button" data-axis="x" data-direction="1" aria-label="Stretch sticker right"></button><button class="sticker-handle edge-resize-handle crop-s" type="button" data-axis="y" data-direction="1" aria-label="Stretch sticker downward"></button><button class="sticker-handle edge-resize-handle crop-w" type="button" data-axis="x" data-direction="-1" aria-label="Stretch sticker left"></button><button class="sticker-handle resize-handle crop-nw" type="button" aria-label="Resize sticker proportionally from top left"></button><button class="sticker-handle resize-handle crop-sw" type="button" aria-label="Resize sticker proportionally from bottom left"></button><button class="sticker-handle resize-handle crop-se" type="button" aria-label="Resize sticker proportionally from bottom right"></button><button class="sticker-handle rotate-handle" type="button" aria-label="Rotate sticker"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5"></path><path d="M19 12a7 7 0 1 0-2 5"></path></svg></button>');
         sticker.setAttribute('role', 'group');
         sticker.setAttribute('aria-label', source.getAttribute('aria-label'));
         sticker.dataset.scale = '1';
@@ -128,6 +128,7 @@
 
     function enablePointerDrag(sticker) {
         const resizeHandles = [...sticker.querySelectorAll('.resize-handle')];
+        const edgeResizeHandles = [...sticker.querySelectorAll('.edge-resize-handle')];
         const rotateHandle = sticker.querySelector('.rotate-handle');
 
         resizeHandles.forEach(resizeHandle => resizeHandle.addEventListener('pointerdown', event => {
@@ -154,6 +155,36 @@
                 resizeHandle.addEventListener('pointerup', finish);
                 resizeHandle.addEventListener('pointercancel', finish);
             }));
+
+        edgeResizeHandles.forEach(edgeHandle => edgeHandle.addEventListener('pointerdown', event => {
+            event.preventDefault();
+            event.stopPropagation();
+            selectSticker(sticker);
+            edgeHandle.setPointerCapture(event.pointerId);
+            const startX = event.clientX;
+            const startY = event.clientY;
+            const startWidth = sticker.offsetWidth;
+            const startHeight = sticker.offsetHeight;
+            const scale = Number(sticker.dataset.scale) || 1;
+            const rotation = (Number(sticker.dataset.rotation) || 0) * Math.PI / 180;
+            const direction = Number(edgeHandle.dataset.direction);
+            const move = moveEvent => {
+                const deltaX = (moveEvent.clientX - startX) / scale;
+                const deltaY = (moveEvent.clientY - startY) / scale;
+                const localX = deltaX * Math.cos(rotation) + deltaY * Math.sin(rotation);
+                const localY = -deltaX * Math.sin(rotation) + deltaY * Math.cos(rotation);
+                if (edgeHandle.dataset.axis === 'x') sticker.style.width = `${Math.max(34, Math.min(230, startWidth + localX * direction))}px`;
+                else sticker.style.height = `${Math.max(34, Math.min(230, startHeight + localY * direction))}px`;
+            };
+            const finish = () => {
+                edgeHandle.removeEventListener('pointermove', move);
+                edgeHandle.removeEventListener('pointerup', finish);
+                edgeHandle.removeEventListener('pointercancel', finish);
+            };
+            edgeHandle.addEventListener('pointermove', move);
+            edgeHandle.addEventListener('pointerup', finish);
+            edgeHandle.addEventListener('pointercancel', finish);
+        }));
 
         rotateHandle.addEventListener('pointerdown', event => {
             event.preventDefault();
